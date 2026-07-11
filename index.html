@@ -12,6 +12,10 @@
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+TC:wght@400;500;700&family=Noto+Serif+TC:wght@400;500&family=Cormorant+Garamond:wght@400;500&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="assets/style.css">
+
+  <!-- Hero 形象照 preload（依螢幕大小只載一張、WebP 優先） -->
+  <link rel="preload" as="image" href="assets/img/hero-kash-desktop.webp" type="image/webp" media="(min-width: 768px)" fetchpriority="high">
+  <link rel="preload" as="image" href="assets/img/hero-kash-mobile.webp"  type="image/webp" media="(max-width: 767px)"  fetchpriority="high">
 </head>
 <body>
 
@@ -26,6 +30,7 @@
         <li><a href="speaking.html">演講與課程</a></li>
         <li><a href="proof.html">實績與見證</a></li>
         <li><a href="contact.html">聯絡邀課</a></li>
+        <li><a href="https://imkash.substack.com" target="_blank" rel="noopener">電子報</a></li>
         <li class="nav__cta-mobile"><a class="btn btn-primary" href="contact.html">邀請 Kash 演講</a></li>
       </ul>
       <div class="nav__cta"><a class="btn btn-primary" href="contact.html">邀請 Kash 演講</a></div>
@@ -46,7 +51,22 @@
           </div>
         </div>
         <div>
-          <div class="photo-ph">[講師形象照待放]<br>surface-card 版位</div>
+          <div class="photo-ph">
+            <picture>
+              <source media="(max-width: 767px)"
+                      type="image/webp"
+                      srcset="assets/img/hero-kash-mobile.webp">
+              <source media="(max-width: 767px)"
+                      srcset="assets/img/hero-kash-mobile.png">
+              <source type="image/webp"
+                      srcset="assets/img/hero-kash-desktop.webp">
+              <img src="assets/img/hero-kash-desktop.png"
+                   alt="陳誼峰 Kash——會算命的數據顧問、Merkle Taiwan 體驗科學副總經理"
+                   width="1200" height="1500"
+                   fetchpriority="high"
+                   decoding="async">
+            </picture>
+          </div>
         </div>
       </div>
     </section>
@@ -54,7 +74,7 @@
     <!-- §2 一句話定位條 -->
     <section class="tagline-bar">
       <div class="container">
-        <p>一位<span class="accent">會算命的數據顧問</span>——用數據預判天時，陪你在關鍵時刻做出精準決策。</p>
+        <p>一位<span class="accent">會算命的數據顧問</span>——用數據預判趨勢，陪你在關鍵時刻做出精準決策。</p>
       </div>
     </section>
 
@@ -68,7 +88,7 @@
         <div class="grid grid--3">
           <div class="card">
             <div class="card__title">我講什麼</div>
-            <p>AI 導入、數據決策、數位轉型——都指向同一件事：讓企業把資源花在看得見效益的地方。</p>
+            <p>成效行銷、數據決策、數位轉型、敏捷運作、AI 導入——都指向同一件事：讓企業把資源花在看得見效益的地方。</p>
             <a class="text-link" href="speaking.html">查看所有講題 →</a>
           </div>
           <div class="card">
@@ -115,19 +135,32 @@
       <div class="container">
         <div class="section-head">
           <h2>他們已經把關鍵決策交給數據</h2>
-          <p>服務過的產業龍頭橫跨金融、零售、製造、汽車、運動娛樂——包括裕隆、全聯、統一超、南山人壽、安達人壽、匯豐汽車、統一星巴克、中信兄弟等。</p>
+          <p>服務過的產業龍頭橫跨金融、汽車、科技、電商、運動娛樂——包括裕隆集團、南山人壽、Chubb 安達人壽、匯豐汽車、中信兄弟、Lenovo、Philips、天貓等。</p>
         </div>
-        <div class="placeholder">
-          <span class="placeholder__label">[待補：客戶 logo 牆——logo 授權狀態未確認前，僅以文字呈現，此區預留 logo 圖牆版位]</span>
-          <div class="logo-wall">
-            <div class="logo-cell">裕隆</div>
-            <div class="logo-cell">全聯</div>
-            <div class="logo-cell">統一超</div>
-            <div class="logo-cell">南山人壽</div>
-            <div class="logo-cell">安達人壽</div>
-            <div class="logo-cell">匯豐汽車</div>
-            <div class="logo-cell">統一星巴克</div>
-            <div class="logo-cell">中信兄弟</div>
+        <div class="logo-wall">
+          <div class="logo-cell">
+            <img src="assets/img/client-logo/yl.webp" alt="裕隆集團" loading="lazy" decoding="async">
+          </div>
+          <div class="logo-cell">
+            <img src="assets/img/client-logo/nanshan.webp" alt="南山人壽" loading="lazy" decoding="async">
+          </div>
+          <div class="logo-cell">
+            <img src="assets/img/client-logo/chubb.jpg" alt="Chubb 安達人壽" loading="lazy" decoding="async">
+          </div>
+          <div class="logo-cell">
+            <img src="assets/img/client-logo/sum.webp" alt="匯豐汽車" loading="lazy" decoding="async">
+          </div>
+          <div class="logo-cell">
+            <img src="assets/img/client-logo/ctbc-brothers.webp" alt="中信兄弟" loading="lazy" decoding="async">
+          </div>
+          <div class="logo-cell">
+            <img src="assets/img/client-logo/lenovo.webp" alt="Lenovo 聯想" loading="lazy" decoding="async">
+          </div>
+          <div class="logo-cell">
+            <img src="assets/img/client-logo/philips.webp" alt="Philips 飛利浦" loading="lazy" decoding="async">
+          </div>
+          <div class="logo-cell">
+            <img src="assets/img/client-logo/taobao.webp" alt="天貓 Tmall" loading="lazy" decoding="async">
           </div>
         </div>
       </div>
@@ -147,12 +180,13 @@
           <h2>每週一則，把數據決策的思路帶著走</h2>
           <p>訂閱電子報，收到 AI 導入、數據決策與數位轉型的實戰觀點——寫給要做決定的人，不是給看熱鬧的人。</p>
         </div>
-        <div class="placeholder">
-          <span class="placeholder__label">[電子報訂閱：beehiiv embed 待嵌入]</span>
-          <div class="subscribe-row">
-            <input type="email" placeholder="你的 Email（示意欄位）" aria-label="Email（示意，beehiiv embed 待嵌入）" disabled>
-            <a class="btn btn-primary" href="contact.html#newsletter">訂閱電子報</a>
-          </div>
+        <div class="newsletter-embed">
+          <iframe src="https://imkash.substack.com/embed"
+                  title="訂閱陳誼峰 Kash 的 Substack 電子報"
+                  width="480"
+                  loading="lazy"
+                  style="border: 1px solid #EEE; background: white"
+                  frameborder="0" scrolling="auto"></iframe>
         </div>
       </div>
     </section>
@@ -190,13 +224,13 @@
         <div>
           <h4>保持連結</h4>
           <ul>
-            <li><a href="contact.html#newsletter">訂閱電子報</a> <span class="footer__ph">beehiiv embed 待嵌入</span></li>
-            <li>聯絡 Email <span class="footer__ph">[Email 待補]</span></li>
+            <li><a href="contact.html#newsletter">訂閱電子報</a></li>
+            <li>聯絡 Email : <a href="mailto:kash.doublemax@gmail.com">kash.doublemax@gmail.com</a></li>
           </ul>
         </div>
       </div>
       <div class="footer__bottom">
-        © 2026 陳誼峰 Kash<span class="sep">｜</span>楷學堂 KASH Academy<span class="sep">｜</span>DREAM · DO · DELIVER
+        © 2026 陳誼峰 Kash<span class="sep">｜</span>會算命的數據顧問<span class="sep">｜</span>DREAM · DO · DELIVER
       </div>
     </div>
   </footer>
