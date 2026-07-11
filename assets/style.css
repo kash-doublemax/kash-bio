@@ -226,6 +226,7 @@ input:focus-visible {
   border-bottom-color: var(--primary);
 }
 .nav__cta { flex-shrink: 0; }
+.nav__links .nav__cta-mobile { display: none; }
 
 /* 漢堡按鈕（手機才顯示） */
 .nav__toggle {
