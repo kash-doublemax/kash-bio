@@ -1,0 +1,393 @@
+<!doctype html>
+<html lang="zh-Hant">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>客製化數據變現系統｜BNI 81 宮格公司引薦地圖</title>
+  <style>
+    :root {
+      --ink: #12314a;
+      --muted: #60768a;
+      --line: #b8cad8;
+      --company-bg: #f7fbfd;
+      --company-line: #c7d8e4;
+      --company-accent: #0f6b91;
+      --target-bg: #fff2cf;
+      --target-line: #d69821;
+      --target-ink: #6a4100;
+      --scenario-bg: #e8f3f8;
+      --scenario-line: #74a9c7;
+      --core-bg: #70430b;
+      --core-line: #4b2b05;
+      --core-accent: #ffcf45;
+      --paper: #ffffff;
+    }
+
+    * { box-sizing: border-box; }
+
+    html,
+    body {
+      margin: 0;
+      width: 2800px;
+      min-height: 3000px;
+      background: var(--paper);
+      color: var(--ink);
+      font-family: "Noto Sans TC", "Microsoft JhengHei", "PingFang TC", sans-serif;
+      letter-spacing: 0;
+    }
+
+    body { padding: 64px 80px 72px; }
+
+    header {
+      height: 190px;
+      display: flex;
+      align-items: flex-start;
+      justify-content: space-between;
+      gap: 56px;
+    }
+
+    h1 {
+      margin: 0 0 16px;
+      color: #102e45;
+      font-size: 50px;
+      line-height: 1.15;
+      font-weight: 900;
+    }
+
+    .subtitle {
+      margin: 0;
+      color: var(--muted);
+      font-size: 26px;
+      line-height: 1.4;
+      font-weight: 650;
+    }
+
+    .legend {
+      display: flex;
+      gap: 22px;
+      padding-top: 10px;
+      white-space: nowrap;
+      font-size: 22px;
+      font-weight: 800;
+    }
+
+    .legend-item { display: flex; align-items: center; gap: 10px; }
+    .swatch { width: 28px; height: 28px; border-radius: 5px; border: 2px solid; }
+    .swatch.core { background: var(--core-bg); border-color: var(--core-line); }
+    .swatch.target { background: var(--scenario-bg); border-color: var(--scenario-line); }
+    .swatch.company { background: var(--company-bg); border-color: var(--company-line); }
+
+    .map {
+      width: 2640px;
+      height: 2640px;
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      grid-template-rows: repeat(3, 1fr);
+      gap: 24px;
+    }
+
+    .block {
+      min-width: 0;
+      min-height: 0;
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      grid-template-rows: repeat(3, 1fr);
+      gap: 5px;
+      overflow: hidden;
+      background: #9fb5c5;
+      border: 3px solid #8da6b8;
+      border-radius: 8px;
+    }
+
+    .cell {
+      min-width: 0;
+      min-height: 0;
+      padding: 14px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+      overflow: hidden;
+      overflow-wrap: anywhere;
+      word-break: keep-all;
+    }
+
+    .company {
+      background: var(--company-bg);
+      color: #173c56;
+      border: 2px solid var(--company-line);
+    }
+
+    .company .type {
+      color: #2f526b;
+      font-size: 20px;
+      line-height: 1.24;
+      font-weight: 800;
+    }
+
+    .company .name {
+      margin-top: 12px;
+      color: var(--company-accent);
+      font-size: 26px;
+      line-height: 1.18;
+      font-weight: 900;
+    }
+
+    .target {
+      padding: 13px;
+      background: var(--target-bg);
+      color: var(--target-ink);
+      border: 4px solid var(--target-line);
+    }
+
+    .target .audience {
+      font-size: 22px;
+      line-height: 1.26;
+      font-weight: 900;
+    }
+
+    .target .solution {
+      margin-top: 10px;
+      color: #a75e00;
+      font-size: 20px;
+      line-height: 1.23;
+      font-weight: 900;
+    }
+
+    .center-block { background: #6f9db8; border-color: #557f99; }
+
+    .center-block .scenario {
+      padding: 12px;
+      background: var(--scenario-bg);
+      color: #173f5a;
+      border: 3px solid var(--scenario-line);
+    }
+
+    .scenario .audience {
+      font-size: 22px;
+      line-height: 1.24;
+      font-weight: 900;
+    }
+
+    .scenario .solution {
+      margin-top: 10px;
+      color: #a85c00;
+      font-size: 20px;
+      line-height: 1.22;
+      font-weight: 900;
+    }
+
+    .core {
+      padding: 14px;
+      background: var(--core-bg);
+      color: #fff;
+      border: 5px solid var(--core-line);
+    }
+
+    .core .name {
+      margin-bottom: 13px;
+      color: #fff6dd;
+      font-size: 26px;
+      line-height: 1.1;
+      font-weight: 900;
+    }
+
+    .core .service {
+      color: var(--core-accent);
+      font-size: 28px;
+      line-height: 1.24;
+      font-weight: 900;
+    }
+
+    footer {
+      height: 70px;
+      display: flex;
+      align-items: flex-end;
+      justify-content: space-between;
+      gap: 30px;
+      color: #65798a;
+      font-size: 20px;
+      line-height: 1.35;
+    }
+
+    footer strong { color: #173c56; }
+  </style>
+</head>
+<body>
+  <header>
+    <div>
+      <h1>客製化數據變現系統｜BNI 81 宮格公司引薦地圖</h1>
+      <p class="subtitle">1 個核心服務 × 8 種理想引薦情境 × 64 種合作公司類型與台灣代表公司</p>
+    </div>
+    <div class="legend" aria-label="圖例">
+      <div class="legend-item"><span class="swatch core"></span>核心服務</div>
+      <div class="legend-item"><span class="swatch target"></span>理想引薦</div>
+      <div class="legend-item"><span class="swatch company"></span>合作公司類型</div>
+    </div>
+  </header>
+
+  <main class="map" id="map" aria-label="BNI 81 宮格公司引薦地圖"></main>
+
+  <footer>
+    <span><strong>讀法：</strong>外圍先找可交換客戶或專案訊號的公司類型，再連到該區中央的具體情境。</span>
+    <span>代表公司用於引薦討論，不代表唯一選項、排名或官方合作關係。</span>
+  </footer>
+
+  <script>
+    const blocks = [
+      {
+        target: ["品牌業行銷總監", "MarTech 行銷自動化設計｜LINE 行銷與 CRM 串接"],
+        companies: [
+          ["企業 AI 轉型顧問公司", "Appier 沛星互動"],
+          ["生成式 AI 行銷公司", "愛酷智能 AccuHit"],
+          ["CRM 導入顧問公司", "漸強實驗室 Crescendo Lab"],
+          ["零售 CRM 系統商", "91APP"],
+          ["B2B SaaS 產品公司", "Gogolook 走著瞧"],
+          ["數位行銷代理商", "Vpon 威朋"],
+          ["消費者數據研究公司", "東方線上"],
+          ["電商開店系統商", "CYBERBIZ"]
+        ]
+      },
+      {
+        target: ["新聞、媒體或內容型網站的產品負責人", "Google Analytics 4｜內容與流量分析"],
+        companies: [
+          ["網站數據分析顧問公司", "TenMax 騰學廣告"],
+          ["內容策略媒體公司", "關鍵評論網"],
+          ["網紅社群行銷平台", "iKala Kolr"],
+          ["電子報行銷服務商", "電子豹"],
+          ["品牌內容設計公司", "Bito 甲蟲創意"],
+          ["資料新聞視覺化媒體", "READr"],
+          ["企業 BI 軟體公司", "叡揚資訊"],
+          ["網站建置服務商", "戰國策集團"]
+        ]
+      },
+      {
+        target: ["零售、科技或電商公司的營運主管", "BI 商業智慧儀表板設計"],
+        companies: [
+          ["企業法律事務所", "理律法律事務所"],
+          ["金融控股公司", "國泰金控"],
+          ["IT 服務管理公司", "凌群電腦"],
+          ["大型系統整合商", "精誠資訊"],
+          ["客服中心系統商", "網訊電通"],
+          ["雲端解決方案商", "伊雲谷"],
+          ["ERP／BI 顧問公司", "鼎新數智"],
+          ["企業 IT 解決方案商", "宏碁資訊"]
+        ]
+      },
+      {
+        target: ["消費者品牌公司的行銷主管", "成效型數位媒體採購｜廣告成效優化"],
+        companies: [
+          ["數位轉型服務商", "資拓宏宇"],
+          ["SEO 成長顧問公司", "Welly SEO"],
+          ["社群媒體行銷公司", "cacaFly 聖洋科技"],
+          ["廣告創意代理商", "我是大衛廣告"],
+          ["綜合電商平台", "momo 富邦媒"],
+          ["成效廣告技術商", "adHub 經緯廣告"],
+          ["數位內容媒體", "數位時代"],
+          ["品牌設計顧問公司", "JL DESIGN"]
+        ]
+      },
+      {
+        core: ["陳誼峰", "客製化數據變現系統"],
+        scenarios: [
+          ["品牌業行銷總監", "MarTech 行銷自動化設計｜LINE 行銷與 CRM 串接"],
+          ["新聞、媒體或內容型網站的產品負責人", "Google Analytics 4｜內容與流量分析"],
+          ["零售、科技或電商公司的營運主管", "BI 商業智慧儀表板設計"],
+          ["消費者品牌公司的行銷主管", "成效型數位媒體採購｜廣告成效優化"],
+          ["零售、媒體等高數據量公司的數據主管", "人工智慧應用｜預測模型"],
+          ["受數位化衝擊的公司老闆", "企業數位轉型策略規劃"],
+          ["面對消費者的零售產業行銷主管", "消費者 CRM 標籤規劃"],
+          ["擁有大量數據、需要跨來源整合的資訊主管", "數據管線 ETL｜整合架構"]
+        ]
+      },
+      {
+        target: ["零售、媒體等高數據量公司的數據主管", "人工智慧應用｜預測模型"],
+        companies: [
+          ["社群數據分析公司", "意藍資訊 eLand"],
+          ["產品型科技公司", "KKCompany"],
+          ["AI 晶片解決方案商", "耐能智慧 Kneron"],
+          ["AutoML／AI 平台公司", "MoBagel 行動貝果"],
+          ["AI 系統整合商", "大綜電腦"],
+          ["資安與隱私顧問公司", "中華資安國際"],
+          ["商業數據洞察公司", "創市際市場研究"],
+          ["雲端架構顧問公司", "CloudMile 宏庭科技"]
+        ]
+      },
+      {
+        target: ["受數位化衝擊的公司老闆", "企業數位轉型策略規劃"],
+        companies: [
+          ["策略研究顧問公司", "中華徵信所"],
+          ["ERP 管理顧問公司", "鼎新電腦"],
+          ["數位廣告經銷商", "funP 雲沛創新"],
+          ["電信雲端服務商", "中華電信"],
+          ["企業學習平台公司", "天下學習"],
+          ["產業趨勢媒體公司", "商業周刊"],
+          ["公關顧問公司", "精英公關"],
+          ["品牌策略顧問公司", "Bito 甲蟲創意"]
+        ]
+      },
+      {
+        target: ["面對消費者的零售產業行銷主管", "消費者 CRM 標籤規劃"],
+        companies: [
+          ["數據廣告平台公司", "adGeek 艾得基客"],
+          ["品牌體驗設計公司", "JL DESIGN"],
+          ["OMO 電商解決方案商", "meepShop"],
+          ["顧客服務委外公司", "網訊電通"],
+          ["KOL 數據平台公司", "iKala Kolr"],
+          ["SEO／GEO 顧問公司", "將能數位行銷"],
+          ["會員點數平台公司", "HAPPY GO"],
+          ["MarTech 自動化公司", "愛酷智能 AccuHit"]
+        ]
+      },
+      {
+        target: ["擁有大量數據、需要跨來源整合的資訊主管", "數據管線 ETL｜整合架構"],
+        companies: [
+          ["資料工程服務商", "精誠資訊"],
+          ["AI 數據分析公司", "Appier 沛星互動"],
+          ["POS SaaS 產品公司", "iCHEF"],
+          ["資通訊系統整合商", "大同世界科技"],
+          ["雲端管理服務商", "伊雲谷"],
+          ["IT 基礎設施服務商", "神通資訊科技"],
+          ["軟體委外開發商", "緯創軟體"],
+          ["電信大數據公司", "遠傳電信"]
+        ]
+      }
+    ];
+
+    const map = document.querySelector("#map");
+
+    function makeCell(className, content) {
+      const cell = document.createElement("div");
+      cell.className = `cell ${className}`;
+      cell.innerHTML = content;
+      return cell;
+    }
+
+    blocks.forEach((block) => {
+      const blockEl = document.createElement("section");
+      blockEl.className = `block${block.core ? " center-block" : ""}`;
+
+      const entries = block.core ? block.scenarios : block.companies;
+      const positions = [0, 1, 2, 3, 5, 6, 7, 8];
+
+      entries.forEach((entry, index) => {
+        const pos = positions[index];
+        const item = block.core
+          ? `<div class="audience">${entry[0]}</div><div class="solution">${entry[1]}</div>`
+          : `<div class="type">${entry[0]}</div><div class="name">${entry[1]}</div>`;
+        const cell = makeCell(block.core ? "scenario" : "company", item);
+        cell.style.gridArea = `${Math.floor(pos / 3) + 1} / ${(pos % 3) + 1}`;
+        blockEl.appendChild(cell);
+      });
+
+      const center = block.core
+        ? makeCell("core", `<div class="name">${block.core[0]}</div><div class="service">${block.core[1]}</div>`)
+        : makeCell("target", `<div class="audience">${block.target[0]}</div><div class="solution">${block.target[1]}</div>`);
+      center.style.gridArea = "2 / 2";
+      blockEl.appendChild(center);
+      map.appendChild(blockEl);
+    });
+  </script>
+</body>
+</html>
