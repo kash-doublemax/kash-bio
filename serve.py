@@ -5,10 +5,11 @@
     python serve.py            # 預設 8000 埠
     python serve.py 8080       # 指定其他埠
 
-網站根目錄：與 serve.py 同一資料夾
+網站根目錄：與 serve.py 同一資料夾（與啟動時的 cwd 無關）
 """
 import http.server
 import mimetypes
+import os
 import socketserver
 import sys
 
@@ -18,9 +19,13 @@ mimetypes.add_type("font/woff2", ".woff2")
 mimetypes.add_type("application/manifest+json", ".webmanifest")
 
 PORT = int(sys.argv[1]) if len(sys.argv) > 1 else 8000
+ROOT = os.path.dirname(os.path.abspath(__file__))
 
 
 class Handler(http.server.SimpleHTTPRequestHandler):
+    def __init__(self, *args, **kwargs):
+        super().__init__(*args, directory=ROOT, **kwargs)
+
     def end_headers(self):
         self.send_header("Cache-Control", "no-store")
         super().end_headers()

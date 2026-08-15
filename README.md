@@ -38,6 +38,10 @@ kash-bio/
 └── README.md
 ```
 
+## 維護入口
+
+預設從 [`../Kash_Coding_OS/`](../Kash_Coding_OS/) 開 session 改本站（見 `AGENTS.md`）。本 repo 只放產品檔；方法與 AAR 在 Coding OS case `kash-instructor-site-2026-07`。
+
 ## 本地預覽
 
 Python 內建 `http.server` 不會將 `.webp` 標記為正確的 MIME type，請改用專案內的 `serve.py`：
@@ -46,6 +50,8 @@ Python 內建 `http.server` 不會將 `.webp` 標記為正確的 MIME type，請
 python serve.py            # 預設 http://127.0.0.1:8000
 python serve.py 8080       # 指定其他埠
 ```
+
+從其他目錄啟動也可以（`serve.py` 固定服務自己所在資料夾）。
 
 ## 外部整合
 
