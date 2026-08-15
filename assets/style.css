@@ -433,6 +433,109 @@ input:focus-visible {
 }
 .media-card .text-link { margin-top: auto; }
 
+/* 活動剪影：現場照片牆 */
+.photo-gallery {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 24px;
+}
+.photo-item {
+  margin: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+.photo-item img {
+  width: 100%;
+  aspect-ratio: 4 / 3;
+  object-fit: cover;
+  border-radius: var(--r-card);
+  border: 1px solid var(--hairline);
+  background: var(--surface-soft);
+}
+.photo-item figcaption {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  font-size: 14px;
+  color: var(--muted);
+  line-height: 1.5;
+}
+.photo-item figcaption strong {
+  font-size: 15px;
+  font-weight: 500;
+  color: var(--ink);
+}
+.photo-slot,
+.video-slot {
+  aspect-ratio: 4 / 3;
+  border: 2px dashed rgba(204, 120, 92, 0.45);
+  border-radius: var(--r-card);
+  background: var(--surface-soft);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  padding: 20px;
+  text-align: center;
+}
+.video-slot { aspect-ratio: 16 / 9; }
+.photo-slot__label,
+.video-slot__label {
+  font-size: 14px;
+  font-weight: 500;
+  color: var(--primary);
+}
+.photo-slot__hint,
+.video-slot__hint {
+  font-size: 12px;
+  color: var(--muted);
+}
+
+/* 活動剪影：線上影片 */
+.video-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 28px;
+}
+.video-block {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+.video-embed {
+  position: relative;
+  width: 100%;
+  aspect-ratio: 16 / 9;
+  border-radius: var(--r-card);
+  overflow: hidden;
+  border: 1px solid var(--hairline);
+  background: var(--surface-dark);
+}
+.video-embed iframe {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  border: 0;
+}
+.video-block__body { padding: 0 4px; }
+.video-block__title {
+  font-family: var(--font-body);
+  font-size: 17px;
+  font-weight: 500;
+  line-height: 1.5;
+  color: var(--ink);
+  margin: 0 0 8px;
+}
+.video-block__desc {
+  font-size: 14.5px;
+  line-height: 1.7;
+  color: var(--body);
+  margin: 0;
+}
+
 /* 客戶見證 quote 卡 */
 .quote-grid {
   display: grid;
@@ -858,6 +961,7 @@ td { color: var(--body); }
 /* Tablet 768–1024：導覽橫向、卡片 2-up */
 @media (max-width: 1024px) {
   .grid--3 { grid-template-columns: repeat(2, 1fr); }
+  .photo-gallery { grid-template-columns: repeat(2, 1fr); }
   .logo-wall { grid-template-columns: repeat(3, 1fr); }
   h1 { font-size: 48px; }
 }
@@ -907,6 +1011,8 @@ td { color: var(--body); }
 
   .grid--3,
   .grid--2 { grid-template-columns: 1fr; }
+  .photo-gallery { grid-template-columns: 1fr; }
+  .video-grid { grid-template-columns: 1fr; }
   .quote-grid { grid-template-columns: 1fr; }
   .form-fields { grid-template-columns: 1fr; }
   .logo-wall { grid-template-columns: repeat(2, 1fr); }
