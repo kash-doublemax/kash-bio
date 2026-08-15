@@ -434,6 +434,10 @@ input:focus-visible {
 .media-card .text-link { margin-top: auto; }
 
 /* 活動剪影：現場照片牆 */
+.is-draft,
+[hidden] {
+  display: none !important;
+}
 .photo-gallery {
   display: grid;
   grid-template-columns: repeat(3, 1fr);
@@ -453,6 +457,10 @@ input:focus-visible {
   border: 1px solid var(--hairline);
   background: var(--surface-soft);
 }
+.photo-item--contain img {
+  object-fit: contain;
+  object-position: center;
+}
 .photo-item figcaption {
   display: flex;
   flex-direction: column;
@@ -466,6 +474,91 @@ input:focus-visible {
   font-weight: 500;
   color: var(--ink);
 }
+
+/* 活動剪影：多張照片輪播 */
+.photo-carousel {
+  position: relative;
+  aspect-ratio: 4 / 3;
+  border-radius: var(--r-card);
+  border: 1px solid var(--hairline);
+  background: var(--surface-soft);
+  overflow: hidden;
+}
+.photo-carousel__viewport {
+  width: 100%;
+  height: 100%;
+}
+.photo-carousel__track {
+  position: relative;
+  width: 100%;
+  height: 100%;
+}
+.photo-carousel__slide {
+  position: absolute;
+  inset: 0;
+  opacity: 0;
+  transition: opacity 0.35s ease;
+  pointer-events: none;
+}
+.photo-carousel__slide.is-active {
+  opacity: 1;
+  pointer-events: auto;
+}
+.photo-carousel__slide img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+}
+.photo-carousel__btn {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  z-index: 2;
+  width: 36px;
+  height: 36px;
+  border: none;
+  border-radius: var(--r-pill);
+  background: rgba(20, 20, 19, 0.55);
+  color: var(--on-primary);
+  font-size: 22px;
+  line-height: 1;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: background 0.2s ease;
+}
+.photo-carousel__btn:hover {
+  background: rgba(20, 20, 19, 0.75);
+}
+.photo-carousel__btn--prev { left: 10px; }
+.photo-carousel__btn--next { right: 10px; }
+.photo-carousel__dots {
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: 10px;
+  z-index: 2;
+  display: flex;
+  justify-content: center;
+  gap: 8px;
+}
+.photo-carousel__dots button {
+  width: 8px;
+  height: 8px;
+  padding: 0;
+  border: none;
+  border-radius: var(--r-pill);
+  background: rgba(255, 255, 255, 0.45);
+  cursor: pointer;
+  transition: background 0.2s ease, transform 0.2s ease;
+}
+.photo-carousel__dots button.is-active {
+  background: var(--on-primary);
+  transform: scale(1.15);
+}
+
 .photo-slot,
 .video-slot {
   aspect-ratio: 4 / 3;

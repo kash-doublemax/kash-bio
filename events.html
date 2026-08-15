@@ -11,7 +11,7 @@
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+TC:wght@400;500;700&family=Noto+Serif+TC:wght@400;500&family=Cormorant+Garamond:wght@400;500&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="assets/style.css?v=20260815a">
+  <link rel="stylesheet" href="assets/style.css?v=20260815f">
 </head>
 <body>
 
@@ -52,40 +52,81 @@
         </div>
         <div class="photo-gallery">
 
-          <figure class="photo-item">
-            <div class="photo-slot" role="img" aria-label="[待補現場照 01]">
-              <span class="photo-slot__label">[待補現場照 01]</span>
-              <span class="photo-slot__hint">assets/img/events/</span>
-            </div>
+          <figure class="photo-item photo-item--contain">
+            <img src="assets/img/events/2026-fanruan-insight-challenge-01.png?v=20260815e"
+                 alt="FineBI X 台灣數據力大賞合作——帆軟 DORA x KASH 線上實戰課視覺"
+                 loading="lazy" decoding="async">
             <figcaption>
-              <strong>[待補活動名稱]</strong>
-              <span>演講／工作坊 · [待補日期] · [待補主辦單位]</span>
+              <strong>FineBI X 台灣數據力大賞 · 帆軟 DORA x KASH</strong>
+              <span>線上實戰課 · DORA AI Agent · 台灣帆軟 × Merkle 美庫爾</span>
             </figcaption>
           </figure>
 
           <figure class="photo-item">
-            <div class="photo-slot" role="img" aria-label="[待補現場照 02]">
-              <span class="photo-slot__label">[待補現場照 02]</span>
-              <span class="photo-slot__hint">assets/img/events/</span>
+            <div class="photo-carousel" data-photo-carousel tabindex="0" aria-roledescription="carousel" aria-label="顧問式銷售工作坊現場照片">
+              <div class="photo-carousel__viewport">
+                <div class="photo-carousel__track">
+                  <div class="photo-carousel__slide is-active" role="group" aria-roledescription="slide" aria-label="1 / 3">
+                    <img src="assets/img/events/2026-consultative-sales-workshop-01.jpg"
+                         alt="數據顧問公司顧問式銷售工作坊——講師帶領學員討論現場"
+                         loading="lazy" decoding="async">
+                  </div>
+                  <div class="photo-carousel__slide" role="group" aria-roledescription="slide" aria-label="2 / 3" hidden>
+                    <img src="assets/img/events/2026-consultative-sales-workshop-02.jpg"
+                         alt="顧問式銷售工作坊——學員便條紙整理關鍵能力"
+                         loading="lazy" decoding="async">
+                  </div>
+                  <div class="photo-carousel__slide" role="group" aria-roledescription="slide" aria-label="3 / 3" hidden>
+                    <img src="assets/img/events/2026-consultative-sales-workshop-03.jpg"
+                         alt="顧問式銷售工作坊——小組討論與分享"
+                         loading="lazy" decoding="async">
+                  </div>
+                </div>
+              </div>
+              <button type="button" class="photo-carousel__btn photo-carousel__btn--prev" aria-label="上一張">‹</button>
+              <button type="button" class="photo-carousel__btn photo-carousel__btn--next" aria-label="下一張">›</button>
+              <div class="photo-carousel__dots" role="tablist" aria-label="選擇照片">
+                <button type="button" class="is-active" role="tab" aria-selected="true" aria-label="第 1 張"></button>
+                <button type="button" role="tab" aria-selected="false" aria-label="第 2 張"></button>
+                <button type="button" role="tab" aria-selected="false" aria-label="第 3 張"></button>
+              </div>
             </div>
             <figcaption>
-              <strong>[待補活動名稱]</strong>
-              <span>企業內訓 · [待補日期] · [待補客戶／單位]</span>
+              <strong>顧問式銷售工作坊</strong>
+              <span>企業內訓 · 數據顧問公司</span>
             </figcaption>
           </figure>
 
           <figure class="photo-item">
-            <div class="photo-slot" role="img" aria-label="[待補現場照 03]">
-              <span class="photo-slot__label">[待補現場照 03]</span>
-              <span class="photo-slot__hint">assets/img/events/</span>
+            <div class="photo-carousel" data-photo-carousel tabindex="0" aria-roledescription="carousel" aria-label="主管共識營現場照片">
+              <div class="photo-carousel__viewport">
+                <div class="photo-carousel__track">
+                  <div class="photo-carousel__slide is-active" role="group" aria-roledescription="slide" aria-label="1 / 2">
+                    <img src="assets/img/events/2026-leadership-consensus-camp-01.jpg"
+                         alt="媒體代理商公司年度主管共識營——主管團隊現場討論"
+                         loading="lazy" decoding="async">
+                  </div>
+                  <div class="photo-carousel__slide" role="group" aria-roledescription="slide" aria-label="2 / 2" hidden>
+                    <img src="assets/img/events/2026-leadership-consensus-camp-02.jpg"
+                         alt="媒體代理商公司年度主管共識營——小組互動與共識整理"
+                         loading="lazy" decoding="async">
+                  </div>
+                </div>
+              </div>
+              <button type="button" class="photo-carousel__btn photo-carousel__btn--prev" aria-label="上一張">‹</button>
+              <button type="button" class="photo-carousel__btn photo-carousel__btn--next" aria-label="下一張">›</button>
+              <div class="photo-carousel__dots" role="tablist" aria-label="選擇照片">
+                <button type="button" class="is-active" role="tab" aria-selected="true" aria-label="第 1 張"></button>
+                <button type="button" role="tab" aria-selected="false" aria-label="第 2 張"></button>
+              </div>
             </div>
             <figcaption>
-              <strong>[待補活動名稱]</strong>
-              <span>論壇分享 · [待補日期] · [待補主辦單位]</span>
+              <strong>主管共識營</strong>
+              <span>年度主管共識營 · 媒體代理商公司</span>
             </figcaption>
           </figure>
 
-          <figure class="photo-item">
+          <figure class="photo-item is-draft" hidden data-draft>
             <div class="photo-slot" role="img" aria-label="[待補現場照 04]">
               <span class="photo-slot__label">[待補現場照 04]</span>
               <span class="photo-slot__hint">assets/img/events/</span>
@@ -96,7 +137,7 @@
             </figcaption>
           </figure>
 
-          <figure class="photo-item">
+          <figure class="photo-item is-draft" hidden data-draft>
             <div class="photo-slot" role="img" aria-label="[待補現場照 05]">
               <span class="photo-slot__label">[待補現場照 05]</span>
               <span class="photo-slot__hint">assets/img/events/</span>
@@ -107,7 +148,7 @@
             </figcaption>
           </figure>
 
-          <figure class="photo-item">
+          <figure class="photo-item is-draft" hidden data-draft>
             <div class="photo-slot" role="img" aria-label="[待補現場照 06]">
               <span class="photo-slot__label">[待補現場照 06]</span>
               <span class="photo-slot__hint">assets/img/events/</span>
@@ -119,7 +160,7 @@
           </figure>
 
         </div>
-        <p class="interim-note">維護提示：搜尋 <code>[待補</code> 可找到所有待替換項目。照片建議 WebP + JPG fallback，檔名見 <code>assets/img/events/README.md</code>。</p>
+        <p class="interim-note" hidden data-draft>維護提示：搜尋 <code>[待補</code> 可找到所有待替換項目。單張照片用 <code>&lt;img&gt;</code>；同一活動多張照片用 <code>.photo-carousel</code> 輪播，範例見第二格。檔名規則見 <code>assets/img/events/README.md</code>。取消隱藏：移除 <code>hidden data-draft</code>。</p>
       </div>
     </section>
 
@@ -132,7 +173,7 @@
         </div>
         <div class="video-grid">
 
-          <article class="video-block">
+          <article class="video-block is-draft" hidden data-draft>
             <div class="video-embed">
               <iframe
                 src="https://www.youtube.com/embed/jHzK6inUr54"
@@ -149,18 +190,22 @@
           </article>
 
           <article class="video-block">
-            <div class="video-slot" role="img" aria-label="[待補 YouTube 嵌入 02]">
-              <span class="video-slot__label">[待補 YouTube 嵌入 02]</span>
-              <span class="video-slot__hint">貼分享連結或 embed URL</span>
+            <div class="video-embed">
+              <iframe
+                src="https://www.youtube.com/embed/v4m1DWjMbL8"
+                title="FineBI X 台灣數據力大賞｜聰明設計數位分身"
+                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+                allowfullscreen
+                loading="lazy"></iframe>
             </div>
             <div class="video-block__body">
-              <p class="media-card__source">[待補平台] · [待補年份]</p>
-              <h3 class="video-block__title">[待補影片標題]</h3>
-              <p class="video-block__desc">[待補一句話說明這支影片的主題與適合誰看]</p>
+              <p class="media-card__source">YouTube · 2026</p>
+              <h3 class="video-block__title">FineBI X 台灣數據力大賞｜聰明設計數位分身</h3>
+              <p class="video-block__desc">帆軟 DORA x KASH 線上實戰課——如何把日常資料工作，設計成能協助團隊判斷與行動的 AI Agent。</p>
             </div>
           </article>
 
-          <article class="video-block">
+          <article class="video-block is-draft" hidden data-draft>
             <div class="video-slot" role="img" aria-label="[待補 YouTube 嵌入 03]">
               <span class="video-slot__label">[待補 YouTube 嵌入 03]</span>
               <span class="video-slot__hint">貼分享連結或 embed URL</span>
@@ -172,7 +217,7 @@
             </div>
           </article>
 
-          <article class="video-block">
+          <article class="video-block is-draft" hidden data-draft>
             <div class="video-slot" role="img" aria-label="[待補 YouTube 嵌入 04]">
               <span class="video-slot__label">[待補 YouTube 嵌入 04]</span>
               <span class="video-slot__hint">貼分享連結或 embed URL</span>
@@ -231,6 +276,6 @@
     </div>
   </footer>
 
-  <script src="assets/main.js?v=20260815a"></script>
+  <script src="assets/main.js?v=20260815b"></script>
 </body>
 </html>

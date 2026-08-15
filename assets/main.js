@@ -126,3 +126,71 @@
     }
   });
 })();
+
+/* 活動剪影：多張照片輪播 */
+(function () {
+  "use strict";
+
+  function initCarousel(root) {
+    var slides = Array.prototype.slice.call(root.querySelectorAll(".photo-carousel__slide"));
+    var dots = Array.prototype.slice.call(root.querySelectorAll(".photo-carousel__dots button"));
+    var prevBtn = root.querySelector(".photo-carousel__btn--prev");
+    var nextBtn = root.querySelector(".photo-carousel__btn--next");
+    if (!slides.length) return;
+
+    var index = 0;
+    var total = slides.length;
+
+    function goTo(nextIndex) {
+      index = (nextIndex + total) % total;
+      slides.forEach(function (slide, i) {
+        var active = i === index;
+        slide.classList.toggle("is-active", active);
+        slide.hidden = !active;
+        slide.setAttribute("aria-label", (i + 1) + " / " + total);
+      });
+      dots.forEach(function (dot, i) {
+        var active = i === index;
+        dot.classList.toggle("is-active", active);
+        dot.setAttribute("aria-selected", active ? "true" : "false");
+      });
+    }
+
+    if (prevBtn) {
+      prevBtn.addEventListener("click", function () {
+        goTo(index - 1);
+      });
+    }
+    if (nextBtn) {
+      nextBtn.addEventListener("click", function () {
+        goTo(index + 1);
+      });
+    }
+    dots.forEach(function (dot, i) {
+      dot.addEventListener("click", function () {
+        goTo(i);
+      });
+    });
+
+    root.addEventListener("keydown", function (e) {
+      if (e.key === "ArrowLeft") goTo(index - 1);
+      if (e.key === "ArrowRight") goTo(index + 1);
+    });
+
+    var touchStartX = 0;
+    root.addEventListener("touchstart", function (e) {
+      if (e.touches.length === 1) touchStartX = e.touches[0].clientX;
+    }, { passive: true });
+    root.addEventListener("touchend", function (e) {
+      if (!e.changedTouches.length) return;
+      var delta = e.changedTouches[0].clientX - touchStartX;
+      if (Math.abs(delta) < 40) return;
+      goTo(delta > 0 ? index - 1 : index + 1);
+    }, { passive: true });
+  }
+
+  document.addEventListener("DOMContentLoaded", function () {
+    var carousels = document.querySelectorAll("[data-photo-carousel]");
+    carousels.forEach(initCarousel);
+  });
+})();
