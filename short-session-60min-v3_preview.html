@@ -1,0 +1,891 @@
+<!DOCTYPE html>
+<!--
+  kash-deck-builder · HTML 簡報樣板（橫向翻頁 · 深藍/米白雙色調）
+  ─────────────────────────────────────────────────────────────
+  用法：複製本檔 → 替換 <title> → 在 #deck 內依敘事邏輯逐頁填入 <section class="slide ...">
+  CSS 與 <script>（導航）原樣保留，不要改。內容只動 #deck 內的 section。
+  各 class 用途見 assets/html-style-guide.md。
+  來源：short-session-60min-v3.md（draft-v3.3）。不覆蓋 V2 HTML。
+-->
+<html lang="zh-TW">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>顧問式銷售與問題定義 · 企業內訓 60 分鐘 V3 × Kash</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,500;0,600;0,700;0,800;0,900;1,400;1,700&family=Source+Serif+4:ital,opsz,wght@0,8..60,300;0,8..60,400;0,8..60,500;0,8..60,600;1,8..60,400&family=IBM+Plex+Mono:wght@300;400;500;600&family=Noto+Serif+SC:wght@300;400;500;600;700;900&family=Noto+Sans+SC:wght@300;400;500;700;900&display=swap" rel="stylesheet">
+<script src="https://cdn.jsdelivr.net/npm/mermaid@10/dist/mermaid.min.js"></script>
+<style>
+  :root{
+    --ink:#0a1f3d;
+    --ink-rgb:10,31,61;
+    --paper:#f1f3f5;
+    --paper-rgb:241,243,245;
+    --paper-tint:#e4e8ec;
+    --ink-tint:#152a4a;
+    --mono:"IBM Plex Mono",ui-monospace,monospace;
+    --serif-en:"Playfair Display","Source Serif 4",Georgia,serif;
+    --serif-zh:"Noto Serif SC",source-han-serif-sc,serif;
+    --sans-zh:"Noto Sans SC",source-han-sans-sc,sans-serif;
+  }
+  *{box-sizing:border-box;margin:0;padding:0}
+  html,body{width:100%;height:100%;overflow:hidden;background:var(--ink);color:var(--paper);font-family:var(--sans-zh);-webkit-font-smoothing:antialiased;text-rendering:optimizeLegibility}
+
+  canvas.bg{position:fixed;inset:0;width:100vw;height:100vh;z-index:0;display:block;transition:opacity 1.2s ease}
+  canvas#bg-light{opacity:0}
+  canvas#bg-dark{opacity:1}
+  body.light-bg canvas#bg-light{opacity:1}
+  body.light-bg canvas#bg-dark{opacity:0}
+
+  #deck{position:fixed;inset:0;height:100vh;display:flex;flex-wrap:nowrap;transition:transform .9s cubic-bezier(.77,0,.175,1);z-index:10;will-change:transform}
+  .slide{width:100vw;height:100vh;flex:0 0 100vw;position:relative;padding:6vh 6vw 10vh 6vw;display:flex;flex-direction:column;overflow:hidden}
+  .slide.light{color:var(--ink);background:var(--paper)}
+  .slide.dark{color:var(--paper);background:var(--ink)}
+
+  .slide::before{content:"";position:absolute;inset:0;z-index:-1;pointer-events:none;transition:background .7s ease}
+  .slide.light::before{background:rgba(var(--paper-rgb),.78);backdrop-filter:blur(3px)}
+  .slide.dark::before{background:rgba(var(--ink-rgb),.78);backdrop-filter:blur(3px)}
+  .slide.hero.light::before{background:rgba(var(--paper-rgb),.16);backdrop-filter:none}
+  .slide.hero.dark::before{background:rgba(var(--ink-rgb),.12);backdrop-filter:none}
+  .slide.hero::after{content:"";position:absolute;inset:0;z-index:-1;pointer-events:none}
+  .slide.hero.light::after{background:linear-gradient(180deg,rgba(var(--paper-rgb),.28) 0%,rgba(var(--paper-rgb),0) 14%,rgba(var(--paper-rgb),0) 86%,rgba(var(--paper-rgb),.28) 100%)}
+  .slide.hero.dark::after{background:linear-gradient(180deg,rgba(var(--ink-rgb),.32) 0%,rgba(var(--ink-rgb),0) 14%,rgba(var(--ink-rgb),0) 86%,rgba(var(--ink-rgb),.32) 100%)}
+
+  .chrome{display:flex;justify-content:space-between;align-items:flex-start;font-family:var(--mono);font-size:12px;letter-spacing:.18em;text-transform:uppercase;opacity:.7}
+  .foot{margin-top:auto;display:flex;justify-content:space-between;align-items:flex-end;font-family:var(--mono);font-size:12px;letter-spacing:.14em;text-transform:uppercase;opacity:.55}
+
+  .kicker{font-family:var(--mono);font-size:12px;letter-spacing:.3em;text-transform:uppercase;opacity:.6;margin-bottom:2.6vh}
+  .h-hero{font-family:var(--serif-zh);font-weight:700;font-size:7.8vw;line-height:1.04;letter-spacing:-.005em}
+  .h-xl{font-family:var(--serif-zh);font-weight:700;font-size:4.6vw;line-height:1.12;letter-spacing:-.005em}
+  .h-sub{font-family:var(--serif-zh);font-weight:600;font-size:3.2vw;line-height:1.2}
+  .h-md{font-family:var(--serif-zh);font-weight:500;font-size:1.9vw;line-height:1.35}
+  .body-zh{font-family:var(--sans-zh);font-weight:400;font-size:max(15px,1.22vw);line-height:1.75;opacity:.82}
+  .lead{font-family:var(--serif-zh);font-weight:400;font-size:1.9vw;line-height:1.4;opacity:.85}
+  .meta{font-family:var(--mono);font-size:max(11px,.88vw);letter-spacing:.16em;text-transform:uppercase;opacity:.6}
+  .meta-row{display:flex;gap:1em;font-family:var(--mono);font-size:11px;letter-spacing:.16em;text-transform:uppercase;opacity:.6}
+
+  .stat-card{display:flex;flex-direction:column;gap:1vh;align-items:flex-start;padding:2.4vh 0;border-top:1px solid currentColor;border-color:rgba(10,31,61,.15);opacity:.85}
+  .slide.dark .stat-card{border-color:rgba(241,243,245,.15)}
+  .stat-nb{font-family:var(--serif-zh);font-weight:700;font-size:5.5vw;line-height:.88}
+  .stat-label{font-family:var(--sans-zh);font-size:max(13px,1.05vw);opacity:.7;margin-bottom:.4vh}
+  .stat-unit{font-size:.4em;font-weight:400;opacity:.6}
+  .stat-note{font-family:var(--mono);font-size:10px;letter-spacing:.22em;text-transform:uppercase;opacity:.5}
+
+  .grid-6{display:grid;grid-template-columns:repeat(3,1fr);grid-template-rows:repeat(2,1fr);gap:4vw 6vw;flex:1;align-content:center}
+  .grid-3{display:grid;grid-template-columns:repeat(3,1fr);gap:4vw;flex:1;align-content:start;padding:2vh 0}
+  .grid-2{display:grid;grid-template-columns:repeat(2,1fr);gap:4vw;flex:1;align-content:start}
+  .grid-2-7-5{display:grid;grid-template-columns:2fr 7fr 5fr;gap:4vw;flex:1;align-items:start}
+
+  .callout{padding:3vh 2.4vw;border-left:3px solid currentColor;position:relative;font-family:var(--serif-zh);font-size:max(15px,1.2vw);line-height:1.55;opacity:.92}
+  .slide.light .callout{background:rgba(10,31,61,.05)}
+  .slide.dark .callout{background:rgba(241,243,245,.06)}
+
+  .frame{display:flex;flex-direction:column}
+  .col{display:flex;flex-direction:column;gap:2.4vh}
+  .row{display:flex;align-items:center;gap:3vw;flex-wrap:wrap}
+  .center{align-items:center;justify-content:center;text-align:center}
+  .rule{width:100%;height:1px;background:currentColor;opacity:.25;margin:3vh 0}
+
+  .mermaid{display:flex;justify-content:center;align-items:center;margin:2vh 0}
+  .mermaid svg{max-width:100%;height:auto}
+
+  .table-wrapper{overflow-x:auto;margin:2vh 0}
+  table{width:100%;border-collapse:collapse;font-family:var(--sans-zh);font-size:max(12px,.95vw)}
+  th{background:rgba(10,31,61,.08);padding:1.2vh 1.6vw;text-align:left;font-weight:600;border-bottom:2px solid currentColor;opacity:.9}
+  .slide.dark th{background:rgba(241,243,245,.08)}
+  td{padding:1.2vh 1.6vw;border-bottom:1px solid currentColor;opacity:.8;border-color:rgba(10,31,61,.12)}
+  .slide.dark td{border-color:rgba(241,243,245,.12)}
+  tr:last-child td{border-bottom:none}
+
+  .box{padding:2.4vh 2vw;background:rgba(10,31,61,.08);border-radius:4px;margin-bottom:2vh}
+  .slide.dark .box{background:rgba(241,243,245,.08)}
+
+  .tag{display:inline-block;font-family:var(--mono);font-size:10px;padding:.6vh 1.2vw;border:1px solid currentColor;border-radius:2px;opacity:.7;margin-right:.6vw}
+
+  #nav{position:fixed;left:50%;bottom:2.6vh;transform:translateX(-50%);z-index:30;display:flex;gap:10px;padding:8px 14px;border-radius:999px;background:rgba(0,0,0,.18);backdrop-filter:blur(10px)}
+  #nav .dot{width:8px;height:8px;border-radius:50%;background:rgba(255,255,255,.3);cursor:pointer;transition:all .3s ease;border:0;padding:0}
+  #nav .dot.active{background:rgba(255,255,255,.95);width:22px;border-radius:999px}
+
+  #hint{position:fixed;bottom:3vh;right:3vw;z-index:30;font-family:var(--mono);font-size:10px;letter-spacing:.2em;text-transform:uppercase;opacity:.4;color:#aaa}
+
+  /* 說明標記：假設 / 待補 */
+  .note-marker{display:inline-block;background:rgba(255,200,87,.2);padding:.2em .4em;border-radius:2px;font-size:.85em;opacity:.8;margin-left:.4em}
+</style>
+</head>
+<body>
+<canvas id="bg-dark" class="bg"></canvas>
+<canvas id="bg-light" class="bg"></canvas>
+
+<div id="deck">
+
+<!-- P01 封面 -->
+<section class="slide hero dark">
+  <div class="chrome"><div></div><div>01 / 31</div></div>
+  <div class="frame" style="display:grid;gap:3vh;align-content:center;min-height:78vh">
+    <div class="kicker">企業內訓 · 60 分鐘 Awareness Session V3</div>
+    <h1 class="h-hero" style="font-size:5.4vw">從客戶的一句話，<br>到能落實的解決方案</h1>
+    <h2 class="h-sub">顧問式銷售與問題定義</h2>
+    <p class="lead" style="max-width:68vw">框架用來引導思考；CMS 把討論變成可以落地的規格。</p>
+  </div>
+  <div class="foot"><div>顧問式銷售與問題定義</div><div>Kash</div></div>
+  <!-- 講者備註：若無人引言，只報「我是 Kash」。完整履歷留最後一頁。不要開始講 CMS。 -->
+</section>
+
+<!-- P02 為何今天會來 -->
+<section class="slide light">
+  <div class="chrome"><div></div><div>02 / 31</div></div>
+  <div class="frame" style="padding-top:0.4vh;min-height:78vh">
+    <div class="kicker">我是 Kash</div>
+    <h2 class="h-xl" style="font-size:2.6vw;margin-bottom:1.2vh">今天會站在這裡，是因為總經理看到了這張圖</h2>
+    <img src="../references/visuals/framework-as-thinking-guide.jpg" alt="框架是引導思考的工具，不是操作手冊" style="width:100%;max-height:62vh;object-fit:contain;display:block;margin:0 auto">
+  </div>
+  <div class="foot"><div>顧問式銷售與問題定義</div><div>Kash</div></div>
+  <!-- 講者備註：開場只說來由，不講三層、不唸右欄八項。這張圖後面 CMS 單元會再投一次。禁止講成招生型錄。 -->
+</section>
+
+<!-- P03 你今天會拿到什麼 -->
+<section class="slide light">
+  <div class="chrome"><div></div><div>03 / 31</div></div>
+  <div class="frame" style="padding-top:1vh">
+    <div class="kicker">今天不上完整那張圖</div>
+    <h2 class="h-xl" style="font-size:3vw">你今天會拿到什麼</h2>
+    <p class="lead" style="margin:1.4vh 0 2vh;font-size:1.45vw">短版只帶走三件事，不是把剛才那張圖走完。</p>
+    <div class="table-wrapper">
+      <table>
+        <thead><tr><th>你今天會帶走</th><th>意思</th></tr></thead>
+        <tbody>
+          <tr><td><strong>共同語言</strong></td><td>顧問是角色、專案在交付什麼、框架在幹嘛</td></tr>
+          <tr><td><strong>一個落地的接法</strong></td><td>為什麼討論完還是執行不了，以及 CMS 怎麼把思考接到規格</td></tr>
+          <tr><td><strong>一套可立刻用的問法</strong></td><td>客戶說「我要做 X」時，下一題問什麼、問到哪裡算清楚</td></tr>
+        </tbody>
+      </table>
+    </div>
+    <p class="lead" style="margin-top:2.4vh">這不會讓你變成資深顧問，也不是把剛才那張圖走完。短版只做到看見與理解。</p>
+  </div>
+  <div class="foot"><div>顧問式銷售與問題定義</div><div>Kash</div></div>
+  <!-- 講者備註：本頁無互動。不要要學員填「我要＿＿」。轉場：共同語言從第一個詞開始——顧問，到底是什麼？ -->
+</section>
+
+<!-- P04 顧問定義 -->
+<section class="slide light">
+  <div class="chrome"><div></div><div>04 / 31</div></div>
+  <div class="frame" style="flex:1;min-height:0;display:flex;flex-direction:column;padding-top:1vh">
+    <div class="kicker">顧問，是一種角色</div>
+    <h2 class="h-xl" style="font-size:3vw">運用專業，協助他人理解問題、形成判斷，並走向可行解法</h2>
+    <p class="lead" style="margin:1.4vh 0 0;font-size:1.45vw">門檻不在職稱，在有沒有幫對方把問題看清楚。</p>
+    <div style="flex:1;display:flex;flex-direction:column;justify-content:center;min-height:0">
+      <div style="flex:none;width:100%;display:flex;flex-direction:column;gap:2.2vh">
+        <div class="grid-3" style="flex:none;padding:0">
+          <div class="box" style="margin-bottom:0"><p class="meta">01</p><p class="body-zh" style="margin-top:1vh">是<strong>角色</strong>，不是職稱</p></div>
+          <div class="box" style="margin-bottom:0"><p class="meta">02</p><p class="body-zh" style="margin-top:1vh">專業可來自管理、行銷、財務、人資、數據、IT、營運或其他領域</p></div>
+          <div class="box" style="margin-bottom:0"><p class="meta">03</p><p class="body-zh" style="margin-top:1vh">協助對方看懂問題、作出判斷或形成解法，就在扮演顧問角色</p></div>
+        </div>
+        <div class="callout">只有專業知識不等於顧問。專家、講師、技術人員都有專業；差在有沒有幫對方形成判斷或解法。</div>
+      </div>
+    </div>
+  </div>
+  <div class="foot"><div>顧問式銷售與問題定義</div><div>Kash</div></div>
+</section>
+
+<!-- P05 A/B -->
+<section class="slide dark">
+  <div class="chrome"><div></div><div>05 / 31</div></div>
+  <div class="frame" style="flex:1;min-height:0;display:flex;flex-direction:column;padding-top:1vh">
+    <div class="kicker">第一個互動</div>
+    <h2 class="h-xl" style="font-size:3vw">哪一個在扮演顧問角色？</h2>
+    <p class="lead" style="margin:1.4vh 0 0;font-size:1.45vw">兩個都用了專業。請判斷哪一個在協助對方形成判斷。</p>
+    <div style="flex:1;display:flex;flex-direction:column;justify-content:center;min-height:0">
+      <div style="flex:none;width:100%;display:flex;flex-direction:column;gap:2.2vh">
+        <div class="grid-2" style="flex:none">
+          <div class="box" style="margin-bottom:0"><p class="meta">A</p><p class="body-zh" style="margin-top:1.6vh">資深工程師回答同事：「這個 API 要這樣呼叫。」</p></div>
+          <div class="box" style="margin-bottom:0"><p class="meta">B</p><p class="body-zh" style="margin-top:1.6vh">資深工程師問同事：「你想解決的是效能還是穩定性？先確認這個，方案會完全不同。」</p></div>
+        </div>
+        <p class="meta" style="text-align:center">請在聊天室輸入 A 或 B</p>
+      </div>
+    </div>
+  </div>
+  <div class="foot"><div>顧問式銷售與問題定義</div><div>Kash</div></div>
+  <!-- 講者備註：兩個都用了專業。B 協助形成判斷，A 只是給答案。口頭：Presales、PM、客戶端代表在對的場合都在扮演顧問角色。 -->
+</section>
+
+<!-- P06 兩種專案 -->
+<section class="slide light">
+  <div class="chrome"><div></div><div>06 / 31</div></div>
+  <div class="frame" style="flex:1;min-height:0;display:flex;flex-direction:column;padding-top:1vh">
+    <div class="kicker">顧問的專案，最後交付什麼</div>
+    <h2 class="h-xl" style="font-size:3vw">調研式，與交付式</h2>
+    <p class="lead" style="margin:1.4vh 0 0;font-size:1.45vw">兩類專案交付不同，但最前面卡住的往往是同一件事。</p>
+    <div style="flex:1;display:flex;flex-direction:column;justify-content:center;min-height:0">
+      <div style="flex:none;width:100%;display:flex;flex-direction:column;gap:2.2vh">
+        <div class="table-wrapper" style="margin:0">
+          <table>
+            <thead><tr><th>類型</th><th>主要交付價值</th><th>典型成果</th><th>教學例子</th></tr></thead>
+            <tbody>
+              <tr><td><strong>調研式</strong></td><td>看懂問題、形成判斷與決策</td><td>調查、研究、分析、策略建議、管理報告</td><td>麥肯錫式管理顧問</td></tr>
+              <tr><td><strong>交付式</strong></td><td>把方向做成方案並落地</td><td>解決方案、流程、系統、建置與導入</td><td>IBM 式 IT 解決方案</td></tr>
+            </tbody>
+          </table>
+        </div>
+        <div class="box" style="margin-bottom:0"><p class="body-zh">這是依主要交付內容做的分類，<strong>不是對顧問公司的絕對分類</strong>。同一家公司、同一個專案，都可能同時有兩者。麥肯錫也做落地，IBM 也做調研。</p></div>
+      </div>
+    </div>
+  </div>
+  <div class="foot"><div>顧問式銷售與問題定義</div><div>Kash</div></div>
+  <!-- 講者備註：免責句必須口頭講出來。 -->
+</section>
+
+<!-- P07 歸類 -->
+<section class="slide light">
+  <div class="chrome"><div></div><div>07 / 31</div></div>
+  <div class="frame" style="flex:1;min-height:0;display:flex;flex-direction:column;padding-top:1vh">
+    <div class="kicker">快速歸類</div>
+    <h2 class="h-xl" style="font-size:3vw">這是調研，還是交付？</h2>
+    <p class="lead" style="margin:1.4vh 0 0;font-size:1.45vw">請在聊天室輸入「調研」或「交付」。</p>
+    <div style="flex:1;display:flex;flex-direction:column;justify-content:center;min-height:0">
+      <div style="flex:none;width:100%;display:flex;flex-direction:column;gap:2.2vh">
+        <div class="grid-2" style="flex:none">
+          <div class="box" style="margin-bottom:0"><p class="stat-nb" style="font-size:2.8vw">1</p><p class="body-zh" style="margin-top:1.2vh">協助集團評估是否進入東南亞市場。</p></div>
+          <div class="box" style="margin-bottom:0"><p class="stat-nb" style="font-size:2.8vw">2</p><p class="body-zh" style="margin-top:1.2vh">導入一套跨廠區的生產排程系統。</p></div>
+        </div>
+        <p class="body-zh" style="opacity:.7">口頭帶過：盤點現行客戶資料流程、提出改善方向——調研為主，但已站在交付門口。所以這是原型，不是分類法。</p>
+      </div>
+    </div>
+  </div>
+  <div class="foot"><div>顧問式銷售與問題定義</div><div>Kash</div></div>
+  <!-- 講者備註：收斂——兩類 Specification 長不一樣，最前面卡住的是同一件事：客戶那句話到底是什麼意思。轉場：顧問通常會拿出一個框架。 -->
+</section>
+
+<!-- P08 框架用途 -->
+<section class="slide light">
+  <div class="chrome"><div></div><div>08 / 31</div></div>
+  <div class="frame" style="padding-top:1vh">
+    <div class="kicker">引導思考，不是各說各話</div>
+    <h2 class="h-xl" style="font-size:3vw">框架是引導思考的工具，不是操作手冊</h2>
+    <p class="lead" style="margin:1.4vh 0 2vh;font-size:1.45vw">顧問為什麼離不開框架？因為它讓你帶客戶思考。</p>
+    <div class="table-wrapper">
+      <table>
+        <thead><tr><th>你可能聽過</th><th>對顧問的好處</th></tr></thead>
+        <tbody>
+          <tr><td><strong>SWOT</strong></td><td>優劣機會威脅同一張桌，討論有共同語言</td></tr>
+          <tr><td><strong>PDCA</strong></td><td>改善有循環，目標不會停在口號</td></tr>
+          <tr><td><strong>Business Model Canvas</strong></td><td>九宮格把顧客、渠道、收入攤開，漏了哪塊看得見</td></tr>
+        </tbody>
+      </table>
+    </div>
+    <p class="body-zh">好處是真的：房間開始朝同一個方向想。這就是框架對顧問的用途——引導思考、引導討論。</p>
+  </div>
+  <div class="foot"><div>顧問式銷售與問題定義</div><div>Kash</div></div>
+  <!-- 講者備註：不教填法、不比較哪個比較好、不問你們公司用哪個。 -->
+</section>
+
+<!-- P09 流於討論 -->
+<section class="slide dark">
+  <div class="chrome"><div></div><div>09 / 31</div></div>
+  <div class="frame" style="padding-top:1vh">
+    <div class="kicker">不是框架不對</div>
+    <h2 class="h-xl" style="font-size:3vw">討論完了，還是落不了地、執行不了</h2>
+    <div class="table-wrapper" style="margin-top:2vh">
+      <table>
+        <thead><tr><th>比喻</th><th>散會後常見的樣子</th></tr></thead>
+        <tbody>
+          <tr><td>SWOT</td><td>2×2 填滿了，下週仍不知道先做哪一件</td></tr>
+          <tr><td>PDCA</td><td>停在 Plan 的辯論，或 Check 完沒有下一個 Do</td></tr>
+          <tr><td>Canvas</td><td>便利貼貼滿，沒有人能說下週改哪一格、改成什麼</td></tr>
+        </tbody>
+      </table>
+    </div>
+    <div class="callout" style="margin-top:1.4vh">不是框架沒用。是框架把思考帶起來了，沒有下一步把它收成這個情境可以執行的規格。<br><br><strong>所以我才做了 CMS——讓框架裡的討論、客戶的思考，變成可以落地的規格。</strong></div>
+  </div>
+  <div class="foot"><div>顧問式銷售與問題定義</div><div>Kash</div></div>
+  <!-- 講者備註：轉場：下一頁用三層色塊講 CMS。不展開八項能力。 -->
+</section>
+
+<!-- P10 CMS 三層 -->
+<section class="slide light">
+  <div class="chrome"><div></div><div>10 / 31</div></div>
+  <div class="frame" style="flex:1;min-height:0;display:flex;flex-direction:column;padding-top:1vh">
+    <div class="kicker">把討論變成規格</div>
+    <h2 class="h-xl" style="font-size:3vw">顧問交付的三個層次</h2>
+    <div style="flex:1;display:flex;flex-direction:column;justify-content:center;min-height:0">
+      <div style="flex:none;width:100%;max-width:78vw;margin:0 auto;display:flex;flex-direction:column;align-items:center;gap:0.6vh">
+
+        <div style="width:100%;display:grid;grid-template-columns:auto 1.15fr 1.25fr;gap:2.2vw;align-items:center;padding:2.4vh 2.2vw;background:rgba(37,99,235,.12);border-radius:12px">
+          <svg width="48" height="48" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M9 18h6M10 21h4" stroke="#2563eb" stroke-width="1.7" stroke-linecap="round"/><path d="M12 3a6 6 0 0 0-3.2 11c.5.4.8 1 .9 1.6h4.6c.1-.6.4-1.2.9-1.6A6 6 0 0 0 12 3Z" stroke="#2563eb" stroke-width="1.7" stroke-linejoin="round"/></svg>
+          <div>
+            <div style="display:flex;align-items:center;gap:1vw;margin-bottom:.8vh">
+              <span style="width:2vw;height:2vw;min-width:28px;min-height:28px;border-radius:50%;background:#2563eb;color:#fff;display:flex;align-items:center;justify-content:center;font-family:var(--serif-zh);font-weight:700;font-size:1.15vw">1</span>
+              <p class="h-md" style="font-size:1.55vw;margin:0">概念（Concept）</p>
+            </div>
+            <p class="body-zh" style="margin:0;opacity:.9">思考邊界與大方向<br>（框架本體）</p>
+          </div>
+          <div>
+            <p class="body-zh" style="margin:0 0 .6vh;opacity:.95"><strong>回答「我們要看什麼？」</strong></p>
+            <p class="body-zh" style="margin:0">定義問題範圍與核心構面</p>
+          </div>
+        </div>
+
+        <svg width="28" height="22" viewBox="0 0 24 24" aria-hidden="true"><path d="M6 9l6 6 6-6" fill="none" stroke="#2563eb" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/></svg>
+
+        <div style="width:100%;display:grid;grid-template-columns:auto 1.15fr 1.25fr;gap:2.2vw;align-items:center;padding:2.4vh 2.2vw;background:rgba(13,148,136,.12);border-radius:12px">
+          <svg width="48" height="48" viewBox="0 0 24 24" fill="none" aria-hidden="true"><circle cx="8" cy="8" r="2.4" stroke="#0d9488" stroke-width="1.7"/><circle cx="16" cy="8" r="2.4" stroke="#0d9488" stroke-width="1.7"/><circle cx="12" cy="16.5" r="2.4" stroke="#0d9488" stroke-width="1.7"/><path d="M10.2 8h3.6M9.4 9.8l1.6 4.1M14.6 9.8l-1.6 4.1" stroke="#0d9488" stroke-width="1.7" stroke-linecap="round"/></svg>
+          <div>
+            <div style="display:flex;align-items:center;gap:1vw;margin-bottom:.8vh">
+              <span style="width:2vw;height:2vw;min-width:28px;min-height:28px;border-radius:50%;background:#0d9488;color:#fff;display:flex;align-items:center;justify-content:center;font-family:var(--serif-zh);font-weight:700;font-size:1.15vw">2</span>
+              <p class="h-md" style="font-size:1.55vw;margin:0">機制（Mechanism）</p>
+            </div>
+            <p class="body-zh" style="margin:0;opacity:.9">前後因果與<br>推動邏輯</p>
+          </div>
+          <div>
+            <p class="body-zh" style="margin:0 0 .6vh;opacity:.95"><strong>回答「為什麼會這樣？」</strong></p>
+            <p class="body-zh" style="margin:0">釐清因果關係與影響路徑</p>
+          </div>
+        </div>
+
+        <svg width="28" height="22" viewBox="0 0 24 24" aria-hidden="true"><path d="M6 9l6 6 6-6" fill="none" stroke="#0d9488" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/></svg>
+
+        <div style="width:100%;display:grid;grid-template-columns:auto 1.15fr 1.25fr;gap:2.2vw;align-items:center;padding:2.4vh 2.2vw;background:rgba(124,58,237,.12);border-radius:12px">
+          <svg width="48" height="48" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M8 4.5h8a1.5 1.5 0 0 1 1.5 1.5v14l-2.2-1.4-2.3 1.4-2.3-1.4-2.2 1.4V6A1.5 1.5 0 0 1 8 4.5Z" stroke="#7c3aed" stroke-width="1.7" stroke-linejoin="round"/><path d="M9.5 9h5M9.5 12.2h5M9.5 15.4h3.2" stroke="#7c3aed" stroke-width="1.7" stroke-linecap="round"/></svg>
+          <div>
+            <div style="display:flex;align-items:center;gap:1vw;margin-bottom:.8vh">
+              <span style="width:2vw;height:2vw;min-width:28px;min-height:28px;border-radius:50%;background:#7c3aed;color:#fff;display:flex;align-items:center;justify-content:center;font-family:var(--serif-zh);font-weight:700;font-size:1.15vw">3</span>
+              <p class="h-md" style="font-size:1.55vw;margin:0">規格（Specification）</p>
+            </div>
+            <p class="body-zh" style="margin:0;opacity:.9">具體的做法、<br>產出與執行標準</p>
+          </div>
+          <div>
+            <p class="body-zh" style="margin:0 0 .6vh;opacity:.95"><strong>回答「我們要怎麼做？」</strong></p>
+            <p class="body-zh" style="margin:0">轉化為具體方案與執行細節</p>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </div>
+  <div class="foot"><div>顧問式銷售與問題定義</div><div>Kash</div></div>
+  <!-- 講者備註：只帶三層問句。Concept＝框架把需求攤成討論構面，不是願望、也不是指定解法。下一頁冷氣用來感覺這件事。規格由顧問依情境定義。開場那張圖的右欄八項今天仍不教。 -->
+</section>
+
+<!-- P11 冷氣 -->
+<section class="slide light">
+  <div class="chrome"><div></div><div>11 / 31</div></div>
+  <div class="frame" style="flex:1;min-height:0;display:flex;flex-direction:column;padding-top:1vh">
+    <div class="kicker">我們來舉個例子</div>
+    <h2 class="h-xl" style="font-size:2.7vw">「房間很熱，我要換一台更大的冷氣。」</h2>
+    <p class="lead" style="margin:1.2vh 0 0;font-size:1.35vw">「換大冷氣」是指定解法，不是 Concept。Concept 是先把「這個房間要涼」攤成一套要一起討論的構面。</p>
+    <div style="flex:1;display:flex;flex-direction:column;justify-content:center;min-height:0">
+      <div style="flex:none;width:100%;display:flex;flex-direction:column;gap:1.8vh">
+        <div class="grid-2" style="flex:none">
+          <div class="box" style="margin-bottom:0"><p class="meta">客戶原話 · 混在一起</p><p class="body-zh" style="margin-top:1vh">現象：很熱<br>指定解法：換更大的冷氣</p></div>
+          <div class="box" style="margin-bottom:0"><p class="meta">Concept 該長成的樣子</p><p class="body-zh" style="margin-top:1vh">用一張「為什麼不涼」的思考地圖，先決定一起看：熱源 · 隔熱 · 負載 · 設備 · 使用方式</p></div>
+        </div>
+        <div class="callout"><strong>框架還沒打開就接受「換大冷氣」，等於討論格子還沒畫，就開始施工。</strong> 看不清這一間房為什麼熱，也就無法判斷該清濾網、改善隔熱、調整使用，還是真的換冷氣。</div>
+        <div class="table-wrapper" style="margin:0">
+          <table>
+            <thead><tr><th>CMS</th><th>冷氣裡對應的是</th><th>問句</th></tr></thead>
+            <tbody>
+              <tr><td><strong>Concept</strong></td><td>把「房間要涼」攤成討論構面（熱源／隔熱／負載／設備／使用）</td><td>我們要看什麼？</td></tr>
+              <tr><td><strong>Mechanism</strong></td><td>這一間房，熱真正從哪一條路徑來</td><td>為什麼會這樣？</td></tr>
+              <tr><td><strong>Specification</strong></td><td>清濾網／補隔熱／改使用／或換特定規格</td><td>這裡具體怎麼做？</td></tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="foot"><div>顧問式銷售與問題定義</div><div>Kash</div></div>
+  <!-- 講者備註：對上上一頁。C 不是「希望變涼」，也不是「換大冷氣」。C 就像 SWOT：需求進來之後，先有格子，討論才有共同語言。M 才是濾網／西曬／人數。S 才是這間房的做法。「換大冷氣」是客戶把 S 提前講出來。轉場：現場不只冷氣——目的還沒清，解法已經被指定。 -->
+</section>
+
+<!-- P12 Goal-Measure -->
+<section class="slide light">
+  <div class="chrome"><div></div><div>12 / 31</div></div>
+  <div class="frame" style="flex:1;min-height:0;display:flex;flex-direction:column;padding-top:0.6vh">
+    <div class="kicker" style="margin-bottom:1.2vh">Goal–Measure 謬誤</div>
+    <h2 class="h-xl" style="font-size:2.5vw">目的還沒清，解法已經被指定</h2>
+    <p class="lead" style="margin:1vh 0 0;font-size:1.25vw">客戶還沒搞清楚自己的目的，就先指定解法。冷氣那句「我要換更大的冷氣」，現場每天都在發生。</p>
+    <div style="flex:1;display:flex;flex-direction:column;justify-content:center;min-height:0">
+      <div style="flex:none;width:100%;display:flex;flex-direction:column;gap:1.6vh">
+        <div style="display:grid;grid-template-columns:1fr 1fr;gap:1.6vw">
+          <div class="box" style="margin-bottom:0;padding:1.8vh 1.6vw"><p class="meta">Goal · 目的</p><p class="body-zh" style="margin-top:.8vh">要達成什麼。<br>冷氣裡：這個房間要能舒適工作。</p></div>
+          <div class="box" style="margin-bottom:0;padding:1.8vh 1.6vw"><p class="meta">Measure · 指定物</p><p class="body-zh" style="margin-top:.8vh">被拿來代表目的的指標、手段、解法。<br>冷氣裡：換一台更大的冷氣。</p></div>
+        </div>
+        <div class="callout" style="padding:1.8vh 1.8vw"><strong>謬誤：把 Measure 當成 Goal。</strong>目的還沒被看清，解法或指標已經被指定。</div>
+        <div class="table-wrapper" style="margin:0">
+          <table>
+            <thead><tr><th style="width:8%">#</th><th>你最常遇到哪一種</th></tr></thead>
+            <tbody>
+              <tr><td>1</td><td>目的沒說清，就要 Dashboard／報表／系統</td></tr>
+              <tr><td>2</td><td>目的沒說清，就要某個 KPI 先上去</td></tr>
+              <tr><td>3</td><td>目的沒說清，就要上某個工具（中台、CDP、AI）</td></tr>
+              <tr><td>4</td><td>數字本身變成目的：要好看，但說不出是為了哪個決策</td></tr>
+            </tbody>
+          </table>
+        </div>
+        <p class="meta" style="text-align:center;margin:0">請輸入一個數字。其他請打在聊天室</p>
+      </div>
+    </div>
+  </div>
+  <div class="foot"><div>顧問式銷售與問題定義</div><div>Kash</div></div>
+  <!-- 講者備註：收 2–3 則就往下，不要展開辯論。第 1 通常最多。轉場：下一頁第三句，就是這個謬誤的現場版。 -->
+</section>
+
+<!-- P13 三句 -->
+<section class="slide light">
+  <div class="chrome"><div></div><div>13 / 31</div></div>
+  <div class="frame" style="padding-top:2vh">
+    <div class="kicker">三句快速分類</div>
+    <h2 class="h-xl" style="font-size:3.4vw">這三句話，各是哪一層？</h2>
+    <div class="col" style="margin-top:2vh;gap:1.4vh">
+      <div class="box" style="margin-bottom:0"><p class="body-zh"><strong>1</strong>　「我們需要掌握營運健康度。」</p></div>
+      <div class="box" style="margin-bottom:0"><p class="body-zh"><strong>2</strong>　「月底會議無法決策，是因為各部門使用不同指標口徑，主管不信任數字。」</p></div>
+      <div class="box" style="margin-bottom:0"><p class="body-zh"><strong>3</strong>　「請做一個即時 Dashboard，顯示五個 KPI。」</p></div>
+    </div>
+    <p class="meta" style="margin-top:2.6vh;text-align:center">請輸入 C、M 或 S</p>
+  </div>
+  <div class="foot"><div>顧問式銷售與問題定義</div><div>Kash</div></div>
+  <!-- 講者備註：第 3 句就是上一頁 Goal–Measure。口頭帶過：1＝C，2＝M，3＝S。 -->
+</section>
+
+<!-- P14 三句收成 -->
+<section class="slide light">
+  <div class="chrome"><div></div><div>14 / 31</div></div>
+  <div class="frame" style="flex:1;min-height:0;display:flex;flex-direction:column;padding-top:1vh">
+    <div class="kicker">三句收成</div>
+    <h2 class="h-xl" style="font-size:2.6vw">第 3 句是指定解法，不是目的</h2>
+    <p class="lead" style="margin:1.2vh 0 0;font-size:1.3vw">同一段話裡，C、M、S 被綁在一起。聽成「要做 Dashboard」，Goal–Measure 就成立了。</p>
+    <div style="flex:1;display:flex;flex-direction:column;justify-content:center;min-height:0">
+      <div style="flex:none;width:100%;display:flex;flex-direction:column;gap:2vh">
+        <div class="table-wrapper" style="margin:0">
+          <table>
+            <thead><tr><th>#</th><th>CMS</th><th>這一層在做什麼</th></tr></thead>
+            <tbody>
+              <tr><td>1</td><td><strong>Concept</strong></td><td>要看什麼：營運健康度</td></tr>
+              <tr><td>2</td><td><strong>Mechanism</strong></td><td>為什麼：口徑不一致，主管不信任數字</td></tr>
+              <tr><td>3</td><td><strong>Specification</strong></td><td>指定解法：即時 Dashboard　← 目的還沒清</td></tr>
+            </tbody>
+          </table>
+        </div>
+        <div class="callout"><strong>Dashboard 仍可能是答案的一部分。現在還不能當需求。</strong> 下一頁要看的是：現場為什麼還是聽成第 3 句。</div>
+      </div>
+    </div>
+  </div>
+  <div class="foot"><div>顧問式銷售與問題定義</div><div>Kash</div></div>
+  <!-- 講者備註：口頭一句即可：第 3 句＝換大冷氣，同一件事。不要再把「Dashboard 就像冷氣」當新重點。轉場：卡住的不是沒有 CMS，是把第 3 句聽成需求。 -->
+</section>
+
+<!-- P15 困境 + 自我辨識 -->
+<section class="slide light">
+  <div class="chrome"><div></div><div>15 / 31</div></div>
+  <div class="frame" style="flex:1;min-height:0;display:flex;flex-direction:column;padding-top:1vh">
+    <div class="kicker">最常見的盲點</div>
+    <h2 class="h-xl" style="font-size:2.5vw">新手不是沒聽過框架，是不知道那句話落在 CMS 哪一層</h2>
+    <div style="flex:1;display:flex;flex-direction:column;justify-content:center;min-height:0">
+      <div style="flex:none;width:100%;display:flex;flex-direction:column;gap:2vh">
+        <div class="table-wrapper" style="margin:0">
+          <table>
+            <thead><tr><th>#</th><th>困境</th><th>現場</th></tr></thead>
+            <tbody>
+              <tr><td>1</td><td><strong>聽字面</strong></td><td>客戶說 Dashboard，就開始想放幾張圖</td></tr>
+              <tr><td>2</td><td><strong>急著證明專業</strong></td><td>一聽懂名詞就介紹答案</td></tr>
+              <tr><td>3</td><td><strong>不知道要辨別什麼</strong></td><td>目標與手段、表象與原因混在一起</td></tr>
+              <tr><td>4</td><td><strong>不知道下一題怎麼問</strong></td><td>只能問「還有其他需求嗎？」</td></tr>
+              <tr><td>5</td><td><strong>不知道何時算問清楚</strong></td><td>靠時程壓力硬收，沒有共同問題定義</td></tr>
+            </tbody>
+          </table>
+        </div>
+        <p class="meta" style="text-align:center;margin:0">請輸入一個數字：哪一項最像你？</p>
+      </div>
+    </div>
+  </div>
+  <div class="foot"><div>顧問式銷售與問題定義</div><div>Kash</div></div>
+  <!-- 講者備註：不要講成「你們還不會 CMS」。正確定位：把第 3 句聽成需求，就是聽字面。收數字後口頭：第 3、第 4 通常最多。你知道要問，但不知道自己在哪一層。CMS 告訴你層在哪；下一頁起講聽、辨、追、驗、定——從框架討論收到作法。今天不練習，看對話。 -->
+</section>
+
+<!-- P16 聽辨追驗定 -->
+<section class="slide light">
+  <div class="chrome"><div></div><div>16 / 31</div></div>
+  <div class="frame" style="flex:1;min-height:0;display:flex;flex-direction:column;padding-top:1vh">
+    <div class="kicker">從討論到落地</div>
+    <h2 class="h-xl" style="font-size:2.4vw">框架把思考攤開；這五個動作，把討論收成作法</h2>
+    <div style="flex:1;display:flex;flex-direction:column;justify-content:center;min-height:0">
+      <div style="flex:none;width:100%;display:flex;flex-direction:column;gap:1.6vh">
+        <div class="table-wrapper" style="margin:0">
+          <table>
+            <thead><tr><th>動作</th><th>你在做什麼</th><th>接到哪裡</th></tr></thead>
+            <tbody>
+              <tr><td><strong>聽</strong></td><td>先留住原話，不把指定解法當需求</td><td>守住 Concept，不要跳去 Specification</td></tr>
+              <tr><td><strong>辨</strong></td><td>分開 Goal 與 Measure、目的與手段</td><td>Goal–Measure；把 C 和 S 拆開</td></tr>
+              <tr><td><strong>追</strong></td><td>追問為什麼會這樣</td><td>Mechanism</td></tr>
+              <tr><td><strong>驗</strong></td><td>用一句話跟客戶確認你沒腦補</td><td>機制被雙方看見</td></tr>
+              <tr><td><strong>定</strong></td><td>收成共同問題定義</td><td>才有資格寫這個情境的 Specification</td></tr>
+            </tbody>
+          </table>
+        </div>
+        <div class="callout" style="padding:1.8vh 1.8vw">沒有這五步，框架停在討論，CMS 停在口號。接下來用同一句「我要 Dashboard」看對話——先走錯，再走對。</div>
+      </div>
+    </div>
+  </div>
+  <div class="foot"><div>顧問式銷售與問題定義</div><div>Kash</div></div>
+  <!-- 講者備註：框架把思考攤開。CMS 告訴你討論要去哪一層。這五個動作，才是現場怎麼問、怎麼收到這個情境的作法。不要開聊天室填空。 -->
+</section>
+
+<!-- P17 走錯 -->
+<section class="slide dark">
+  <div class="chrome"><div></div><div>17 / 31</div></div>
+  <div class="frame" style="flex:1;min-height:0;display:flex;flex-direction:column;padding-top:1vh">
+    <div class="kicker">常見現場</div>
+    <h2 class="h-xl" style="font-size:2.5vw">聽成第 3 句，就開始施工</h2>
+    <div style="flex:1;display:flex;flex-direction:column;justify-content:center;min-height:0">
+      <div style="flex:none;width:100%;display:flex;flex-direction:column;gap:1.8vh">
+        <div class="box" style="margin-bottom:0;padding:1.8vh 1.8vw"><p class="meta">客戶</p><p class="body-zh" style="margin-top:.8vh">「我們希望做一個 Dashboard，讓主管可以即時看到營運數字。現在每次月底開會都要花很多時間整理資料。」</p></div>
+        <div class="box" style="margin-bottom:0;padding:1.8vh 1.8vw"><p class="meta">顧問 · 走錯</p><p class="body-zh" style="margin-top:.8vh">「好，那我們做即時看板。您要幾個 KPI？要不要先看營收跟庫存？」</p></div>
+        <div class="callout" style="padding:1.8vh 1.8vw"><strong>聽字面＋急著證明專業。</strong>Goal 還沒出現，Specification 已經開工。這就是換大冷氣。</div>
+      </div>
+    </div>
+  </div>
+  <div class="foot"><div>顧問式銷售與問題定義</div><div>Kash</div></div>
+  <!-- 講者備註：對上盲點 1、2。客戶若接「對，就要即時的」，走錯會被獎勵。不要在這頁問學員「你會怎麼回」。 -->
+</section>
+
+<!-- P18 聽 -->
+<section class="slide dark">
+  <div class="chrome"><div></div><div>18 / 31</div></div>
+  <div class="frame" style="flex:1;min-height:0;display:flex;flex-direction:column;padding-top:1vh">
+    <div class="kicker">聽 · 對話案例</div>
+    <h2 class="h-xl" style="font-size:2.6vw">聽：先留住原話</h2>
+    <div style="flex:1;display:flex;flex-direction:column;justify-content:center;min-height:0">
+      <div style="flex:none;width:100%;display:flex;flex-direction:column;gap:1.8vh">
+        <div class="box" style="margin-bottom:0;padding:1.8vh 1.8vw"><p class="meta">客戶</p><p class="body-zh" style="margin-top:.8vh">「我們希望做一個 Dashboard，讓主管可以即時看到營運數字。現在每次月底開會都要花很多時間整理資料。」</p></div>
+        <div class="box" style="margin-bottom:0;padding:1.8vh 1.8vw"><p class="meta">顧問</p><p class="body-zh" style="margin-top:.8vh">「我先確認我聽到的。月底開會要花很多時間整理資料——這是您描述的現況。您提出的解法，是做一個即時 Dashboard。這兩句我先分開記。」</p></div>
+        <div class="callout" style="padding:1.8vh 1.8vw">「整理很久」是事實；「所以要 Dashboard」是客戶的推論。聽，是不把 Measure 當 Goal。</div>
+      </div>
+    </div>
+  </div>
+  <div class="foot"><div>顧問式銷售與問題定義</div><div>Kash</div></div>
+  <!-- 講者備註：聽＝留住原話。現況與解法分開記，還沒有開始問為什麼。 -->
+</section>
+
+<!-- P19 辨 -->
+<section class="slide dark">
+  <div class="chrome"><div></div><div>19 / 31</div></div>
+  <div class="frame" style="flex:1;min-height:0;display:flex;flex-direction:column;padding-top:1vh">
+    <div class="kicker">辨 · 對話案例</div>
+    <h2 class="h-xl" style="font-size:2.6vw">辨：把目的和手段拆開</h2>
+    <div style="flex:1;display:flex;flex-direction:column;justify-content:center;min-height:0">
+      <div style="flex:none;width:100%;display:flex;flex-direction:column;gap:1.8vh">
+        <div class="box" style="margin-bottom:0;padding:1.8vh 1.8vw"><p class="meta">顧問</p><p class="body-zh" style="margin-top:.8vh">「想達成的，是月底會議能做決定？還是一定要即時 Dashboard？」</p></div>
+        <div class="box" style="margin-bottom:0;padding:1.8vh 1.8vw"><p class="meta">客戶</p><p class="body-zh" style="margin-top:.8vh">「主要是月底的庫存調撥會議。」</p></div>
+        <div class="callout" style="padding:1.8vh 1.8vw">Goal 可能是會議能決策；Measure 是即時 Dashboard。Concept 和 Specification 在這裡被拆開。</div>
+      </div>
+    </div>
+  </div>
+  <div class="foot"><div>顧問式銷售與問題定義</div><div>Kash</div></div>
+  <!-- 講者備註：辨＝Goal–Measure。不要在這頁教學員寫下一題。 -->
+</section>
+
+<!-- P20 追 -->
+<section class="slide dark">
+  <div class="chrome"><div></div><div>20 / 31</div></div>
+  <div class="frame" style="flex:1;min-height:0;display:flex;flex-direction:column;padding-top:1vh">
+    <div class="kicker">追 · 對話案例</div>
+    <h2 class="h-xl" style="font-size:2.6vw">追：問為什麼會這樣</h2>
+    <div style="flex:1;display:flex;flex-direction:column;justify-content:center;min-height:0">
+      <div style="flex:none;width:100%;display:flex;flex-direction:column;gap:1.8vh">
+        <div class="box" style="margin-bottom:0;padding:1.8vh 1.8vw"><p class="meta">顧問</p><p class="body-zh" style="margin-top:.8vh">「那次會議現在為什麼做不了決定？是資料出得慢，還是數字對不起來？」</p></div>
+        <div class="box" style="margin-bottom:0;padding:1.8vh 1.8vw"><p class="meta">客戶</p><p class="body-zh" style="margin-top:.8vh">「資料兩天內出得來，但業務和倉儲數字對不起來，大家會吵。」</p></div>
+        <div class="callout" style="padding:1.8vh 1.8vw">這一問走進 Mechanism。不是慢，是口徑——熱不是因為冷氣太小。</div>
+      </div>
+    </div>
+  </div>
+  <div class="foot"><div>顧問式銷售與問題定義</div><div>Kash</div></div>
+  <!-- 講者備註：追＝問為什麼會這樣。對回冷氣：熱源不是設備太小。 -->
+</section>
+
+<!-- P21 驗 -->
+<section class="slide dark">
+  <div class="chrome"><div></div><div>21 / 31</div></div>
+  <div class="frame" style="flex:1;min-height:0;display:flex;flex-direction:column;padding-top:1vh">
+    <div class="kicker">驗 · 對話案例</div>
+    <h2 class="h-xl" style="font-size:2.6vw">驗：用一句話確認你沒腦補</h2>
+    <div style="flex:1;display:flex;flex-direction:column;justify-content:center;min-height:0">
+      <div style="flex:none;width:100%;display:flex;flex-direction:column;gap:1.8vh">
+        <div class="box" style="margin-bottom:0;padding:1.8vh 1.8vw"><p class="meta">顧問</p><p class="body-zh" style="margin-top:.8vh">「我的理解是——不是整理太慢，是兩邊口徑不一致，主管不敢用那個數字做調撥。對嗎？」</p></div>
+        <div class="box" style="margin-bottom:0;padding:1.8vh 1.8vw"><p class="meta">客戶</p><p class="body-zh" style="margin-top:.8vh">「對，不是慢，是我們不敢用那個數字做決定。」</p></div>
+        <div class="callout" style="padding:1.8vh 1.8vw">驗，是讓客戶自己把 Goal 和 Mechanism 認下來。還沒有開始寫 Dashboard 規格。</div>
+      </div>
+    </div>
+  </div>
+  <div class="foot"><div>顧問式銷售與問題定義</div><div>Kash</div></div>
+  <!-- 講者備註：驗＝復述給客戶認。還沒寫 Specification。 -->
+</section>
+
+<!-- P22 定 -->
+<section class="slide dark">
+  <div class="chrome"><div></div><div>22 / 31</div></div>
+  <div class="frame" style="flex:1;min-height:0;display:flex;flex-direction:column;padding-top:1vh">
+    <div class="kicker">定 · 對話案例</div>
+    <h2 class="h-xl" style="font-size:2.5vw">定完，才有這個情境的作法</h2>
+    <div style="flex:1;display:flex;flex-direction:column;justify-content:center;min-height:0">
+      <div style="flex:none;width:100%;display:flex;flex-direction:column;gap:1.8vh">
+        <div class="box" style="margin-bottom:0;padding:1.8vh 1.8vw"><p class="meta">顧問</p><p class="body-zh" style="margin-top:.8vh">「目前真正要解的，是月底庫存調撥會議無法決策，根因是業務與倉儲口徑不一致。尚未確認：要改流程還是系統、修正後是否還要即時。」</p></div>
+        <div style="display:grid;grid-template-columns:1fr 1fr;gap:1.6vw">
+          <div class="box" style="margin-bottom:0;padding:1.8vh 1.6vw"><p class="meta">指定解法 · 還沒定之前</p><p class="body-zh" style="margin-top:.8vh">即時 Dashboard，五個 KPI</p></div>
+          <div class="box" style="margin-bottom:0;padding:1.8vh 1.6vw"><p class="meta">這個情境的 Specification</p><p class="body-zh" style="margin-top:.8vh">口徑一致、可追溯、能支援月底調撥決策</p></div>
+        </div>
+        <div class="callout" style="padding:1.8vh 1.8vw">框架把討論攤開；聽辨追驗定把討論收成作法。Dashboard 仍可能是答案的一部分，但現在才有資格談。</div>
+      </div>
+    </div>
+  </div>
+  <div class="foot"><div>顧問式銷售與問題定義</div><div>Kash</div></div>
+  <!-- 講者備註：定完，Specification 才從「即時 Dashboard、五個 KPI」變成「口徑一致、可追溯、能支援月底調撥決策」。 -->
+</section>
+
+<!-- P23 收成 -->
+<section class="slide hero light">
+  <div class="chrome"><div></div><div>23 / 31</div></div>
+  <div class="frame" style="padding-top:2vh;display:grid;gap:2vh;align-content:center;min-height:75vh">
+    <div class="kicker">這段對話走完之後</div>
+    <h1 class="h-hero" style="font-size:3.2vw">答案還沒有問題——現在有了</h1>
+    <div class="callout">
+      <strong>目前真正要解的是</strong>：月底庫存調撥會議無法決策，根因是業務與倉儲口徑不一致、主管不信任數字。<br><br>
+      <strong>尚未確認的是</strong>：是流程還是系統、修正後是否還要即時性。
+    </div>
+    <p class="lead">作法從「即時 Dashboard」變成「口徑一致與可追溯」。</p>
+    <p class="body-zh">聽 → 辨 → 追 → 驗 → 定。CMS 告訴我們卡在哪一層；這五個動作告訴我們怎麼問過去。</p>
+  </div>
+  <div class="foot"><div>顧問式銷售與問題定義</div><div>Kash</div></div>
+  <!-- 講者備註：路徑口頭帶過即可。不要開 mermaid 練習、不要要學員填空。轉場：這看起來簡單，是因為對話是整理過的。 -->
+</section>
+
+
+<!-- P24 反轉 -->
+<section class="slide hero dark">
+  <div class="chrome"><div></div><div>24 / 31</div></div>
+  <div class="frame" style="display:grid;gap:3vh;align-content:center;min-height:75vh">
+    <div class="kicker">單元 8 · 51–56 分鐘</div>
+    <h1 class="h-hero" style="font-size:3.8vw">「這不都是理所當然的嗎？」</h1>
+    <p class="lead">是的。整理過的對話看起來簡單。</p>
+    <div class="callout"><strong>如果你覺得簡單，那不是因為你會了，是因為我把難的部分拿掉了。</strong></div>
+  </div>
+  <div class="foot"><div>顧問式銷售與問題定義</div><div>Kash</div></div>
+  <!-- 講者備註：剛才順，不是因為學員會了，是因為這是整理過的對話案例。不要說「剛才練習順利」——本堂沒有練習。 -->
+</section>
+
+<!-- P25 教室 vs 現場 -->
+<section class="slide light">
+  <div class="chrome"><div></div><div>25 / 31</div></div>
+  <div class="frame" style="padding-top:0.2vh">
+    <div class="kicker">六個保護</div>
+    <h2 class="h-xl" style="font-size:3vw">實際的顧問工作，通常都更有挑戰</h2>
+    <div class="table-wrapper" style="margin-top:1.2vh">
+      <table>
+        <thead><tr><th>#</th><th>教室裡</th><th>真實現場</th></tr></thead>
+        <tbody>
+          <tr><td>1</td><td>客戶只講一句話</td><td>客戶一次講十件事，而且彼此矛盾</td></tr>
+          <tr><td>2</td><td>你有時間慢慢想</td><td>會議只有 30 分鐘，對方還在等你回應</td></tr>
+          <tr><td>3</td><td>沒有人在評價你</td><td>客戶正在判斷「這個人專不專業」</td></tr>
+          <tr><td>4</td><td>有標準答案</td><td>沒有人會告訴你什麼時候算問清楚</td></tr>
+          <tr><td>5</td><td>只有一個客戶</td><td>多個利害關係人，目標甚至衝突</td></tr>
+          <tr><td>6</td><td>你懂冷氣</td><td>換一個不熟的領域，可能的原因都列不出來</td></tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+  <div class="foot"><div>顧問式銷售與問題定義</div><div>Kash</div></div>
+  <!-- 講者備註：禁止「你們還差得遠」。責任在講師：我把難的拿掉了。 -->
+</section>
+
+<!-- P26 現場斷點 -->
+<section class="slide dark">
+  <div class="chrome"><div></div><div>26 / 31</div></div>
+  <div class="frame" style="display:grid;gap:3vh;align-content:center;min-height:75vh;text-align:center;padding:0 4vw">
+    <div class="kicker">現場斷點</div>
+    <h2 class="h-xl" style="font-size:3vw">如果客戶這樣回你，你還接得下去嗎？</h2>
+    <div class="box" style="text-align:left;margin:0 auto;max-width:64vw"><p class="meta">客戶</p><p class="body-zh" style="margin-top:.8vh">「這些細節你們自己去問 IT 就好，我要看的是結果。」</p></div>
+    <div class="callout" style="text-align:left">剛才順，是因為這是整理過的對話。現場沒有人替你揭露下一段資訊。</div>
+    <p class="meta">差距不在方法，在現場。</p>
+  </div>
+  <div class="foot"><div>顧問式銷售與問題定義</div><div>Kash</div></div>
+  <!-- 講者備註：不舉手、不點名。這句話把聽辨追驗定打斷。口頭只留：現場沒人替你揭露下一段。三日工作坊才練怎麼接。 -->
+</section>
+
+<!-- P27 專業高度 -->
+<section class="slide hero dark">
+  <div class="chrome"><div></div><div>27 / 31</div></div>
+  <div class="frame" style="display:grid;gap:4vh;align-content:center;min-height:78vh;text-align:center;padding:2vh 4vw">
+    <p class="kicker" style="margin-bottom:0">所以，顧問的專業到底是什麼？</p>
+    <h1 class="h-hero" style="font-size:5vw">不是知道那五個步驟。</h1>
+    <div style="max-width:74vw;margin:0 auto;padding:4.2vh 4vw;background:rgba(241,243,245,.08);border-radius:4px;text-align:left">
+      <p class="lead" style="font-size:max(17px,1.5vw);line-height:1.75">那五個動作今天看完了，任何人都聽得懂。</p>
+      <p class="lead" style="font-size:max(17px,1.5vw);line-height:1.75;margin-top:2vh;opacity:1;color:rgba(241,243,245,.85)">顧問真正的專業，是在<strong style="color:#ffc857;font-weight:700">資訊不完整、時間不夠、有人在評價你、而且沒有標準答案</strong>時，仍然維持住結構。</p>
+      <p class="lead" style="font-size:max(17px,1.5vw);line-height:1.75;margin-top:2vh;opacity:1;color:rgba(241,243,245,.85)">客戶付錢，不是請你問問題，是請你<strong style="color:#ffc857;font-weight:700">在混亂裡保住判斷的品質</strong>。</p>
+    </div>
+  </div>
+  <div class="foot"><div>顧問式銷售與問題定義</div><div>Kash</div></div>
+  <!-- 講者備註：建議背下來。轉場：要練，得先知道練什麼。 -->
+</section>
+
+<!-- P28 能力地圖 -->
+<section class="slide light">
+  <div class="chrome"><div></div><div>28 / 31</div></div>
+  <div class="frame" style="flex:1;min-height:0;display:flex;flex-direction:column;padding-top:1vh">
+    <div class="kicker">只展示，不展開</div>
+    <h2 class="h-xl" style="font-size:3vw">五個動作，五塊要分開練的能力</h2>
+    <div style="flex:1;display:flex;flex-direction:column;justify-content:center;min-height:0">
+      <div style="flex:none;width:100%">
+        <div class="table-wrapper" style="margin:0">
+          <table>
+            <thead><tr><th>動作</th><th>背後能力</th><th>三日工作坊</th></tr></thead>
+            <tbody>
+              <tr><td><strong>聽</strong></td><td>延後作答、保持診斷</td><td>壓力角色扮演＋同儕觀察</td></tr>
+              <tr><td><strong>辨</strong></td><td>目標／手段、利害關係人</td><td>多方立場混合編組</td></tr>
+              <tr><td><strong>追</strong></td><td>領域常識與因果</td><td>四類 practice case</td></tr>
+              <tr><td><strong>驗</strong></td><td>證據意識與復述</td><td>即時回饋與反例</td></tr>
+              <tr><td><strong>定</strong></td><td>收斂成雙方認可的一句話</td><td>共同定義＋跨組互評</td></tr>
+            </tbody>
+          </table>
+        </div>
+        <p class="body-zh" style="margin-top:2.4vh">剛才 CMS 圖右邊那八項，是同一張地圖往後展開的方向。今天不教。</p>
+      </div>
+    </div>
+  </div>
+  <div class="foot"><div>顧問式銷售與問題定義</div><div>Kash</div></div>
+</section>
+
+<!-- P29 Exit Ticket -->
+<section class="slide dark">
+  <div class="chrome"><div></div><div>29 / 31</div></div>
+  <div class="frame" style="padding-top:8vh;text-align:center">
+    <div class="kicker">帶走一句話</div>
+    <h2 class="h-xl">下次聽到客戶直接指定解法</h2>
+    <div class="callout" style="margin:6vh auto 0;max-width:64vw;text-align:left">先辨這是 Goal 還是 Measure——因為目的沒清，就不能寫這個情境的作法。</div>
+    <p class="meta" style="margin-top:5vh">金句</p>
+    <p class="h-xl" style="margin-top:1.6vh;font-size:3.2vw"><strong style="color:#ffc857;font-weight:700">方向不對，努力白費</strong></p>
+  </div>
+  <div class="foot"><div>顧問式銷售與問題定義</div><div>Kash</div></div>
+  <!-- 講者備註：帶走句已寫在頁上，不填空、不開聊天室。口頭帶過講師介紹。 -->
+</section>
+
+<!-- P30 銜接 -->
+<section class="slide light">
+  <div class="chrome"><div></div><div>30 / 31</div></div>
+  <div class="frame" style="padding-top:1vh">
+    <div class="kicker">今天走到哪</div>
+    <h2 class="h-xl" style="font-size:3.2vw">今天走到哪，接下來練什麼</h2>
+    <div class="table-wrapper" style="margin-top:1.6vh">
+      <table>
+        <thead><tr><th>今天 60 分鐘做到的</th><th>三日工作坊要練成的</th></tr></thead>
+        <tbody>
+          <tr><td>看見答案≠問題</td><td>壓力下仍能延後作答</td></tr>
+          <tr><td>理解框架引導思考、CMS 收成規格</td><td>多類案例走完 Concept → Mechanism → Specification</td></tr>
+          <tr><td>知道聽辨追驗定要做什麼</td><td>動作變成可觀察行為</td></tr>
+          <tr><td>辨識自己缺的那一塊</td><td>補領域、對話控制、收斂共識</td></tr>
+        </tbody>
+      </table>
+    </div>
+    <div class="callout" style="margin-top:1.4vh">若你覺得「聽懂了，但不確定在客戶面前做得到」——那個感覺是對的。那就是你要開始練的第一塊。</div>
+  </div>
+  <div class="foot"><div>顧問式銷售與問題定義</div><div>Kash</div></div>
+</section>
+
+<!-- P31 講師介紹 -->
+<section class="slide hero dark">
+  <div class="chrome"><div></div><div>31 / 31</div></div>
+  <div class="frame" style="padding-top:1.2vh">
+    <div class="kicker">最後才自我介紹 · 希望你記得的是方法</div>
+    <div class="grid-3" style="padding:0;gap:2.4vw">
+      <div>
+        <p class="meta">身分</p>
+        <h2 class="h-xl" style="font-size:2.4vw;margin-top:1vh">陳誼峰 Kash</h2>
+        <p class="lead" style="font-size:1.3vw;margin-top:1.4vh"><strong>會算命的數據顧問</strong></p>
+        <p class="body-zh" style="margin-top:1vh">基於數據，做有效益的決策</p>
+        <p class="body-zh" style="margin-top:1.6vh">Merkle Taiwan 體驗科學副總經理（VP of CX Science）暨執行顧問</p>
+      </div>
+      <div>
+        <p class="meta">專長</p>
+        <div class="box" style="margin-top:1.4vh"><p class="body-zh"><strong>AI 與數據系統</strong><br>AI 導入／AI Agent／數據中台</p></div>
+        <div class="box"><p class="body-zh"><strong>數據決策與精準獲利</strong><br>成效行銷／商業分析</p></div>
+        <div class="box" style="margin-bottom:0"><p class="body-zh"><strong>數位轉型與組織落地</strong><br>敏捷運作／教練陪跑</p></div>
+      </div>
+      <div>
+        <p class="meta">聯絡與後續</p>
+        <p class="body-zh" style="margin-top:1.6vh">www.imkash.cc</p>
+        <p class="body-zh">kash.doublemax@gmail.com</p>
+        <img src="visuals/kash-line-qr.png" alt="LINE QR code" style="margin-top:2.4vh;width:9.2vw;min-width:128px;height:auto;display:block;background:#fff">
+      </div>
+    </div>
+    <p class="meta" style="margin-top:2.2vh">18+ 年網際網路、數位媒體與數據顧問｜Meta／Google 官方認證講師顧問｜ICF 認證專業教練｜《流量的秘密》《AI 轉型的溫度》共同作者</p>
+  </div>
+  <div class="foot"><div>顧問式銷售與問題定義</div><div>Kash</div></div>
+  <!-- 講者備註：不要逐項朗讀。只講①教練＝不給答案，先把問題想清楚。②現場沒人揭露下一段，是 18 年自己撞的。超時砍第二句。 -->
+</section>
+
+</div>
+
+<div id="nav"></div>
+<div id="hint">← → or scroll · ESC for index · B for low-power</div>
+
+<script src="https://cdn.jsdelivr.net/npm/motion@10.16.2/dist/motion.js"></script>
+<script>
+mermaid.initialize({ startOnLoad: true, theme: 'base', securityLevel: 'loose' });
+mermaid.contentLoaded();
+
+let currentSlide = 0;
+const slides = document.querySelectorAll('.slide');
+const totalSlides = slides.length;
+const deck = document.getElementById('deck');
+const navDots = document.getElementById('nav');
+
+slides.forEach((_, index) => {
+  const dot = document.createElement('button');
+  dot.className = 'dot' + (index === 0 ? ' active' : '');
+  dot.onclick = () => goToSlide(index);
+  dot.title = `Slide ${index + 1} / ${totalSlides}`;
+  navDots.appendChild(dot);
+});
+
+function updateDeck() {
+  const offset = -currentSlide * 100;
+  deck.style.transform = `translateX(${offset}vw)`;
+  document.querySelectorAll('#nav .dot').forEach((dot, index) => {
+    dot.classList.toggle('active', index === currentSlide);
+  });
+  const currentSlideBg = slides[currentSlide];
+  if (currentSlideBg.classList.contains('light')) {
+    document.body.classList.add('light-bg');
+  } else {
+    document.body.classList.remove('light-bg');
+  }
+}
+
+function goToSlide(n) {
+  currentSlide = Math.max(0, Math.min(n, totalSlides - 1));
+  updateDeck();
+}
+function nextSlide() { goToSlide(currentSlide + 1); }
+function prevSlide() { goToSlide(currentSlide - 1); }
+
+document.addEventListener('keydown', (e) => {
+  if (e.key === 'ArrowRight') nextSlide();
+  else if (e.key === 'ArrowLeft') prevSlide();
+  else if (e.key === 'Escape') document.body.classList.toggle('index-mode');
+  else if (e.key === 'b' || e.key === 'B') document.body.classList.toggle('low-power');
+});
+document.addEventListener('wheel', (e) => {
+  e.preventDefault();
+  if (e.deltaY > 0) nextSlide(); else prevSlide();
+}, { passive: false });
+
+let touchStart = 0;
+document.addEventListener('touchstart', (e) => { touchStart = e.touches[0].clientX; });
+document.addEventListener('touchend', (e) => {
+  const touchEnd = e.changedTouches[0].clientX;
+  if (touchStart - touchEnd > 50) nextSlide();
+  else if (touchEnd - touchStart > 50) prevSlide();
+});
+
+updateDeck();
+</script>
+</body>
+</html>
