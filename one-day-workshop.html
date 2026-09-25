@@ -1,0 +1,560 @@
+<!DOCTYPE html>
+<html lang="zh-Hant">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>顧問式諮詢一日工作坊｜陳誼峰 Kash</title>
+<meta name="description" content="客戶說我要這個，你聽懂了、也做完了，交出去他說不是這個。一天工作坊，練的是出方案之前先停下來。">
+<meta property="og:type" content="website">
+<meta property="og:title" content="顧問式諮詢一日工作坊｜陳誼峰 Kash">
+<meta property="og:description" content="聽懂了。做完了。交出去，還是錯的。一天，讓這種事少發生一次。">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+TC:wght@400;500;700&family=Noto+Serif+TC:wght@400;500&family=Cormorant+Garamond:wght@400;500&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --canvas:#faf9f5;
+    --surface-soft:#f5f0e8;
+    --surface-card:#efe9de;
+    --surface-dark:#181715;
+    --surface-dark-2:#252320;
+    --primary:#cc785c;
+    --primary-active:#a9583e;
+    --ink:#141413;
+    --body:#3d3d3a;
+    --muted:#6c6a64;
+    --on-primary:#fff;
+    --on-dark:#faf9f5;
+    --hairline:#e6dfd8;
+    --font-display:"Noto Serif TC","PMingLiU","Cormorant Garamond","Times New Roman",serif;
+    --font-body:"Noto Sans TC","Microsoft JhengHei","PingFang TC","Inter",-apple-system,"Segoe UI",sans-serif;
+    --section-gap:96px;
+    --card-pad:32px;
+    --cta-pad:56px;
+    --content-max:1200px;
+    --nav-h:64px;
+    --r-btn:8px;
+    --r-card:12px;
+    --r-hero:16px;
+    --r-pill:9999px;
+  }
+  *,*::before,*::after{box-sizing:border-box}
+  html{scroll-behavior:smooth}
+  body{
+    margin:0;background:var(--canvas);color:var(--body);
+    font-family:var(--font-body);font-size:16px;line-height:1.6;
+    -webkit-font-smoothing:antialiased;
+  }
+  img{max-width:100%;display:block}
+  h1,h2,h3{
+    font-family:var(--font-display);font-weight:400;color:var(--ink);
+    margin:0;line-height:1.25;letter-spacing:0;
+  }
+  h1{font-size:clamp(34px,5vw,60px)}
+  h2{font-size:clamp(28px,3.6vw,40px)}
+  h3{font-size:28px}
+  p{margin:0 0 1em}
+  a{color:inherit;text-decoration:none}
+  ul{margin:0;padding:0;list-style:none}
+  .container{width:100%;max-width:var(--content-max);margin:0 auto;padding:0 24px}
+  .section{padding:var(--section-gap) 0}
+  .section--soft{background:var(--surface-soft)}
+  .section--dark{background:var(--surface-dark);color:var(--on-dark)}
+  .section--dark h2,.section--dark h3{color:var(--on-dark)}
+  .section-head{max-width:760px;margin-bottom:40px}
+  .section-head p{color:var(--muted);font-size:18px;margin:12px 0 0}
+  .eyebrow{
+    display:inline-block;font-size:12px;font-weight:500;
+    letter-spacing:1.5px;color:var(--primary);margin-bottom:12px;
+  }
+  .text-link{color:var(--primary);font-weight:500}
+  .text-link:hover{text-decoration:underline}
+  .btn{
+    display:inline-flex;align-items:center;justify-content:center;gap:8px;
+    min-height:44px;padding:12px 20px;border-radius:var(--r-btn);
+    font-family:var(--font-body);font-size:15px;font-weight:500;
+    border:1px solid transparent;cursor:pointer;
+    transition:background .15s ease,color .15s ease,border-color .15s ease;
+  }
+  .btn-primary{background:var(--primary);color:var(--on-primary)}
+  .btn-primary:hover{background:var(--primary-active)}
+  .btn-secondary{background:var(--canvas);color:var(--ink);border-color:var(--hairline)}
+  .btn-secondary:hover{border-color:var(--primary);color:var(--primary)}
+  .btn-invert{background:var(--canvas);color:var(--primary-active)}
+  .btn-invert:hover{background:var(--surface-soft)}
+  .btn-on-dark{background:transparent;color:var(--on-dark);border-color:rgba(250,249,245,.35)}
+  .btn-on-dark:hover{border-color:var(--on-dark)}
+
+  .notice{
+    background:var(--surface-dark);color:var(--on-dark);
+    font-size:14px;text-align:center;padding:10px 16px;
+  }
+  .notice strong{color:var(--primary);font-weight:500}
+
+  .nav{
+    position:sticky;top:0;z-index:100;height:var(--nav-h);
+    background:rgba(250,249,245,.92);
+    backdrop-filter:saturate(120%) blur(8px);
+    border-bottom:1px solid var(--hairline);
+  }
+  .nav__inner{height:100%;display:flex;align-items:center;justify-content:space-between;gap:16px}
+  .nav__brand{font-family:var(--font-display);font-size:20px;color:var(--ink);white-space:nowrap}
+  .nav__brand span{color:var(--primary)}
+  .nav__links{display:flex;align-items:center;gap:28px}
+  .nav__links a{font-size:15px;color:var(--body);padding:4px 0;border-bottom:2px solid transparent}
+  .nav__links a:hover,.nav__links a.is-active{color:var(--ink);border-bottom-color:var(--primary)}
+  .nav__cta{flex-shrink:0}
+  .nav__cta-mobile{display:none}
+  .nav__toggle{
+    display:none;width:40px;height:40px;border:1px solid var(--hairline);
+    border-radius:var(--r-btn);background:var(--canvas);cursor:pointer;
+    align-items:center;justify-content:center;
+  }
+  .nav__toggle span,.nav__toggle span::before,.nav__toggle span::after{
+    content:"";display:block;width:18px;height:2px;background:var(--ink);position:relative;
+  }
+  .nav__toggle span::before{position:absolute;top:-6px}
+  .nav__toggle span::after{position:absolute;top:6px}
+
+  .hero{padding:72px 0 56px}
+  .hero__grid{display:grid;grid-template-columns:1.05fr .95fr;gap:48px;align-items:stretch}
+  .hero h1{margin:8px 0 20px}
+  .hero__sub{font-size:19px;color:var(--body);max-width:34em;margin-bottom:28px}
+  .hero__ctas{display:flex;flex-wrap:wrap;gap:14px}
+  .hero-panel{
+    background:var(--surface-dark);color:var(--on-dark);
+    border-radius:var(--r-hero);padding:40px 36px 36px;height:100%;
+    display:flex;flex-direction:column;justify-content:space-between;
+  }
+  .hero-panel__kicker{font-size:12px;font-weight:500;letter-spacing:1.5px;color:var(--primary);margin-bottom:18px}
+  .hero-panel h2{
+    font-family:var(--font-display);font-weight:400;font-size:clamp(28px,3vw,36px);
+    color:var(--on-dark);line-height:1.35;margin:0 0 28px;
+  }
+  .hero-panel ol{list-style:none;margin:0;padding:0;display:grid;gap:14px}
+  .hero-panel li{color:rgba(250,249,245,.78);font-size:16px;padding-left:0}
+  .hero-panel li strong{display:block;color:var(--on-dark);font-weight:500;margin-bottom:2px}
+
+  .facts{
+    display:grid;grid-template-columns:repeat(4,1fr);gap:12px;margin-top:36px;
+  }
+  .facts div{
+    background:var(--surface-card);border:1px solid var(--hairline);
+    border-radius:var(--r-card);padding:18px 16px;
+  }
+  .facts dt{font-size:12px;color:var(--muted);margin-bottom:6px}
+  .facts dd{margin:0;font-weight:500;color:var(--ink)}
+
+  .tagline-bar{
+    background:var(--surface-dark);
+    border-top:3px solid var(--primary);border-bottom:3px solid var(--primary);
+    padding:36px 0;
+  }
+  .tagline-bar p{
+    margin:0;font-family:var(--font-display);font-size:24px;
+    color:var(--on-dark);text-align:center;
+  }
+  .tagline-bar .accent{color:var(--primary)}
+
+  .grid{display:grid;gap:24px}
+  .grid--3{grid-template-columns:repeat(3,1fr)}
+  .grid--2{grid-template-columns:repeat(2,1fr)}
+  .card{
+    background:var(--surface-card);border:1px solid var(--hairline);
+    border-radius:var(--r-card);padding:var(--card-pad);
+    display:flex;flex-direction:column;
+  }
+  .card h3{font-size:22px;margin-bottom:12px}
+  .card__title{font-size:18px;font-weight:500;color:var(--ink);margin-bottom:10px}
+  .card p:last-child{margin-bottom:0}
+  .card .n{
+    font-size:12px;font-weight:500;letter-spacing:.08em;
+    color:var(--primary);margin-bottom:10px;
+  }
+  .instructor-photo{
+    border-radius:var(--r-card);overflow:hidden;aspect-ratio:3/4;
+    box-shadow:0 12px 28px -12px rgba(20,20,19,.35);
+    max-width:50%;margin:0 auto;
+  }
+  .instructor-photo img{width:100%;height:100%;object-fit:cover;object-position:50% 18%;display:block}
+  .voice{
+    background:#fff;border:1px solid var(--hairline);border-radius:var(--r-card);
+    padding:28px 26px;
+  }
+  .voice p{
+    font-family:var(--font-display);font-size:22px;color:var(--ink);
+    line-height:1.45;margin:0 0 12px;
+  }
+  .voice span{font-size:14px;color:var(--muted)}
+
+  .agenda{border-top:1px solid var(--hairline)}
+  .agenda li{
+    display:grid;grid-template-columns:140px 1fr;gap:18px;
+    padding:18px 0;border-bottom:1px solid var(--hairline);
+  }
+  .agenda time{color:var(--muted);font-size:14px;padding-top:3px}
+  .agenda strong{display:block;color:var(--ink);font-weight:500;margin-bottom:4px}
+
+  .check li{position:relative;padding-left:22px;margin-bottom:10px}
+  .check li::before{content:"";position:absolute;left:0;top:.55em;width:8px;height:8px;border-radius:50%;background:var(--primary)}
+  .x-list li{position:relative;padding-left:22px;margin-bottom:10px}
+  .x-list li::before{content:"";position:absolute;left:0;top:.55em;width:8px;height:8px;border-radius:50%;background:var(--muted)}
+
+  .trust-strip{padding:48px 0}
+  .trust-strip p{margin:0;text-align:center;font-size:16px;line-height:2;color:var(--on-dark)}
+  .trust-strip .sep{color:var(--primary);padding:0 6px}
+
+  .cta-band{background:var(--primary);color:var(--on-primary)}
+  .cta-band .container{padding-top:var(--cta-pad);padding-bottom:var(--cta-pad);text-align:center}
+  .cta-band h2{color:var(--on-primary);margin-bottom:16px}
+  .cta-band p{color:var(--on-primary);opacity:.92;max-width:44em;margin:0 auto 28px;font-size:18px}
+
+  .signup{display:grid;grid-template-columns:1.2fr .8fr;gap:40px;align-items:start}
+  .signup-card{
+    background:#fff;border:1px solid rgba(250,249,245,.12);
+    border-radius:var(--r-card);padding:28px;max-width:280px;text-align:center;
+  }
+  .signup-card .btn{width:100%}
+  .signup-card p{color:var(--muted);font-size:13px;margin:14px 0 0}
+
+  .footer{background:var(--surface-dark);color:var(--muted);padding:56px 0 32px}
+  .footer a{color:var(--on-dark)}
+  .footer a:hover{color:var(--primary)}
+  .footer__grid{display:grid;grid-template-columns:1.4fr 1fr 1.2fr;gap:40px;padding-bottom:32px;border-bottom:1px solid var(--surface-dark-2)}
+  .footer__brand{font-family:var(--font-display);font-size:20px;color:var(--on-dark);margin-bottom:8px}
+  .footer__brand span{color:var(--primary)}
+  .footer h4{font-family:var(--font-body);font-size:13px;font-weight:500;letter-spacing:1px;color:var(--on-dark);margin:0 0 14px}
+  .footer li{margin-bottom:10px;font-size:15px}
+  .footer__bottom{padding-top:24px;font-size:13px;text-align:center}
+
+  .dock{
+    display:none;position:fixed;left:0;right:0;bottom:0;z-index:90;
+    padding:12px 16px calc(12px + env(safe-area-inset-bottom));
+    background:rgba(250,249,245,.94);border-top:1px solid var(--hairline);
+  }
+  .dock .btn{width:100%}
+
+  @media (max-width:1024px){
+    .grid--3{grid-template-columns:repeat(2,1fr)}
+    .facts{grid-template-columns:repeat(2,1fr)}
+  }
+  @media (max-width:767px){
+    :root{--section-gap:64px}
+    h1{font-size:32px}
+    h2{font-size:30px}
+    h3{font-size:24px}
+    body{padding-bottom:88px}
+    .nav__toggle{display:inline-flex}
+    .nav__cta{display:none}
+    .nav__links{
+      display:none;position:absolute;top:var(--nav-h);left:0;right:0;
+      flex-direction:column;align-items:stretch;gap:0;
+      background:var(--canvas);border-bottom:1px solid var(--hairline);
+      padding:8px 24px 20px;
+    }
+    .nav__links.is-open{display:flex}
+    .nav__links a{padding:14px 0;border-bottom:1px solid var(--hairline)}
+    .nav__cta-mobile{display:block;margin-top:14px}
+    .nav__cta-mobile .btn{width:100%}
+    .hero{padding:40px 0 96px}
+    .hero__grid,.signup,.grid--2,.grid--3{grid-template-columns:1fr}
+    .facts{grid-template-columns:1fr 1fr}
+    .agenda li{grid-template-columns:1fr}
+    .hero-panel{height:auto;padding:32px 28px}
+    .tagline-bar p{font-size:19px}
+    .footer__grid{grid-template-columns:1fr}
+    .dock{display:block}
+  }
+</style>
+</head>
+<body>
+
+<div class="notice">顧問式諮詢一日工作坊 · 2026/10/17（六） · 建議 18 人小班 · NT$8,000／人 · <strong>地點待通知</strong></div>
+
+<header class="nav">
+  <div class="container nav__inner">
+    <a class="nav__brand" href="index.html">陳誼峰 <span>Kash</span></a>
+    <button class="nav__toggle" aria-label="開啟選單" aria-expanded="false" aria-controls="primary-nav"><span></span></button>
+    <ul class="nav__links" id="primary-nav">
+      <li><a href="#voices">你是不是也遇過</a></li>
+      <li><a href="#day">這一天</a></li>
+      <li><a href="#whom">給誰</a></li>
+      <li><a href="#instructor">講師</a></li>
+      <li class="nav__cta-mobile"><a class="btn btn-primary" href="#signup">直接報名</a></li>
+    </ul>
+    <div class="nav__cta"><a class="btn btn-primary" href="#signup">直接報名</a></div>
+  </div>
+</header>
+
+<main>
+  <section class="hero">
+    <div class="container hero__grid">
+      <div>
+        <span class="eyebrow">一日工作坊 · 顧問、業務、PM、客戶端同一班</span>
+        <h1>顧問式諮詢<br>一日工作坊</h1>
+        <p class="hero__sub">客戶說「我要這個」。你聽懂了，團隊也熬夜做完了。交出去的那一刻，他看了三十秒，說：不是這個。前面所有人的加班，一次報銷。這一天，就是讓這種事少發生一次。</p>
+        <div class="hero__ctas">
+          <a class="btn btn-primary" href="#signup">直接報名</a>
+          <a class="btn btn-secondary" href="#whom">這堂課給誰</a>
+        </div>
+        <dl class="facts">
+          <div><dt>日期</dt><dd>10/17（六）09:00–17:00</dd></div>
+          <div><dt>形式</dt><dd>實體工作坊</dd></div>
+          <div><dt>人數</dt><dd>建議 18 人</dd></div>
+          <div><dt>費用</dt><dd>NT$8,000／人</dd></div>
+        </dl>
+      </div>
+      <aside class="hero-panel">
+        <div>
+          <p class="hero-panel__kicker">這一天你會做的事</p>
+          <h2>上午學會分辨，<br>下午走進一場拿不到完整資訊的現場。</h2>
+        </div>
+        <ol>
+          <li><strong>先分辨</strong>這句話是他的處境、他以為的路徑，還是他自己先拍的答案</li>
+          <li><strong>再演練</strong>資訊不完整、只有部分真相、走了就回不去的現場</li>
+          <li><strong>最後帶走</strong>一句「週一要在哪裡先停」，不是一份完整提案</li>
+        </ol>
+      </aside>
+    </div>
+  </section>
+
+  <section class="tagline-bar">
+    <div class="container">
+      <p>這不是話術課，不教你把提案包裝得更好聽。<span class="accent">方向錯了還做得漂亮，代價比沒做完更高。</span></p>
+    </div>
+  </section>
+
+  <section class="section" id="voices">
+    <div class="container">
+      <div class="section-head">
+        <span class="eyebrow">你是不是也遇過</span>
+        <h2>做完了才發現，方向一開始就錯了。</h2>
+        <p>最貴的不是沒做完。是整組人把錯的東西，做得非常好。</p>
+      </div>
+      <div class="grid grid--2">
+        <article class="voice">
+          <p>「客戶說要平台、要 AI，下週就要看到雛形。我們熬了兩個禮拜，動用三個部門交出去。他划開手機看了不到三十秒：『不是這個。』會議室瞬間安靜，沒人敢先開口。」</p>
+          <span>顧問／Presales</span>
+        </article>
+        <article class="voice">
+          <p>「合約是他簽的，飯是他請的，LINE 也秒回。提案前一晚十一點，我還在內部群組打字問：這次真正能拍板的，到底是誰？」</p>
+          <span>客戶經理</span>
+        </article>
+        <article class="voice">
+          <p>「每次週會多一句『這個順便一起吧』，沒有人敢喊停，因為每一句聽起來都合理。三個月後範圍已經是原本的兩倍，驗收日還是『下個月』。」</p>
+          <span>專案／交付</span>
+        </article>
+        <article class="voice">
+          <p>「老闆講的、部門要的、外部顧問聽去寫成案子的，是三份不一樣的東西。三邊都說我沒講清楚。開到後來，連我自己都不確定哪一句才是真的。」</p>
+          <span>客戶端需求代表</span>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <section class="section section--soft" id="day">
+    <div class="container">
+      <div class="section-head">
+        <span class="eyebrow">這一天會發生什麼</span>
+        <h2>先進入處境，再談路徑，最後才碰解法——順序不能跳。</h2>
+        <p>客戶脫口而出的那句解法，往往不是起點，是他走到最後才丟出來的一步。這一天不教你完整提案，它讓混編團隊先停在該停的地方。</p>
+      </div>
+      <div class="grid grid--3">
+        <article class="card">
+          <p class="n">01</p>
+          <h3>同一句話，可能落在完全不同的位置</h3>
+          <p>「我要平台、要 AI」有時是他的處境，有時是他以為的路徑，有時只是他自己先拍的板。分不清楚，就會把「他講出口的答案」當成「唯一的答案」，做出前面那句話裡、三十秒就被打回的東西。</p>
+        </article>
+        <article class="card">
+          <p class="n">02</p>
+          <h3>不是每句話都同等重要</h3>
+          <p>同一場會議裡，有人的話重複三次，有人情緒突然上來，有人丟出一句不像這間公司平常會講的用詞。訊號和雜訊混在一起講，不先標出來，後面就是三邊各自帶回三套話。</p>
+        </article>
+        <article class="card">
+          <p class="n">03</p>
+          <h3>把混在一起的東西拆開</h3>
+          <p>表象和根因、目標和手段、要求和需求，客戶常常用同一句話講完。拆不開，範圍就會一路「順便」加下去，加到誰都說不清楚原本要解的是什麼。</p>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <section class="section">
+    <div class="container">
+      <div class="section-head">
+        <span class="eyebrow">離場帶走</span>
+        <h2>回家不是多一本講義，<br>是週一知道在哪裡先停。</h2>
+      </div>
+      <div class="grid grid--3">
+        <article class="card">
+          <div class="card__title">共同語言</div>
+          <p>能一句話說出，客戶剛剛講的是處境、路徑，還是他自己先拍的解法。混編團隊（顧問、業務、PM、客戶端）終於講的是同一件事，不再是三邊各自帶回三套話。</p>
+        </article>
+        <article class="card">
+          <div class="card__title">先聽再出手</div>
+          <p>現場資訊不完整時，知道自己現在漏了哪一塊，而不是先補一套方案上去、撐過這場會議再說。</p>
+        </article>
+        <article class="card">
+          <div class="card__title">一句帶回公司的話</div>
+          <p>復盤後帶走自己案子裡「週一要在哪裡先停一步」的那一句。不是證照，也不是一份能直接交出去的解決方案。</p>
+        </article>
+      </div>
+      <p style="margin-top:28px;color:var(--muted);font-size:15px">當天不練完整提案，也不會讓你帶著一份可以直接交的解決方案離開。這一天把問題定住、把該追的追下去——這是後面任何方案能不能一次到位的前提。</p>
+    </div>
+  </section>
+
+  <section class="section section--soft">
+    <div class="container">
+      <div class="section-head">
+        <span class="eyebrow">怎麼過這一天</span>
+        <h2>上午把耳朵打開，下午把判斷放進現場。</h2>
+        <p>午休 60 分鐘；上、下午各休息 15 分鐘。人數不是 3 的倍數可改組，不另開分流課。</p>
+      </div>
+      <ol class="agenda">
+        <li>
+          <time>09:00–10:15</time>
+          <div><strong>同一句客戶的話</strong>為什麼會走到完全不同的地方。</div>
+        </li>
+        <li>
+          <time>10:30–12:15</time>
+          <div><strong>聽，然後拆開</strong>用情境看見自己會漏什麼，再練習把混在一起的判斷分開。</div>
+        </li>
+        <li>
+          <time>12:15–13:15</time>
+          <div><strong>午休</strong>下午的角色資訊，不會預先發下去。</div>
+        </li>
+        <li>
+          <time>13:15–15:50</time>
+          <div><strong>資訊不完整的現場</strong>每人只拿得到部分真相。把上午練的聽與拆，放進一段走不回去的演練。</div>
+        </li>
+        <li>
+          <time>15:50–17:00</time>
+          <div><strong>復盤與工作轉譯</strong>帶走一句「週一要在哪裡停」。</div>
+        </li>
+      </ol>
+    </div>
+  </section>
+
+  <section class="section" id="whom">
+    <div class="container">
+      <div class="section-head">
+        <span class="eyebrow">給誰／不給誰</span>
+        <h2>四種站位同一班，不分流開課。</h2>
+        <p>門檻不在專業深度，在有沒有幫對方把問題看清楚。軟體、保險等跨產業也能上。</p>
+      </div>
+      <div class="grid grid--2">
+        <article class="card">
+          <div class="card__title">適合來的人</div>
+          <ul class="check">
+            <li>已經會講方案，但常被客戶一句指定解法帶著跑</li>
+            <li>關係在，卻說不清這次真正卡在哪</li>
+            <li>交付端一直加範圍，想先把值得解的問題定住</li>
+            <li>客戶端要收需求、也要對外對顧問</li>
+          </ul>
+        </article>
+        <article class="card">
+          <div class="card__title">不適合來的人</div>
+          <ul class="x-list">
+            <li>來要完整 SOP 或證照</li>
+            <li>希望當天下午就帶走一套可交的解決方案</li>
+            <li>只想聽一場演講、不想進小組演練</li>
+          </ul>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <section class="section section--soft" id="instructor">
+    <div class="container">
+      <div class="grid grid--2" style="align-items:center">
+        <div>
+          <span class="eyebrow">講師</span>
+          <h2 style="white-space:nowrap;font-size:clamp(16px,3vw,28px)">課堂裡他當教練，不給標準答案。</h2>
+          <p>Kash，電通集團 Merkle Taiwan 體驗科學副總經理。做過保險顧問、行銷顧問與 IT 顧問。今天要教的不是某一業的話術，是跨產業都能用的聽與判斷。</p>
+          <p>學員記得方法，不是記得履歷。講師介紹，會放在課的後面，不是開頭。</p>
+          <p style="margin:0"><a class="text-link" href="about.html">認識 Kash →</a></p>
+        </div>
+        <div class="instructor-photo">
+          <img src="assets/img/kash-instructor-portrait.png" alt="陳誼峰 Kash 講師照">
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="section--dark trust-strip">
+    <div class="container">
+      <p>Merkle Taiwan 體驗科學副總經理<span class="sep">｜</span>台大工業工程碩士 × 美國德州大學電腦工程碩士<span class="sep">｜</span>Meta/Google 認證講師<span class="sep">｜</span>ICF 認證專業教練<span class="sep">｜</span>《流量的秘密》《AI 轉型的溫度》共同作者</p>
+    </div>
+  </section>
+
+  <section class="cta-band">
+    <div class="container">
+      <h2>要把這一天排進行事曆？</h2>
+      <p>不用先寫好完整需求單。先說清楚學員是誰、你希望這天結束時他們能停在哪一步，再決定開不開。場次、人數與內訓條件，填表單告訴 Kash。</p>
+      <a class="btn btn-invert" href="#signup">直接報名</a>
+    </div>
+  </section>
+
+  <section class="section section--dark" id="signup">
+    <div class="container signup">
+      <div>
+        <span class="eyebrow" style="color:var(--primary)">報名</span>
+        <h2>把座位留給你，直接報名。</h2>
+        <p style="color:rgba(250,249,245,.78);max-width:32em">不用先準備完整課綱。填一次表單、留下聯絡方式，告訴我們：誰來上、他們現在常在哪裡走偏、一天結束後希望團隊能一起停在哪。</p>
+        <p style="color:rgba(250,249,245,.55);font-size:14px;margin:0">日期：2026/10/17（六）。地點：待通知，確定後更新本頁。</p>
+      </div>
+      <div class="signup-card">
+        <a class="btn btn-primary" href="https://forms.gle/eMYfpR15eN2mFQcS9" target="_blank" rel="noopener">填寫報名表單 →</a>
+        <p>點擊開啟 Google 表單</p>
+      </div>
+    </div>
+  </section>
+</main>
+
+<footer class="footer">
+  <div class="container">
+    <div class="footer__grid">
+      <div>
+        <div class="footer__brand">陳誼峰 <span>Kash</span></div>
+        <p>會算命的數據顧問<br>Merkle Taiwan 體驗科學副總經理</p>
+      </div>
+      <div>
+        <h4>網站</h4>
+          <ul>
+            <li><a href="index.html">首頁</a></li>
+            <li><a href="speaking.html">演講與課程</a></li>
+            <li><a href="contact.html">聯絡邀課</a></li>
+          </ul>
+      </div>
+      <div>
+        <h4>保持連結</h4>
+        <ul>
+          <li><a href="https://imkash.substack.com" target="_blank" rel="noopener">電子報</a></li>
+          <li><a href="mailto:kash.doublemax@gmail.com">kash.doublemax@gmail.com</a></li>
+        </ul>
+      </div>
+    </div>
+    <div class="footer__bottom">© 2026 陳誼峰 Kash｜一日工作坊宣傳頁｜DREAM · DO · DELIVER</div>
+  </div>
+</footer>
+
+<div class="dock"><a class="btn btn-primary" href="#signup">直接報名</a></div>
+
+<script>
+  const toggle = document.querySelector('.nav__toggle');
+  const links = document.getElementById('primary-nav');
+  if (toggle && links) {
+    toggle.addEventListener('click', () => {
+      const open = links.classList.toggle('is-open');
+      toggle.setAttribute('aria-expanded', open ? 'true' : 'false');
+    });
+    links.querySelectorAll('a').forEach((a) => {
+      a.addEventListener('click', () => {
+        links.classList.remove('is-open');
+        toggle.setAttribute('aria-expanded', 'false');
+      });
+    });
+  }
+</script>
+</body>
+</html>

@@ -21,6 +21,7 @@
 | `events.html` | 活動剪影：現場照片、線上影片 |
 | `proof.html` | 實績與見證：客戶 logo 牆、量化實績、客戶見證 |
 | `contact.html` | 聯絡邀課：Google 表單、Email、電子報訂閱 |
+| `one-day-workshop.html` | 「先別出方案」一日工作坊招生頁（樣式自含；講師照 `assets/img/kash-instructor-portrait.png`；報名走 Google 表單） |
 
 ## 目錄
 

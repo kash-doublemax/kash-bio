@@ -1,5 +1,9 @@
 # 開發工作紀錄 Worklog
 
+## 2026-09-25
+
+新增一日工作坊招生頁 `one-day-workshop.html`（對外名稱「先別出方案」）。樣式寫在頁內，視覺沿用本站暖米白／珊瑚。講師照放在 `assets/img/kash-instructor-portrait.png`。站內連結改為相對路徑。尚未掛進全站導覽。報名走既有 Google 表單。來源稿在 Consulting OS `cases/consultant-training-design-2026-09/outputs/one-day/consultative-selling-one-day-promo.html`。
+
 ## 2026-09-15
 
 活動剪影「線上影片」新增天新資訊顧問企業內訓片（YouTube `yFL4QrtBIGU`），放在可見第一格。
