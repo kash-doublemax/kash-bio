@@ -1,0 +1,151 @@
+<!DOCTYPE html>
+<html lang="zh-Hant">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>客戶不是沒需求，是你太早給答案｜免費電子書</title>
+  <meta name="description" content="留下姓名與 Email，下載陳誼峰 Kash 的顧問式銷售電子書。一筆單最貴的不是輸，是死了還不知道自己怎麼死的。">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+TC:wght@400;500;700&family=Noto+Serif+TC:wght@400;500&family=Cormorant+Garamond:wght@400;500&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="assets/style.css?v=20260926b">
+  <style>
+    .lead-grid{display:grid;grid-template-columns:1.1fr .9fr;gap:48px;align-items:start}
+    .lead-hook{font-family:var(--font-display);font-size:clamp(22px,3vw,30px);color:var(--ink);margin:0 0 20px;letter-spacing:0}
+    .lead-sub{color:var(--muted);max-width:32em}
+    .lead-list{margin:28px 0 0;padding:0;list-style:none}
+    .lead-list li{padding:10px 0;border-top:1px solid var(--hairline);margin:0}
+    .lead-form label{display:block;font-size:13px;color:var(--muted);margin:0 0 6px}
+    .lead-form input{width:100%;min-height:46px;border:1px solid var(--hairline);border-radius:8px;padding:10px 12px;font:inherit;background:var(--canvas);color:var(--ink);margin-bottom:16px}
+    .lead-form input:focus{outline:2px solid var(--primary);border-color:transparent}
+    .lead-form .btn{width:100%}
+    .lead-form .fine{font-size:12px;color:var(--muted);margin:14px 0 0}
+    .lead-form .err{color:var(--primary-active);font-size:13px;margin:0 0 12px;display:none}
+    .lead-note{color:var(--muted);font-size:13px}
+    @media (max-width:800px){.lead-grid{grid-template-columns:1fr}}
+  </style>
+</head>
+<body>
+
+  <header class="nav">
+    <div class="container nav__inner">
+      <a class="nav__brand" href="index.html">陳誼峰 <span>Kash</span></a>
+      <button class="nav__toggle" aria-label="開啟選單" aria-expanded="false" aria-controls="primary-nav"><span></span></button>
+      <ul class="nav__links" id="primary-nav">
+        <li><a href="index.html">首頁</a></li>
+        <li><a href="about.html">關於講師</a></li>
+        <li><a href="speaking.html">演講與課程</a></li>
+        <li><a href="one-day-workshop.html">公開課程</a></li>
+        <li><a href="events.html">活動剪影</a></li>
+        <li><a href="proof.html">實績與見證</a></li>
+        <li><a href="contact.html">聯絡邀課</a></li>
+        <li><a href="ebooks.html" class="is-active">電子書下載</a></li>
+        <li><a href="https://imkash.substack.com" target="_blank" rel="noopener">電子報</a></li>
+        <li class="nav__cta-mobile"><a class="btn btn-primary" href="contact.html">邀請 Kash 演講</a></li>
+      </ul>
+      <div class="nav__cta"><a class="btn btn-primary" href="contact.html">邀請 Kash 演講</a></div>
+    </div>
+  </header>
+
+  <main>
+    <section class="hero">
+      <div class="container lead-grid">
+        <div>
+          <span class="eyebrow">免費電子書</span>
+          <p class="lead-hook">一筆單最貴的不是輸。是死了，還不知道自己怎麼死的。</p>
+          <h1>客戶不是沒需求，是你太早給答案</h1>
+          <p class="lead-sub">高價 B2B 業務最常犯的 7 個對話錯誤。附商機對話健檢表與 AI 會前推演模板。留下姓名與 Email，立刻下載 PDF。</p>
+          <ul class="lead-list">
+            <li>看見團隊太早亮底牌的七種死法</li>
+            <li>十二題，下一場商機缺什麼自己勾</li>
+            <li>會前推演 Prompt，不讓 AI 替你腦補客戶</li>
+          </ul>
+        </div>
+        <form class="card lead-form" id="lead-form" novalidate>
+          <h2>下載這本電子書</h2>
+          <p class="err" id="form-err">請填寫姓名與正確的 Email。</p>
+          <label for="name">姓名</label>
+          <input id="name" name="name" type="text" autocomplete="name" required>
+          <label for="email">Email</label>
+          <input id="email" name="email" type="email" autocomplete="email" required>
+          <button type="submit" class="btn btn-primary" id="submit-btn">下載 PDF</button>
+          <p class="fine">資料只用於寄這本電子書與後續課程通知，不轉售。陳誼峰 Kash</p>
+        </form>
+      </div>
+    </section>
+  </main>
+
+  <footer class="footer">
+    <div class="container">
+      <div class="footer__grid">
+        <div>
+          <div class="footer__brand">陳誼峰 <span>Kash</span></div>
+          <p>會算命的數據顧問<br>Merkle Taiwan 體驗科學副總經理</p>
+          <p class="footer__books">著作：《流量的秘密》《AI 轉型的溫度》</p>
+        </div>
+        <div>
+          <h4>網站導覽</h4>
+          <ul>
+            <li><a href="index.html">首頁</a></li>
+            <li><a href="about.html">關於講師</a></li>
+            <li><a href="speaking.html">演講與課程</a></li>
+            <li><a href="one-day-workshop.html">公開課程</a></li>
+            <li><a href="events.html">活動剪影</a></li>
+            <li><a href="proof.html">實績與見證</a></li>
+            <li><a href="contact.html">聯絡邀課</a></li>
+            <li><a href="ebooks.html">電子書下載</a></li>
+          </ul>
+        </div>
+        <div>
+          <h4>保持連結</h4>
+          <ul>
+            <li><a href="contact.html#newsletter">訂閱電子報</a></li>
+            <li>聯絡 Email : <a href="mailto:kash.doublemax@gmail.com">kash.doublemax@gmail.com</a></li>
+          </ul>
+        </div>
+      </div>
+      <div class="footer__bottom">
+        © 2026 陳誼峰 Kash<span class="sep">｜</span>不是課程教材。不保證成交。<span class="sep">｜</span><a href="ebooks.html">回電子書目錄</a>
+      </div>
+    </div>
+  </footer>
+
+  <script src="assets/main.js?v=20260711b"></script>
+  <script>
+  (function () {
+    var form = document.getElementById("lead-form");
+    var err = document.getElementById("form-err");
+    var btn = document.getElementById("submit-btn");
+    var inbox = "kash.doublemax@gmail.com";
+    form.addEventListener("submit", function (e) {
+      e.preventDefault();
+      var name = document.getElementById("name").value.trim();
+      var email = document.getElementById("email").value.trim();
+      if (!name || !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) {
+        err.style.display = "block";
+        return;
+      }
+      err.style.display = "none";
+      btn.disabled = true;
+      btn.textContent = "處理中…";
+      sessionStorage.setItem("ebookLead:too-early-answer", JSON.stringify({ name: name, email: email, t: Date.now() }));
+      var ctrl = new AbortController();
+      var timer = window.setTimeout(function () { ctrl.abort(); }, 2500);
+      fetch("https://formsubmit.co/ajax/" + inbox, {
+        method: "POST",
+        headers: { "Content-Type": "application/json", "Accept": "application/json" },
+        body: JSON.stringify({
+          name: name,
+          email: email,
+          _subject: "電子書下載：客戶不是沒需求，是你太早給答案"
+        }),
+        signal: ctrl.signal
+      }).catch(function () {}).finally(function () {
+        window.clearTimeout(timer);
+        window.location.href = "ebook-too-early-answer-download.html";
+      });
+    });
+  })();
+  </script>
+</body>
+</html>

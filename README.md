@@ -21,13 +21,18 @@
 | `events.html` | 活動剪影：現場照片、線上影片 |
 | `proof.html` | 實績與見證：客戶 logo 牆、量化實績、客戶見證 |
 | `contact.html` | 聯絡邀課：Google 表單、Email、電子報訂閱 |
-| `one-day-workshop.html` | 「先別出方案」一日工作坊招生頁（樣式自含；講師照 `assets/img/kash-instructor-portrait.png`；報名走 Google 表單） |
+| `one-day-workshop.html` | 公開課程（目前＝顧問式銷售一日工作坊）。全站導覽「公開課程」連到此頁 |
+| `ebooks.html` | 電子書目錄：導覽列「電子書下載」入口，之後可加多本 |
+| `ebook-too-early-answer.html` | 《客戶不是沒需求，是你太早給答案》landing：填姓名與 Email 後轉到下載頁 |
+| `ebook-too-early-answer-download.html` | 該書 PDF 下載頁（未填表會退回 landing） |
+| `ebook.html` | 舊網址轉到 `ebooks.html` |
+| `ebook-download.html` | 舊網址轉到該書 landing |
 
 ## 目錄
 
 ```
 kash-bio/
-├── index.html / about.html / speaking.html / events.html / proof.html / contact.html
+├── index.html / about.html / speaking.html / events.html / proof.html / contact.html / ebooks.html
 ├── assets/
 │   ├── style.css          # 全站共用樣式（暖米白編輯風）
 │   ├── main.js            # 導覽列互動 + Newsletter 彈跳視窗

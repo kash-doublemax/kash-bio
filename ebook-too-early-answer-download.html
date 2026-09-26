@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="zh-Hant">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>下載｜客戶不是沒需求，是你太早給答案</title>
+  <meta name="robots" content="noindex">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+TC:wght@400;500;700&family=Noto+Serif+TC:wght@400;500&family=Cormorant+Garamond:wght@400;500&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="assets/style.css?v=20260926b">
+  <style>
+    .download-box{max-width:640px}
+    .download-actions{display:flex;flex-wrap:wrap;gap:12px;margin:24px 0}
+  </style>
+</head>
+<body>
+
+  <header class="nav">
+    <div class="container nav__inner">
+      <a class="nav__brand" href="index.html">陳誼峰 <span>Kash</span></a>
+      <button class="nav__toggle" aria-label="開啟選單" aria-expanded="false" aria-controls="primary-nav"><span></span></button>
+      <ul class="nav__links" id="primary-nav">
+        <li><a href="index.html">首頁</a></li>
+        <li><a href="about.html">關於講師</a></li>
+        <li><a href="speaking.html">演講與課程</a></li>
+        <li><a href="one-day-workshop.html">公開課程</a></li>
+        <li><a href="events.html">活動剪影</a></li>
+        <li><a href="proof.html">實績與見證</a></li>
+        <li><a href="contact.html">聯絡邀課</a></li>
+        <li><a href="ebooks.html" class="is-active">電子書下載</a></li>
+        <li><a href="https://imkash.substack.com" target="_blank" rel="noopener">電子報</a></li>
+        <li class="nav__cta-mobile"><a class="btn btn-primary" href="contact.html">邀請 Kash 演講</a></li>
+      </ul>
+      <div class="nav__cta"><a class="btn btn-primary" href="contact.html">邀請 Kash 演講</a></div>
+    </div>
+  </header>
+
+  <main>
+    <section class="hero">
+      <div class="container download-box">
+        <span class="eyebrow">可以下載了</span>
+        <h1 id="hello">電子書 PDF 已準備好</h1>
+        <p>《客戶不是沒需求，是你太早給答案》。請用下面的按鈕下載。若瀏覽器沒有自動開始，再按一次即可。</p>
+        <p class="download-actions">
+          <a class="btn btn-primary" id="pdf-link" href="assets/ebook/consultative-selling-hook-ebook-v1.pdf" download>下載 PDF</a>
+          <a class="btn btn-secondary" href="one-day-workshop.html">了解一日工作坊</a>
+        </p>
+        <p class="hero__sub">陳誼峰 Kash　｜　不保證成交。工作坊 2026/10/17，NT$8,000／人。</p>
+      </div>
+    </section>
+  </main>
+
+  <footer class="footer">
+    <div class="container">
+      <div class="footer__grid">
+        <div>
+          <div class="footer__brand">陳誼峰 <span>Kash</span></div>
+          <p>會算命的數據顧問<br>Merkle Taiwan 體驗科學副總經理</p>
+          <p class="footer__books">著作：《流量的秘密》《AI 轉型的溫度》</p>
+        </div>
+        <div>
+          <h4>網站導覽</h4>
+          <ul>
+            <li><a href="index.html">首頁</a></li>
+            <li><a href="about.html">關於講師</a></li>
+            <li><a href="speaking.html">演講與課程</a></li>
+            <li><a href="one-day-workshop.html">公開課程</a></li>
+            <li><a href="events.html">活動剪影</a></li>
+            <li><a href="proof.html">實績與見證</a></li>
+            <li><a href="contact.html">聯絡邀課</a></li>
+            <li><a href="ebooks.html">電子書下載</a></li>
+          </ul>
+        </div>
+        <div>
+          <h4>保持連結</h4>
+          <ul>
+            <li><a href="contact.html#newsletter">訂閱電子報</a></li>
+            <li>聯絡 Email : <a href="mailto:kash.doublemax@gmail.com">kash.doublemax@gmail.com</a></li>
+          </ul>
+        </div>
+      </div>
+      <div class="footer__bottom">
+        © 2026 陳誼峰 Kash<span class="sep">｜</span><a href="ebooks.html">回電子書目錄</a>
+      </div>
+    </div>
+  </footer>
+
+  <script src="assets/main.js?v=20260711b"></script>
+  <script>
+  (function () {
+    var lead = null;
+    try { lead = JSON.parse(sessionStorage.getItem("ebookLead:too-early-answer") || "null"); } catch (e) {}
+    if (!lead || !lead.email) {
+      window.location.replace("ebook-too-early-answer.html");
+      return;
+    }
+    var hello = document.getElementById("hello");
+    if (lead.name) hello.textContent = lead.name + "，電子書 PDF 已準備好";
+    var href = document.getElementById("pdf-link").href;
+    window.setTimeout(function () {
+      var a = document.createElement("a");
+      a.href = href;
+      a.download = "客戶不是沒需求，是你太早給答案.pdf";
+      a.click();
+    }, 600);
+  })();
+  </script>
+</body>
+</html>

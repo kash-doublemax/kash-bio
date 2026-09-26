@@ -209,13 +209,13 @@ input:focus-visible {
 .nav__links {
   display: flex;
   align-items: center;
-  gap: 28px;
+  gap: 16px;
   list-style: none;
   margin: 0;
   padding: 0;
 }
 .nav__links a {
-  font-size: 15px;
+  font-size: 14px;
   color: var(--body);
   padding: 4px 0;
   border-bottom: 2px solid transparent;
@@ -1051,22 +1051,8 @@ td { color: var(--body); }
 
 /* ---------- 17. RWD（依 03 §4 斷點） ---------- */
 
-/* Tablet 768–1024：導覽橫向、卡片 2-up */
-@media (max-width: 1024px) {
-  .grid--3 { grid-template-columns: repeat(2, 1fr); }
-  .photo-gallery { grid-template-columns: repeat(2, 1fr); }
-  .logo-wall { grid-template-columns: repeat(3, 1fr); }
-  h1 { font-size: 48px; }
-}
-
-/* Mobile < 768：漢堡、hero 單欄、卡片 1-up、footer 單欄 */
-@media (max-width: 767px) {
-  :root { --section-gap: 64px; }
-
-  h1 { font-size: 32px; letter-spacing: -0.5px; }
-  h2 { font-size: 30px; }
-  h3 { font-size: 24px; }
-
+/* 導覽項目變多後，窄於 1200 改漢堡，避免桌機擠成一排 */
+@media (max-width: 1199px) {
   .nav__toggle { display: inline-flex; }
   .nav__cta { display: none; }
   .nav__links {
@@ -1086,6 +1072,23 @@ td { color: var(--body); }
   .nav__links a { padding: 14px 0; border-bottom: 1px solid var(--hairline); }
   .nav__links .nav__cta-mobile { display: block; margin-top: 14px; }
   .nav__links .nav__cta-mobile .btn { width: 100%; }
+}
+
+/* Tablet 768–1024：導覽橫向、卡片 2-up */
+@media (max-width: 1024px) {
+  .grid--3 { grid-template-columns: repeat(2, 1fr); }
+  .photo-gallery { grid-template-columns: repeat(2, 1fr); }
+  .logo-wall { grid-template-columns: repeat(3, 1fr); }
+  h1 { font-size: 48px; }
+}
+
+/* Mobile < 768：漢堡、hero 單欄、卡片 1-up、footer 單欄 */
+@media (max-width: 767px) {
+  :root { --section-gap: 64px; }
+
+  h1 { font-size: 32px; letter-spacing: -0.5px; }
+  h2 { font-size: 30px; }
+  h3 { font-size: 24px; }
 
   .hero { padding: 48px 0 40px; }
   .hero__grid { grid-template-columns: 1fr; gap: 32px; }

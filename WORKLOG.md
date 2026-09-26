@@ -1,5 +1,11 @@
 # 開發工作紀錄 Worklog
 
+## 2026-09-26
+
+全站導覽與頁尾加上「公開課程」，目前連到一日工作坊頁。電子書 landing／下載頁與一日工作坊改用同一套主站導覽與頁尾，不再各走各的迷你選單。導覽項目變多後，窄於 1200px 改漢堡選單。
+
+全站導覽與頁尾加上「電子書下載」，連到目錄頁 `ebooks.html`。這本 Hook 電子書改用獨立檔名 `ebook-too-early-answer.html`／`ebook-too-early-answer-download.html`，之後加書只要在目錄加一張卡。舊的 `ebook.html`／`ebook-download.html` 改成轉址。sessionStorage 改用 `ebookLead:too-early-answer`，避免多本書互相覆蓋。
+
 ## 2026-09-25
 
 新增一日工作坊招生頁 `one-day-workshop.html`（對外名稱「先別出方案」）。樣式寫在頁內，視覺沿用本站暖米白／珊瑚。講師照放在 `assets/img/kash-instructor-portrait.png`。站內連結改為相對路徑。尚未掛進全站導覽。報名走既有 Google 表單。來源稿在 Consulting OS `cases/consultant-training-design-2026-09/outputs/one-day/consultative-selling-one-day-promo.html`。
