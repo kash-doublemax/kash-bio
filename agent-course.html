@@ -1,0 +1,347 @@
+<!DOCTYPE html>
+<html lang="zh-Hant">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>聰明設計數位分身｜陳誼峰 Kash</title>
+<meta name="description" content="三小時線上課。教的是怎麼把日常取數與報表工作，設計成能協助團隊判斷與行動的數位分身——不是 Agent 功能導覽。">
+<meta property="og:type" content="website">
+<meta property="og:title" content="聰明設計數位分身｜陳誼峰 Kash">
+<meta property="og:description" content="Agent 是手和腳，工作流設計才是大腦。先拆工作，再分角色，最後才打開工具。">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+TC:wght@400;500;700&family=Noto+Serif+TC:wght@400;500&family=Cormorant+Garamond:wght@400;500&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="assets/style.css?v=20260926b">
+<style>
+  .notice{
+    background:var(--surface-dark);color:var(--on-dark);
+    font-size:14px;text-align:center;padding:10px 16px;
+  }
+  .notice strong{color:var(--primary);font-weight:500}
+
+  .hero__grid{display:grid;grid-template-columns:1.05fr .95fr;gap:48px;align-items:stretch}
+  .hero-panel{
+    background:var(--surface-dark);color:var(--on-dark);
+    border-radius:var(--r-hero);padding:40px 36px 36px;height:100%;
+    display:flex;flex-direction:column;justify-content:space-between;
+  }
+  .hero-panel__kicker{font-size:12px;font-weight:500;letter-spacing:1.5px;color:var(--primary);margin-bottom:18px}
+  .hero-panel h2{
+    font-family:var(--font-display);font-weight:400;font-size:clamp(28px,3vw,36px);
+    color:var(--on-dark);line-height:1.35;margin:0 0 28px;
+  }
+  .hero-panel ol{list-style:none;margin:0;padding:0;display:grid;gap:14px}
+  .hero-panel li{color:rgba(250,249,245,.78);font-size:16px;padding-left:0;margin:0}
+  .hero-panel li strong{display:block;color:var(--on-dark);font-weight:500;margin-bottom:2px}
+
+  .facts{
+    display:grid;grid-template-columns:repeat(3,1fr);gap:12px;margin-top:36px;
+  }
+  .facts div{
+    background:var(--surface-card);border:1px solid var(--hairline);
+    border-radius:var(--r-card);padding:18px 16px;
+  }
+  .facts dt{font-size:12px;color:var(--muted);margin-bottom:6px}
+  .facts dd{margin:0;font-weight:500;color:var(--ink)}
+
+  .agent-course .tagline-bar{
+    background:var(--surface-dark);
+    border-top:3px solid var(--primary);border-bottom:3px solid var(--primary);
+    padding:36px 0;
+  }
+  .agent-course .tagline-bar p{color:var(--on-dark)}
+
+  .card .n{
+    font-size:12px;font-weight:500;letter-spacing:.08em;
+    color:var(--primary);margin-bottom:10px;
+  }
+  .voice{
+    background:#fff;border:1px solid var(--hairline);border-radius:var(--r-card);
+    padding:28px 26px;
+  }
+  .voice p{
+    font-family:var(--font-display);font-size:22px;color:var(--ink);
+    line-height:1.45;margin:0 0 12px;
+  }
+  .voice span{font-size:14px;color:var(--muted)}
+
+  .agenda{list-style:none;padding:0;margin:0;border-top:1px solid var(--hairline)}
+  .agenda li{
+    display:grid;grid-template-columns:140px 1fr;gap:18px;
+    padding:18px 0;border-bottom:1px solid var(--hairline);margin:0;
+  }
+  .agenda time{color:var(--muted);font-size:14px;padding-top:3px}
+  .agenda strong{display:block;color:var(--ink);font-weight:500;margin-bottom:4px}
+
+  .check,.x-list{list-style:none;padding:0;margin:0}
+  .check li,.x-list li{position:relative;padding-left:22px;margin-bottom:10px}
+  .check li::before,.x-list li::before{
+    content:"";position:absolute;left:0;top:.55em;width:8px;height:8px;border-radius:50%;
+  }
+  .check li::before{background:var(--primary)}
+  .x-list li::before{background:var(--muted)}
+
+  @media (max-width:1024px){
+    .facts{grid-template-columns:repeat(2,1fr)}
+  }
+  @media (max-width:767px){
+    .hero__grid,.grid--2,.grid--3{grid-template-columns:1fr}
+    .facts{grid-template-columns:1fr 1fr}
+    .agenda li{grid-template-columns:1fr}
+    .hero-panel{height:auto;padding:32px 28px}
+  }
+</style>
+</head>
+<body class="agent-course">
+
+<div class="notice">聰明設計數位分身 · 3 小時線上 · FineBI × Agent · <strong>場次待通知</strong></div>
+
+<header class="nav">
+  <div class="container nav__inner">
+    <a class="nav__brand" href="index.html">陳誼峰 <span>Kash</span></a>
+    <button class="nav__toggle" aria-label="開啟選單" aria-expanded="false" aria-controls="primary-nav"><span></span></button>
+    <ul class="nav__links" id="primary-nav">
+      <li><a href="index.html">首頁</a></li>
+      <li><a href="about.html">關於講師</a></li>
+      <li><a href="speaking.html">演講與課程</a></li>
+      <li><a href="courses.html" class="is-active">公開課程</a></li>
+      <li><a href="events.html">活動剪影</a></li>
+      <li><a href="proof.html">實績與見證</a></li>
+      <li><a href="contact.html">聯絡邀課</a></li>
+      <li><a href="ebooks.html">電子書下載</a></li>
+      <li><a href="https://imkash.substack.com" target="_blank" rel="noopener">電子報</a></li>
+      <li class="nav__cta-mobile"><a class="btn btn-primary" href="contact.html">邀請 Kash 演講</a></li>
+    </ul>
+    <div class="nav__cta"><a class="btn btn-primary" href="contact.html">邀請 Kash 演講</a></div>
+  </div>
+</header>
+
+<main>
+  <section class="hero">
+    <div class="container hero__grid">
+      <div>
+        <span class="eyebrow">3 小時線上課 · IT、數據為主，主管與營運同一班</span>
+        <h1>聰明設計<br>數位分身</h1>
+        <p class="hero__sub">業務傳一句「幫我拉一下上週各店銷售」。你手上的正事又被打斷。儀表板已經上線了，追問還是回到你身上。這三小時不教設定介面，先教怎麼把那條流程寫成規格——讓分身接走取數與追問，你拿回架構與治理的時間。</p>
+        <dl class="facts">
+          <div><dt>時長</dt><dd>3 小時</dd></div>
+          <div><dt>形式</dt><dd>線上同步</dd></div>
+          <div><dt>對象</dt><dd>IT／數據為主</dd></div>
+        </dl>
+      </div>
+      <aside class="hero-panel">
+        <div>
+          <p class="hero-panel__kicker">這三小時你會做的事</p>
+          <h2>先拆工作，再分角色，<br>最後才打開 Agent。</h2>
+        </div>
+        <ol>
+          <li><strong>先拆</strong>選一條每週重複、最想丟掉的流程，寫成「誰｜做什麼｜用什麼資料」</li>
+          <li><strong>再標</strong>每一步是看見、判斷，還是執行；畫出人機邊界</li>
+          <li><strong>後收斂</strong>收成 2–3 個各司其職的分身，再看規劃怎麼落到後台</li>
+        </ol>
+      </aside>
+    </div>
+  </section>
+
+  <section class="tagline-bar">
+    <div class="container">
+      <p>這不是功能導覽，也不建萬能 Agent。<span class="accent">設定介面半年就改版，設計方法不會過期。</span></p>
+    </div>
+  </section>
+
+  <section class="section" id="voices">
+    <div class="container">
+      <div class="section-head">
+        <span class="eyebrow">你上週遇過幾個</span>
+        <h2>資料在你這裡，問題在業務那裡，中間全靠人肉搬運。</h2>
+        <p>真正麻煩的不是查得慢。是知道得太晚，而你一直在當搬運工。</p>
+      </div>
+      <div class="grid grid--2">
+        <article class="voice">
+          <p>「幫我拉一下上週各店銷售。」聽起來五分鐘。實際要先對口徑、時間、範圍，手上正事整個被打斷。</p>
+          <span>IT／數據支援</span>
+        </article>
+        <article class="voice">
+          <p>每週一早上，你在幫業務跑那份跑了半年的固定報表。內容你自己從來不看。</p>
+          <span>例行報表工廠</span>
+        </article>
+        <article class="voice">
+          <p>門市業績掉了兩週。月底才有人拿著報表來找你追原因。資料其實第一天就躺在庫裡。</p>
+          <span>異常發現太晚</span>
+        </article>
+        <article class="voice">
+          <p>儀表板上線後，單子沒有變少。只是從「幫我拉數」換成「幫我解釋這張板」。追問一多，又回到找 IT。</p>
+          <span>自助 BI 上線之後</span>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <section class="section section--soft" id="day">
+    <div class="container">
+      <div class="section-head">
+        <span class="eyebrow">這三小時會發生什麼</span>
+        <h2>報表是人去找數。分身是數來找人。方向不能反。</h2>
+        <p>FineBI 讓業務有得看。Agent 分身接走「問與追」。成敗不在它能做什麼，在你讓它做什麼。</p>
+      </div>
+      <div class="grid grid--3">
+        <article class="card">
+          <p class="n">01</p>
+          <h3>看見，和追問，是兩件事</h3>
+          <p>儀表板給的是固定視角的起點。「為什麼 A 區掉了？那 B 區呢？跟去年比呢？」追問一多，還是要人。這堂課把 FineBI 的「看見」和 Agent 的「對話式追問」拆開講：業務自己問、自己追；IT 管資料底座、口徑與權限。</p>
+        </article>
+        <article class="card">
+          <p class="n">02</p>
+          <h3>好用的不是一個超人</h3>
+          <p>第一個念頭通常是：先建一個什麼都會的。邊界不清就無法測試、無法維護。這堂課只記一套方法：先拆流程、再標每步性質、後收斂成各司其職的分身。流程先於分身，分身先於設定。</p>
+        </article>
+        <article class="card">
+          <p class="n">03</p>
+          <h3>步驟寫不清，就不能交出去</h3>
+          <p>每一步用同一句型：誰｜做什麼｜用什麼資料或系統。缺「誰」，不知道現在誰在做；缺資料，分身沒有材料。寫得出這三格，才是可以交付的模組。P／D／A 標的是每一步的性質，不是要建三種 Agent。</p>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <section class="section">
+    <div class="container">
+      <div class="section-head">
+        <span class="eyebrow">離場帶走</span>
+        <h2>回家不是多一套操作手冊，<br>是兩週內能填完自己的規格卡。</h2>
+      </div>
+      <div class="grid grid--3">
+        <article class="card">
+          <div class="card__title">分身規劃三步法</div>
+          <p>先拆 3–6 步、再標看見／判斷／執行、後收斂成 2–3 個分身。課堂用門市週報全程示範一遍，你對照自己帶來的那條流程。</p>
+        </article>
+        <article class="card">
+          <div class="card__title">一張空白規格卡</div>
+          <p>名稱、職責一句話、觸發方式、輸入輸出、何時交回給人。現場看講師填，課後套你自己的流程。設定介面會改，這張卡不會過期。</p>
+        </article>
+        <article class="card">
+          <div class="card__title">現在該不該做</div>
+          <p>四個判準：多久做一次、規則講不講得清、資料拿不拿得到、值不值得。不是能不能做，是現在該不該做。過不了的，先回頭整理工作。</p>
+        </article>
+      </div>
+      <p style="margin-top:28px;color:var(--muted);font-size:15px">當天不要求你交作業，也不逐步教後台設定。演示只帶你看規劃如何落到 Agent。你帶走的核心是順序：看見處境 → 先拆 → 再標 → 後收斂 → 判準過了，才打開工具。</p>
+    </div>
+  </section>
+
+  <section class="section section--soft" id="agenda">
+    <div class="container">
+      <div class="section-head">
+        <span class="eyebrow">怎麼過這三小時</span>
+        <h2>前半場看清處境與方法，後半場看它落到現場。</h2>
+        <p>中場休息約 10 分鐘。線上同步；學員不需自備 Agent 操作環境。課前請先想一條你最想丟掉的流程。</p>
+      </div>
+      <ol class="agenda">
+        <li>
+          <time>約 10 分鐘</time>
+          <div><strong>被取數綁架的一天</strong>三個場景、一件你最想交出去的事。定錨：今天是設計方法課。</div>
+        </li>
+        <li>
+          <time>約 30 分鐘</time>
+          <div><strong>FineBI × Agent</strong>儀表板讓業務有得看；分身讓業務問得下去。IT 從報表工廠退回底座與治理。</div>
+        </li>
+        <li>
+          <time>約 35 分鐘</time>
+          <div><strong>一個團隊，不是一個超人</strong>為什麼不要萬能 Agent。現場拆一條門市週報：誰｜做什麼｜用什麼資料。</div>
+        </li>
+        <li>
+          <time>約 10 分鐘</time>
+          <div><strong>休息</strong>後半場才碰判斷規則、人機邊界與工具。</div>
+        </li>
+        <li>
+          <time>約 40 分鐘</time>
+          <div><strong>給每個分身寫職位說明</strong>P／D／A 速查、監控角色、規格卡、現在該不該做的四個判準。</div>
+        </li>
+        <li>
+          <time>約 30 分鐘</time>
+          <div><strong>現場演示</strong>一張規格卡落到 Agent 後台：問數、週報、定時觸達。看懂方法怎麼變成設定，不逐步教按鈕。</div>
+        </li>
+        <li>
+          <time>約 20 分鐘</time>
+          <div><strong>示範填卡與帶走</strong>講師把規格卡填一遍。課後兩週內：填完你自己的那張，找數據團隊對一次。</div>
+        </li>
+      </ol>
+    </div>
+  </section>
+
+  <section class="section" id="whom">
+    <div class="container">
+      <div class="section-head">
+        <span class="eyebrow">給誰／不給誰</span>
+        <h2>三種角色同一班，答案不同，方法同一套。</h2>
+        <p>門檻不在會不會操作 Agent，在有沒有一條每週重複、願意拿出來拆的流程。</p>
+      </div>
+      <div class="grid grid--2">
+        <article class="card">
+          <div class="card__title">適合來的人</div>
+          <ul class="check">
+            <li>IT／數據：想讓業務自助分析，自己從報表工廠畢業</li>
+            <li>業務／營運：每週重複的取數、週報、提醒，想先分清哪些能交出去</li>
+            <li>主管：要判斷值不值得做、風險在哪、誰負責人機邊界</li>
+            <li>願意課前想一條自己的流程，課後兩週內填完規格卡</li>
+          </ul>
+        </article>
+        <article class="card">
+          <div class="card__title">不適合來的人</div>
+          <ul class="x-list">
+            <li>來學 Agent／FineBI 逐步設定或證照操作</li>
+            <li>希望三小時結束就帶走一個什麼都會的萬能 Agent</li>
+            <li>只想聽產品發表，不想對照自己的工作流程</li>
+            <li>手上沒有任何可重複的資料工作，只想「先做一個 AI 再說」</li>
+          </ul>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <section class="cta-band">
+    <div class="container">
+      <h2>場次待通知。想開這堂課，或做成企業內訓？</h2>
+      <p>先告訴 Kash 學員是誰、他們現在每週被哪條流程綁住。不必先準備完整課綱。</p>
+      <a class="btn btn-invert" href="contact.html">聯絡 Kash</a>
+    </div>
+  </section>
+</main>
+
+<footer class="footer">
+  <div class="container">
+    <div class="footer__grid">
+      <div>
+        <div class="footer__brand">陳誼峰 <span>Kash</span></div>
+        <p>會算命的數據顧問<br>Merkle Taiwan 體驗科學副總經理</p>
+        <p class="footer__books">著作：《流量的秘密》《AI 轉型的溫度》</p>
+      </div>
+      <div>
+        <h4>網站導覽</h4>
+        <ul>
+          <li><a href="index.html">首頁</a></li>
+          <li><a href="about.html">關於講師</a></li>
+          <li><a href="speaking.html">演講與課程</a></li>
+          <li><a href="courses.html">公開課程</a></li>
+          <li><a href="events.html">活動剪影</a></li>
+          <li><a href="proof.html">實績與見證</a></li>
+          <li><a href="contact.html">聯絡邀課</a></li>
+          <li><a href="ebooks.html">電子書下載</a></li>
+        </ul>
+      </div>
+      <div>
+        <h4>保持連結</h4>
+        <ul>
+          <li><a href="contact.html#newsletter">訂閱電子報</a></li>
+          <li>聯絡 Email : <a href="mailto:kash.doublemax@gmail.com">kash.doublemax@gmail.com</a></li>
+        </ul>
+      </div>
+    </div>
+    <div class="footer__bottom">
+      © 2026 陳誼峰 Kash<span class="sep">｜</span>會算命的數據顧問<span class="sep">｜</span>DREAM · DO · DELIVER
+    </div>
+  </div>
+</footer>
+
+<script src="assets/main.js?v=20260711b"></script>
+</body>
+</html>
