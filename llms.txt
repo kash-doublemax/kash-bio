@@ -1,0 +1,53 @@
+# Kash Chen
+
+> 數據與 AI 顧問的思考筆記。十五年協助企業釐清問題、設計策略、讓數據轉化為商業成果；寫給想少瞎忙、多思考，準備從執行者成為操盤手的人。
+
+## 關於
+
+陳誼峰 Kash，現職 Merkle Taiwan（Dentsu Group）Principal Consultant & V.P.。
+
+- [網站](https://www.imkash.cc/)
+- [LinkedIn](https://www.linkedin.com/in/yifungchen/)
+- [RSS](https://www.imkash.cc/feed.xml)
+
+## 服務
+
+- [顧問式銷售一日工作坊](https://www.imkash.cc/one-day-workshop.html)
+
+## 部落格文章
+
+- [照最佳實務打勾，不等於問對問題](https://www.imkash.cc/blog/2026-11-15-10.html)
+- [「我再想想」不是答案，是你還沒問完的一段帳](https://www.imkash.cc/blog/2026-11-15-09.html)
+- [AI 的新瓶頸不是模型，是你還剩多少注意力可以盯著它學](https://www.imkash.cc/blog/2026-11-15-08.html)
+- [AI 做得出來，不代表可以發](https://www.imkash.cc/blog/2026-11-15-05.html)
+- [營收漲了 49%，訂閱戶卻第一次變少](https://www.imkash.cc/blog/2026-11-15-01.html)
+- [AI 讓人變笨了嗎？深度工作的 AI 版：先寫下自己的假設，再問 AI](https://www.imkash.cc/blog/2026-11-14-10.html)
+- [AI 說它讀得出客戶動機：顧問式銷售，還是要親口問出處境](https://www.imkash.cc/blog/2026-11-14-09.html)
+- [要財務長點頭的 AI 專案：先寫一行損益，不是一份功能清單](https://www.imkash.cc/blog/2026-11-14-08.html)
+- [實體又回來了：線下活動不是反數據，是最好的第一方資料入口](https://www.imkash.cc/blog/2026-11-14-04.html)
+- [黃仁勳辭職，該檢查的是你自己公司：客戶關係和判斷，綁在一個人身上嗎？](https://www.imkash.cc/blog/2026-11-13-09.html)
+- [AI 讓行銷變快，沒讓它變簡單：快的是產出，難的是挑](https://www.imkash.cc/blog/2026-11-13-08.html)
+- [投放代理來了：先讓它提案，開關留在人手上](https://www.imkash.cc/blog/2026-11-13-05.html)
+- [你的商品資料，正在變成 ChatGPT 上的新貨架](https://www.imkash.cc/blog/2026-11-13-01.html)
+- [別再問熱情在哪了：AI 時代的職涯資本，要稀有，也要說得出價值](https://www.imkash.cc/blog/2026-11-12-10.html)
+- [被質疑時，先說一句「我確實沒有」：承認事實，才換得到說下一句的機會](https://www.imkash.cc/blog/2026-11-12-08.html)
+- [改名四個月，大家還叫你家樂福：品牌名字換得掉，客戶嘴裡的習慣換不掉](https://www.imkash.cc/blog/2026-11-12-04.html)
+- [別再跟 AI 聊天了，給它一張規格書：用 COAR 讓驗收只剩逐項打勾](https://www.imkash.cc/blog/2026-11-12-01.html)
+- [什麼都不承諾，每件事看起來都值得做](https://www.imkash.cc/blog/2026-11-11-10.html)
+- [客戶不在乎你一半的功能，他只在乎讓他做選擇的那一層](https://www.imkash.cc/blog/2026-11-11-07.html)
+- [AI 代理都買了責任險，你的 AI 提案寫了「出錯誰負責」嗎？](https://www.imkash.cc/blog/2026-11-11-05.html)
+- [AI 沒有幫你少做決定，它只是把「做」變成了「審」](https://www.imkash.cc/blog/2026-11-11-01.html)
+- [什麼都做得出來的時候，你的觀點才值錢](https://www.imkash.cc/blog/2026-11-10-08.html)
+- [「因為 AI 所以裁員」，可能是一句先拍板的答案](https://www.imkash.cc/blog/2026-11-10-05.html)
+- [最會做 AI 的公司，為什麼還要找顧問幫它賣？](https://www.imkash.cc/blog/2026-11-10-02.html)
+- [AI 讓你做得更快，為什麼工作沒有變少？](https://www.imkash.cc/blog/2026-11-10-01.html)
+- [電腦關了，你怎麼還在上班？](https://www.imkash.cc/blog/2026-11-09-09.html)
+- [讓你舒服的忠誠，不一定對你有利](https://www.imkash.cc/blog/2026-11-09-07.html)
+- [初階工作省掉了，資深顧問從哪裡來？](https://www.imkash.cc/blog/2026-11-09-06.html)
+- [別急著給 AI Agent 更多能力，先給它一個職位](https://www.imkash.cc/blog/2026-11-09-02.html)
+- [同一個 AI，為什麼有人只拿來寫信？](https://www.imkash.cc/blog/07-ai-ceiling.html)
+- [AI 很方便，但客戶願意交出多少權限？](https://www.imkash.cc/blog/06-client-access.html)
+- [AI 導入後，哪些工作流該留下、重設或退役？](https://www.imkash.cc/blog/2026-11-08-04.html)
+- [品牌還沒被拒絕，就先被 AI 漏掉了](https://www.imkash.cc/blog/02-brand-shortlist.html)
+- [AI 接手初階顧問工作，你還在賣熬夜嗎？](https://www.imkash.cc/blog/01-junior-work.html)
+
