@@ -2,6 +2,8 @@
 
 ## 2026-11-15
 
+日更工頭網址遷移：部落格網址改為 `/blog/2026/11/<slug>/`。34 篇新頁放在目錄 index.html，舊網址改為轉址頁（canonical、meta refresh、JS）。sitemap、feed.xml、llms.txt、blog.html 列表與 JSON-LD 已改為新網址。
+
 網站收錄訊號：新增 `robots.txt`、`llms.txt`、`feed.xml` 與 IndexNow key 檔；首頁、部落格列表與既有文章頁 `<head>` 加入 RSS 連結（正文未改）。之後每次上站會重產 llms.txt、feed.xml、sitemap，並在 push 後 ping IndexNow。
 
 日更工頭同網址重寫：`blog/2026-11-15-10.html`，來源 `cases/2026-11-15/10-照最佳實務打勾不等於問對問題`。列表只放主標與主視覺；文章頁含主標、副標與同一張主視覺。
