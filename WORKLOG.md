@@ -2,6 +2,8 @@
 
 ## 2026-11-15
 
+修正部落格 Markdown 小標：發布腳本改為轉換 # 到 ####、粗體、連結、清單與分隔線。11/15 五篇同網址重產，把字面上的 ### 改成 h3 標題，正文一字未改，轉址頁未動。style.css 為 h3/h4 沿用既有 h2 樣式。
+
 日更工頭網址遷移：部落格網址改為 `/blog/2026/11/<slug>/`。34 篇新頁放在目錄 index.html，舊網址改為轉址頁（canonical、meta refresh、JS）。sitemap、feed.xml、llms.txt、blog.html 列表與 JSON-LD 已改為新網址。
 
 網站收錄訊號：新增 `robots.txt`、`llms.txt`、`feed.xml` 與 IndexNow key 檔；首頁、部落格列表與既有文章頁 `<head>` 加入 RSS 連結（正文未改）。之後每次上站會重產 llms.txt、feed.xml、sitemap，並在 push 後 ping IndexNow。

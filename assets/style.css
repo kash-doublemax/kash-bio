@@ -1275,10 +1275,15 @@ td { color: var(--body); }
   line-height: 1.85;
   color: var(--ink);
 }
-.blog-post__body h2 {
+.blog-post__body h2,
+.blog-post__body h3,
+.blog-post__body h4 {
   color: var(--primary);
   font-size: 28px;
   margin: 1.5em 0 0.5em;
+}
+.blog-post__body h4 {
+  font-size: 22px;
 }
 .blog-post__body a {
   color: var(--primary);
