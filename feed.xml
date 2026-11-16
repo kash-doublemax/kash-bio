@@ -5,7 +5,14 @@
     <link>https://www.imkash.cc/blog.html</link>
     <description>陳誼峰 Kash 的部落格。AI、問題定義、客戶權限與顧問判斷。</description>
     <language>zh-Hant</language>
-    <lastBuildDate>Mon, 16 Nov 2026 09:50:35 +0800</lastBuildDate>
+    <lastBuildDate>Mon, 16 Nov 2026 09:50:49 +0800</lastBuildDate>
+    <item>
+      <title>不是工具停了，是你一整天的工作停了</title>
+      <link>https://www.imkash.cc/blog/2026/11/ai-outage-manual-backup-plan/</link>
+      <guid isPermaLink="true">https://www.imkash.cc/blog/2026/11/ai-outage-manual-backup-plan/</guid>
+      <pubDate>Mon, 16 Nov 2026 06:00:00 +0800</pubDate>
+      <description>微軟 365 當機超過 24 小時，Outlook、Teams、Copilot 一起停。備援不是第二套系統，是先寫下沒有它時誰來做、怎麼做、資料在哪。</description>
+    </item>
     <item>
       <title>AI 導購答錯，Amazon 回頭補的不是模型，是商品資料</title>
       <link>https://www.imkash.cc/blog/2026/11/fix-product-data-before-ai/</link>

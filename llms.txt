@@ -16,6 +16,7 @@
 
 ## 部落格文章
 
+- [不是工具停了，是你一整天的工作停了](https://www.imkash.cc/blog/2026/11/ai-outage-manual-backup-plan/)
 - [AI 導購答錯，Amazon 回頭補的不是模型，是商品資料](https://www.imkash.cc/blog/2026/11/fix-product-data-before-ai/)
 - [照最佳實務打勾，不等於問對問題](https://www.imkash.cc/blog/2026/11/best-practice-ticks-arent-right-questions/)
 - [「我再想想」不是答案，是你還沒問完的一段帳](https://www.imkash.cc/blog/2026/11/let-me-think-means-unfinished-questions/)
