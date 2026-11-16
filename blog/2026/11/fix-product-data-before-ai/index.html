@@ -1,0 +1,219 @@
+<!DOCTYPE html>
+<html lang="zh-Hant">
+<head>  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta property="og:type" content="article">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+TC:wght@400;500;700&family=Noto+Serif+TC:wght@400;500&family=Cormorant+Garamond:wght@400;500&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="/assets/style.css?v=20261115c">
+  <link rel="alternate" type="application/rss+xml" title="陳誼峰 Kash 部落格" href="https://www.imkash.cc/feed.xml">
+<title>AI 導購答錯，Amazon 回頭補的不是模型，是商品資料</title>
+<link rel="canonical" href="https://www.imkash.cc/blog/2026/11/fix-product-data-before-ai/">
+<meta name="description" content="Amazon 內部文件說 AI 導購 Rufus 常答錯又貴，解法是回頭補商品資料。你的商品主檔，寫清楚哪一款最新、哪幾款互相替代了嗎？">
+<meta name="author" content="陳誼峰 Kash">
+<meta property="og:url" content="https://www.imkash.cc/blog/2026/11/fix-product-data-before-ai/">
+<meta property="og:site_name" content="陳誼峰 Kash">
+<meta property="og:locale" content="zh_TW">
+<meta property="og:image" content="https://www.imkash.cc/assets/img/blog/2026-11-16-03.webp">
+<meta property="og:description" content="Amazon 內部文件說 AI 導購 Rufus 常答錯又貴，解法是回頭補商品資料。你的商品主檔，寫清楚哪一款最新、哪幾款互相替代了嗎？">
+<meta property="og:title" content="AI 導購答錯，Amazon 回頭補的不是模型，是商品資料">
+<meta property="article:published_time" content="2026-11-16T06:00:00+08:00">
+<meta property="article:modified_time" content="2026-11-16T09:50:34+08:00">
+<meta property="article:author" content="https://www.imkash.cc/about.html">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="AI 導購答錯，Amazon 回頭補的不是模型，是商品資料">
+<meta name="twitter:description" content="Amazon 內部文件說 AI 導購 Rufus 常答錯又貴，解法是回頭補商品資料。你的商品主檔，寫清楚哪一款最新、哪幾款互相替代了嗎？">
+<meta name="twitter:image" content="https://www.imkash.cc/assets/img/blog/2026-11-16-03.webp">
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "BlogPosting",
+  "headline": "AI 導購答錯，Amazon 回頭補的不是模型，是商品資料",
+  "description": "你的商品主檔，撐得住 AI 幫你回答嗎？",
+  "image": "https://www.imkash.cc/assets/img/blog/2026-11-16-03.webp",
+  "datePublished": "2026-11-16T06:00:00+08:00",
+  "dateModified": "2026-11-16T09:50:34+08:00",
+  "author": {
+    "@type": "Person",
+    "name": "陳誼峰 Kash",
+    "jobTitle": "Principal Consultant & V.P.",
+    "worksFor": {
+      "@type": "Organization",
+      "name": "Merkle Taiwan（電通集團）"
+    },
+    "url": "https://www.imkash.cc/about.html"
+  },
+  "publisher": {
+    "@type": "Organization",
+    "name": "陳誼峰 Kash",
+    "url": "https://www.imkash.cc/"
+  },
+  "mainEntityOfPage": {
+    "@type": "WebPage",
+    "@id": "https://www.imkash.cc/blog/2026/11/fix-product-data-before-ai/"
+  },
+  "inLanguage": "zh-Hant",
+  "keywords": [
+    "商品主檔",
+    "AI 導購",
+    "商品資料",
+    "World Product Graph",
+    "Rufus"
+  ],
+  "citation": [
+    "https://www.channelnewsasia.com/business/exclusive-amazons-plan-own-worlds-product-data-and-fight-ai-shopping-agents-6549286",
+    "https://www.theverge.com/tech/1033697/amazon-world-product-graph-ai-search"
+  ]
+}
+</script>
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "BreadcrumbList",
+  "itemListElement": [
+    {
+      "@type": "ListItem",
+      "position": 1,
+      "name": "首頁",
+      "item": "https://www.imkash.cc/"
+    },
+    {
+      "@type": "ListItem",
+      "position": 2,
+      "name": "部落格",
+      "item": "https://www.imkash.cc/blog.html"
+    },
+    {
+      "@type": "ListItem",
+      "position": 3,
+      "name": "AI 導購答錯，Amazon 回頭補的不是模型，是商品資料",
+      "item": "https://www.imkash.cc/blog/2026/11/fix-product-data-before-ai/"
+    }
+  ]
+}
+</script>
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "mainEntity": [
+    {
+      "@type": "Question",
+      "name": "AI 導購答錯，該先換更強的模型嗎？",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "不一定。Amazon 內部文件的思路是先補齊商品資料，資料完整後反而能用更便宜的模型。"
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "商品主檔最常缺什麼？",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "商品之間的關係：哪一款是最新型號、哪幾款互相搭配或替代。這些若只在業務腦袋裡，AI 就只能猜。"
+      }
+    }
+  ]
+}
+</script>
+</head>
+<body>
+
+  <header class="nav">
+    <div class="container nav__inner">
+      <a class="nav__brand" href="/index.html">陳誼峰 <span>Kash</span></a>
+      <button class="nav__toggle" aria-label="開啟選單" aria-expanded="false" aria-controls="primary-nav"><span></span></button>
+      <ul class="nav__links" id="primary-nav">
+        <li><a href="/index.html">首頁</a></li>
+        <li><a href="/about.html">關於講師</a></li>
+        <li><a href="/speaking.html">演講與課程</a></li>
+        <li><a href="/courses.html">公開課程</a></li>
+        <li><a href="/events.html">活動剪影</a></li>
+        <li><a href="/proof.html">實績與見證</a></li>
+        <li><a href="/contact.html">聯絡邀課</a></li>
+        <li><a href="/ebooks.html">電子書下載</a></li>
+        <li><a href="/blog.html" class="is-active">部落格</a></li>
+        <li><a href="https://imkash.substack.com" target="_blank" rel="noopener">電子報</a></li>
+        <li class="nav__cta-mobile"><a class="btn btn-primary" href="/contact.html">邀請 Kash 演講</a></li>
+      </ul>
+      <div class="nav__cta"><a class="btn btn-primary" href="/contact.html">邀請 Kash 演講</a></div>
+    </div>
+  </header>
+
+  <main>
+    <article class="blog-post">
+      <div class="container">
+        <time class="blog-post__date" datetime="2026-11-16">2026年11月16日</time>
+        <h1>AI 導購答錯，Amazon 回頭補的不是模型，是商品資料</h1>
+        <p class="blog-post__subtitle">你的商品主檔，撐得住 AI 幫你回答嗎？</p>
+        <img class="blog-post__hero" src="/assets/img/blog/2026-11-16-03.webp" alt="倉庫貨架上整齊排列的紙箱，箱子之間以發光細線相連">
+        <div class="blog-post__body">
+          <p><strong>AI 導購答不出正確答案，解法不是換一個更貴的模型，而是回頭把商品資料補齊。</strong></p>
+          <h2>Rufus 答錯的不是模型不夠強</h2>
+          <p>Amazon 內部一份文件寫到，Rufus（今年 5 月起改叫 Alexa for Shopping）常常答錯，而顧客沒有專業，看不出這些錯誤。</p>
+          <p>文件也寫，Rufus 每週約 8,300 萬次搜尋，執行起來很貴；資料補齊之後，反而能換用更便宜的模型。</p>
+          <p>Amazon 的回應不太一樣：他們說這是一份過時的腦力激盪文件，使用量數字嚴重過時，自己的資料顯示準確率約 97%。</p>
+          <p>但問題到底出在哪？不是模型不夠聰明，而是模型手上拿到的資料不夠完整。更麻煩的是，顧客看不出答錯了，照樣會買錯或退貨，卻沒人回報。</p>
+          <h2>要補的資料，是「哪一款最新」和「彼此什麼關係」</h2>
+          <p>這份文件講的計畫叫 World Product Graph，目標是蒐集幾乎所有在賣商品的資料，不論 Amazon 自己有沒有賣。</p>
+          <p>文件寫：顧客如果得離開 Amazon，跑去 Google、品牌官網和評論網站拼湊商品之間的關係，Amazon 就不可能成為每一次購物的首選。答案其實都在，只是攤在各處，要花力氣才拼得起來。</p>
+          <p>這個計畫做不做得成，取決於弄清楚品牌在自家網站上怎麼組織商品。部分品牌會持續提供資料，Amazon 也會自己爬其他零售商網站；可口可樂、拜耳這類品牌，已經簽約提供資料。</p>
+          <p>資料補齊之後，AI 才能確定一台吸塵器或一支平板，哪一款是最新型號；也才能依購物紀錄，判斷哪一款適合這個人。</p>
+          <p>負責這個計畫的副總 Robert Tekiela 說的一句話，正好戳中這整件事：「顧客一直都找得到商品，缺的是理解——這些商品彼此是什麼關係、哪一個適合我、我還該考慮什麼？」</p>
+          <p>導購要回答的從來不是「有沒有這個商品」，而是「這些商品彼此之間，是什麼關係」。這份文件寫的目標發佈日是 2027 年 10 月 1 日，但計畫會不會照原樣落地，沒人說得準。</p>
+          <h2>你的商品主檔，撐得住 AI 來回答嗎</h2>
+          <p>換成自己的生意來看，AI 導購答不答得準，從來不是模型的事，而是商品主檔有沒有把關係寫清楚。</p>
+          <p>給自己一個檢查方向：拿客人最常問業務的那幾個問題，回頭看看商品主檔裡有沒有寫。哪一款是最新的、哪幾款互相替代，這些關係是真的被寫成資料，還是只活在某個業務的腦袋裡？</p>
+          <p>如果答案只在人的腦袋裡，AI 就只能猜。猜對了算幸運，猜錯了，客人不會跟你說。</p>
+          <h2>先問自己一句</h2>
+          <p>所以真正要問的不是 AI 導購準不準，而是你的商品資料，撐不撐得起一個正確答案。</p>
+          <p>下次開產品會議前，先問一句：客人最常問的那三個問題，我們的商品主檔，答得出來嗎？</p>
+        </div>
+        <nav class="blog-next" aria-label="文章導覽">
+          <span class="blog-next__label">下一篇</span>
+          <a href="/blog/2026/11/best-practice-ticks-arent-right-questions/">照最佳實務打勾，不等於問對問題</a>
+        </nav>
+      </div>
+    </article>
+  </main>
+
+  <footer class="footer">
+    <div class="container">
+      <div class="footer__grid">
+        <div>
+          <div class="footer__brand">陳誼峰 <span>Kash</span></div>
+          <p>會算命的數據顧問<br>Merkle Taiwan 體驗科學副總經理</p>
+          <p class="footer__books">著作：《流量的秘密》《AI 轉型的溫度》</p>
+        </div>
+        <div>
+          <h4>網站導覽</h4>
+          <ul>
+            <li><a href="/index.html">首頁</a></li>
+            <li><a href="/about.html">關於講師</a></li>
+            <li><a href="/speaking.html">演講與課程</a></li>
+            <li><a href="/courses.html">公開課程</a></li>
+            <li><a href="/events.html">活動剪影</a></li>
+            <li><a href="/proof.html">實績與見證</a></li>
+            <li><a href="/contact.html">聯絡邀課</a></li>
+            <li><a href="/ebooks.html">電子書下載</a></li>
+            <li><a href="/blog.html">部落格</a></li>
+          </ul>
+        </div>
+        <div>
+          <h4>保持連結</h4>
+          <ul>
+            <li><a href="/contact.html#newsletter">訂閱電子報</a></li>
+            <li>聯絡 Email : <a href="mailto:kash.doublemax@gmail.com">kash.doublemax@gmail.com</a></li>
+          </ul>
+        </div>
+      </div>
+      <div class="footer__bottom">
+        © 2026 陳誼峰 Kash<span class="sep">｜</span>會算命的數據顧問<span class="sep">｜</span>DREAM · DO · DELIVER
+      </div>
+    </div>
+  </footer>
+
+  <script src="/assets/main.js?v=20260711b"></script>
+</body>
+</html>

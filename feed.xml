@@ -5,7 +5,14 @@
     <link>https://www.imkash.cc/blog.html</link>
     <description>陳誼峰 Kash 的部落格。AI、問題定義、客戶權限與顧問判斷。</description>
     <language>zh-Hant</language>
-    <lastBuildDate>Sun, 15 Nov 2026 14:15:18 +0800</lastBuildDate>
+    <lastBuildDate>Mon, 16 Nov 2026 09:50:35 +0800</lastBuildDate>
+    <item>
+      <title>AI 導購答錯，Amazon 回頭補的不是模型，是商品資料</title>
+      <link>https://www.imkash.cc/blog/2026/11/fix-product-data-before-ai/</link>
+      <guid isPermaLink="true">https://www.imkash.cc/blog/2026/11/fix-product-data-before-ai/</guid>
+      <pubDate>Mon, 16 Nov 2026 06:00:00 +0800</pubDate>
+      <description>Amazon 內部文件說 AI 導購 Rufus 常答錯又貴，解法是回頭補商品資料。你的商品主檔，寫清楚哪一款最新、哪幾款互相替代了嗎？</description>
+    </item>
     <item>
       <title>照最佳實務打勾，不等於問對問題</title>
       <link>https://www.imkash.cc/blog/2026/11/best-practice-ticks-arent-right-questions/</link>
