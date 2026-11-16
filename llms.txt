@@ -16,6 +16,7 @@
 
 ## 部落格文章
 
+- [客戶記得的不是整個專案，是兩張快照](https://www.imkash.cc/blog/2026/11/clients-remember-peak-and-end/)
 - [不是工具停了，是你一整天的工作停了](https://www.imkash.cc/blog/2026/11/ai-outage-manual-backup-plan/)
 - [AI 導購答錯，Amazon 回頭補的不是模型，是商品資料](https://www.imkash.cc/blog/2026/11/fix-product-data-before-ai/)
 - [照最佳實務打勾，不等於問對問題](https://www.imkash.cc/blog/2026/11/best-practice-ticks-arent-right-questions/)
