@@ -16,6 +16,7 @@
 
 ## 部落格文章
 
+- [審核一鬆手，鬆掉的是你的判斷權](https://www.imkash.cc/blog/2026/11/if-you-cant-explain-ai-output/)
 - [黑五特價打幾折不重要，先看這條線](https://www.imkash.cc/blog/2026/11/compare-promo-to-30-day-low/)
 - [客戶記得的不是整個專案，是兩張快照](https://www.imkash.cc/blog/2026/11/clients-remember-peak-and-end/)
 - [不是工具停了，是你一整天的工作停了](https://www.imkash.cc/blog/2026/11/ai-outage-manual-backup-plan/)
