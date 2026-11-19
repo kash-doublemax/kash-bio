@@ -1,0 +1,184 @@
+<!doctype html>
+<html lang="zh-Hant">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="robots" content="noindex">
+<title>AI 人才成熟度檢測｜Kash</title>
+<style>
+  :root{--navy:#040e4b;--blue:#0328d1;--gold:#d4a015;--red:#dd3038;--bg:#eef0fc;--line:#cdd3eb;--muted:#555f7d}
+  *{box-sizing:border-box}html{font-family:"Noto Sans TC","Microsoft JhengHei",sans-serif;color:var(--navy);background:var(--bg)}
+  body{margin:0}header{background:var(--navy);color:#fff;padding:24px 16px}header>div,main{max-width:680px;margin:auto}
+  h1{font-size:1.55rem;margin:.1em 0 .3em}h2{font-size:1.25rem;margin:0 0 12px}p{line-height:1.6}
+  main{padding:18px 14px 48px}.panel,.question{background:#fff;border:1px solid var(--line);border-radius:14px;padding:18px;margin:0 0 14px}
+  .question h3{font-size:1rem;line-height:1.55;margin:0 0 12px}.question small{display:block;color:var(--muted);margin:-4px 0 12px}
+  label.choice{display:flex;gap:10px;align-items:center;padding:13px;border:1px solid var(--line);border-radius:10px;margin:8px 0;min-height:50px;cursor:pointer}
+  label.choice:has(input:checked){background:#e8edff;border-color:var(--blue);font-weight:700}input[type=radio],input[type=checkbox]{accent-color:var(--blue);width:20px;height:20px;flex:0 0 20px}
+  input[type=text],input[type=email]{width:100%;font:inherit;font-size:16px;padding:12px;border:1px solid var(--line);border-radius:10px}
+  input:focus-visible,button:focus-visible{outline:3px solid var(--gold);outline-offset:2px}
+  .choices.two{display:grid;grid-template-columns:1fr 1fr;gap:8px}.choices.two label{margin:0}
+  button{width:100%;min-height:52px;border:0;border-radius:11px;background:var(--blue);color:#fff;font-size:1rem;font-weight:700;font-family:inherit;cursor:pointer;padding:12px 18px}
+  button.secondary{background:#fff;color:var(--blue);border:2px solid var(--blue)}.notice{background:#fff5da;border-left:4px solid var(--gold);padding:14px 16px;border-radius:4px;margin:12px 0}
+  .error{color:#a00020;font-weight:700}.invalid{border-color:var(--red);box-shadow:0 0 0 2px #dd303833}.muted{color:var(--muted)}
+  .tag{display:inline-block;background:var(--navy);color:#fff;font-size:.8rem;border-radius:20px;padding:3px 12px;margin:8px 0}
+  .result{background:var(--navy);color:#fff;border-radius:14px;padding:22px;margin-bottom:16px}.result strong{color:#f6c44b}
+  .step{padding:13px;border:1px solid var(--line);background:#fff;border-radius:10px;margin:7px 0}.step.current{border:2px solid var(--gold)}
+  .lamp{font-weight:700;padding:13px;border-radius:10px;color:#fff}.lamp.red{background:#bc2433}.lamp.yellow{background:#a56b00}.lamp.green{background:#187849}
+  [hidden]{display:none!important}@media(max-width:470px){.choices.two{grid-template-columns:1fr}header{padding:20px 16px}main{padding:14px 12px 40px}}
+</style>
+</head>
+<body>
+<header><div><div style="font-size:.8rem;color:#f6c44b">從 POC 到實戰</div><h1>AI 人才成熟度檢測</h1><div>三分鐘，量出四階位置與數據前提。</div></div></header>
+<main>
+  <section id="start" class="panel">
+    <h2>先選你的回答視角</h2>
+    <label class="choice"><input type="radio" name="role" value="org">主管／決策者：代表公司回答</label>
+    <label class="choice"><input type="radio" name="role" value="individual">同仁／執行者：回答自己的狀況</label>
+    <div class="notice" id="preview-note">目前為預覽版：資料只在此裝置計分，不會送出。</div>
+    <div id="consent-copy" class="notice">正式收件尚未啟用。目前只供檢查題目與計分，不收集作答。</div>
+    <label class="choice"><input type="checkbox" id="agree"><span id="agree-label">我已閱讀上方說明，了解目前為本機預覽</span></label>
+    <p id="start-error" class="error" hidden>請選擇角色並勾選上方說明。</p>
+    <button type="button" id="begin">開始作答</button>
+  </section>
+  <section id="form-screen" hidden>
+    <div class="panel"><span class="tag" id="form-tag"></span><h2 id="form-heading"></h2><p class="muted">每題選一項；「不確定」依本次檢測規則計為未通過。</p></div>
+    <form id="survey-form" novalidate><div id="questions"></div><p id="form-error" class="error" hidden>請補齊標示的必答項目。</p><button type="submit">看檢測結果</button></form>
+  </section>
+  <section id="result-screen" hidden><div id="result-content"></div><button type="button" id="again" class="secondary">重新作答</button></section>
+</main>
+<script>
+(() => {
+  "use strict";
+  const CONSENT_VERSION = "2026-11-19-v1";
+  const APPROVED_CONSENT_HTML = `<strong>資料蒐集與使用說明</strong><br>
+    蒐集者：美庫爾數據與本活動主辦單位。目的：計算及呈現 AI 人才成熟度檢測結果、分析整體培訓需求；只有你勾選後續需求並留下 Email 時，才用於寄送解讀或聯繫。<br>
+    資料類別：公司名稱或邀請碼、產業、公司規模或職能、作答內容、檢測結果，以及自願提供的 Email 和後續需求。系統另記錄作答與收件時間，不主動蒐集姓名。<br>
+    使用期間：收件後一年；屆期刪除。使用地區與方式：以 Google 試算表保存，供美庫爾數據及活動主辦單位授權人員在活動與後續服務所需範圍內查閱；Google 雲端服務可能在境外處理資料。彙整分析僅以去識別方式呈現。<br>
+    你可以要求查詢、閱覽、複製、更正、停止蒐集／使用或刪除資料，請寄信至 <a href="mailto:kash.doublemax@gmail.com">kash.doublemax@gmail.com</a>。不提供資料仍可不參加檢測；不提供 Email 則無法寄送解讀或安排聯繫。按下開始作答並勾選同意後，提交結果時才會送至上述試算表。`;
+  const ENDPOINT = "https://script.google.com/macros/s/AKfycbwfjRZutXEg_WJBQ_qlPC6JaSrtknleq_NXSM-bhFszGvv7AYXHinwvmArRbQW59bTwUA/exec";
+  const $ = id => document.getElementById(id);
+  const stages = ["認知","上手","建構","引領"];
+  const defs = {
+    org: [
+      {id:"company",text:"Q1 公司名稱",type:"text",required:true},
+      {id:"industry",text:"Q2 產業",type:"text"},
+      {id:"size",text:"Q2 員工人數",options:["100 人以下","100–500","500–2000","2000 人以上"],required:true},
+      {id:"q3",text:"Q3 公司有一份大家都看得到的 AI 使用規範，說清楚哪些資料不能放進 AI。",options:["有","沒有","不確定"],required:true},
+      {id:"q4",text:"Q4 公司裡多數同仁都實際用過 AI 工具，不只是少數幾個人。",options:["是","不是","不確定"],required:true},
+      {id:"q5",text:"Q5 至少有一個工作流程，每天或每週固定有一步交給 AI 產出結果。",options:["有","沒有","不確定"],required:true},
+      {id:"q6",text:"Q6 這個流程省下的時間，或增加的產出，算得出數字。",options:["算得出來","算不出來","不確定"],required:true},
+      {id:"q7",text:"Q7 公司內部自己建過 agent、知識庫或自動化工具，而且目前還在運作。",options:["有","沒有","不確定"],required:true},
+      {id:"q8",text:"Q8 這些自己建的工具，有指定的維運負責人。",options:["有","沒有","不確定"],required:true},
+      {id:"q9",text:"Q9 AI 有組織層級的年度計畫，而且有獨立預算。",options:["有","沒有","不確定"],required:true},
+      {id:"q10",text:"Q10 公司會定期檢視 AI 帶來的業務成效，不只是看使用率。",options:["會","不會","不確定"],required:true},
+      {id:"q11",text:"Q11 工作上要用的數據，需要時拿得到、接得上，不用靠特定某個人。",options:["是","不是","不確定"],required:true},
+      {id:"q12",text:"Q12 關鍵指標全公司只有一種算法。",options:["是","不是","不確定"],required:true},
+      {id:"q13",text:"Q13 AI 產出有固定存放位置，而且有人負責維運。",options:["是","不是","不確定"],required:true},
+      {id:"follow",text:"Q14 想要哪些後續？",options:["寄一份完整的結果解讀給我","30 分鐘一對一，把結果走一遍（不收費，也不是提案）","想了解團隊版","暫時不需要"],multiple:true},
+      {id:"email",text:"Email（如希望收到結果或安排交流，請填寫）",type:"email"}
+    ],
+    individual: [
+      {id:"company",text:"Q1 公司名稱或邀請碼",type:"text",required:true},
+      {id:"func",text:"Q2 你的職能",options:["IT／數據","業務／行銷","營運／生產","管理幕僚","其他"],required:true},
+      {id:"q3",text:"Q3 我知道公司對 AI 使用的規範與邊界。",options:["知道","不知道"],required:true},
+      {id:"q4",text:"Q4 AI 已經放進我自己的固定工作，每天或每週都會用到。",options:["是","不是"],required:true},
+      {id:"q5",text:"Q5 我自己建過 agent、知識庫或自動化工具，而且還在用。",options:["有","沒有"],required:true},
+      {id:"q6",text:"Q6 我有帶同事一起用 AI，或在內部分享過做法。",options:["有","沒有"],required:true},
+      {id:"q7",text:"Q7 我工作上要用的數據，自己拿得到。",options:["拿得到","拿不到"],required:true},
+      {id:"follow",text:"Q8 想要哪些後續？",options:["寄一份完整的結果解讀給我","想知道我下一步該補什麼能力","暫時不需要"],multiple:true},
+      {id:"email",text:"Email（如希望收到結果，請填寫）",type:"email"}
+    ]
+  };
+  const copy = {
+    org:[
+      ["AI 還停在少數人手上。","先訂一份使用規範，讓多數人實際用過一次。"],
+      ["大家會用了，但還沒進到任何一個流程。","挑一個每天都在做的流程，固定讓 AI 做其中一步。"],
+      ["有流程在跑，但都是用現成工具。","開始自己建，並指定維運負責人。"],
+      ["建得起來，但還沒有組織層級的計畫。","把 AI 寫進年度計畫與預算，定期檢視業務成效。"],
+      ["四階都站上了。","讓第二、第三個部門走一樣的路。"]
+    ],
+    individual:[
+      ["你還沒開始。","先搞清楚公司的規範，挑一件每天做的事試試看。"],
+      ["你知道怎麼用，但還沒變成習慣。","挑一件每天做的事，固定讓 AI 做其中一步。"],
+      ["AI 已經在你的流程裡。","下一步是自己建一個，不要只用現成的。"],
+      ["你會建，而且還在用。","把做法分享出去，帶同事一起用。"],
+      ["你已經在帶別人了。","你是公司裡的種子，可以往情境設計走。"]
+    ]
+  };
+  let role = "";
+  const escape = s => String(s).replace(/[&<>"']/g,c=>({"&":"&amp;","<":"&lt;",">":"&gt;","\"":"&quot;","'":"&#39;"}[c]));
+  const value = a => a instanceof RadioNodeList ? a.value : a;
+  function scoreOrg(a){
+    const f1=a.q3==="有"&&a.q4==="是";
+    const f2=f1&&a.q5==="有"&&a.q6==="算得出來";
+    const f3=f2&&a.q7==="有"&&a.q8==="有";
+    const f4=f3&&a.q9==="有"&&a.q10==="會";
+    const reached=[f1,f2,f3,f4].filter(Boolean).length;
+    const pass=[a.q11,a.q12,a.q13].filter(x=>x==="是").length;
+    return {reached,pass,lamp:pass===3?"green":pass===2?"yellow":"red"};
+  }
+  function scoreIndividual(a){
+    const f1=a.q3==="知道",f2=f1&&a.q4==="是",f3=f2&&a.q5==="有",f4=f3&&a.q6==="有";
+    return {reached:[f1,f2,f3,f4].filter(Boolean).length,dataBlocked:a.q7==="拿不到"};
+  }
+  function renderQuestion(d){
+    const field=d.options ? `<div class="choices ${d.options.length===2?"two":""}">${d.options.map((o,i)=>`<label class="choice"><input type="${d.multiple?"checkbox":"radio"}" name="${d.id}" value="${escape(o)}"><span>${escape(o)}</span></label>`).join("")}</div>` : `<input type="${d.type}" name="${d.id}" autocomplete="${d.id==="email"?"email":"off"}">`;
+    return `<div class="question" id="field-${d.id}"><h3>${escape(d.text)}</h3>${field}</div>`;
+  }
+  function show(id){for(const el of [$("start"),$("form-screen"),$("result-screen")])el.hidden=el.id!==id;scrollTo(0,0);}
+  if(APPROVED_CONSENT_HTML&&ENDPOINT){
+    $("consent-copy").innerHTML=APPROVED_CONSENT_HTML;
+    $("preview-note").hidden=true;
+    $("agree-label").textContent="我已閱讀並同意上述資料蒐集說明";
+  }
+  $("begin").addEventListener("click",()=>{
+    role=document.querySelector('input[name="role"]:checked')?.value||"";
+    if(!role||!$("agree").checked){$("start-error").hidden=false;return;}
+    $("start-error").hidden=true;
+    $("form-tag").textContent=role==="org"?"組織版｜14 題":"個人版｜8 題";
+    $("form-heading").textContent=role==="org"?"代表公司回答":"回答自己的狀況";
+    $("questions").innerHTML=defs[role].map(renderQuestion).join("");
+    show("form-screen");
+  });
+  $("survey-form").addEventListener("submit",async e=>{
+    e.preventDefault();
+    const fd=new FormData(e.currentTarget),a={};
+    for(const d of defs[role])a[d.id]=d.multiple?fd.getAll(d.id):String(fd.get(d.id)||"").trim();
+    let bad=[];
+    for(const d of defs[role]){
+      const el=$("field-"+d.id);el.classList.remove("invalid");
+      if(d.required&&!a[d.id]){bad.push(el);el.classList.add("invalid");}
+    }
+    const wantsFollow=a.follow.some(x=>x!=="暫時不需要");
+    const emailOk=!a.email||/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(a.email);
+    if((wantsFollow&&!a.email)||!emailOk){const el=$("field-email");bad.push(el);el.classList.add("invalid");}
+    $("form-error").hidden=bad.length===0;
+    if(bad.length){bad[0].scrollIntoView({behavior:"smooth",block:"center"});return;}
+    const r=role==="org"?scoreOrg(a):scoreIndividual(a);
+    const stage=r.reached?stages[r.reached-1]+"階":"尚未站上第 1 階";
+    const [line,next]=copy[role][r.reached];
+    let lamp="";
+    if(role==="org"){
+      const label={green:"綠燈",yellow:"黃燈",red:"紅燈"}[r.lamp];
+      lamp=`<div class="lamp ${r.lamp}">數據前提：${label}（${r.pass}／3）</div>`;
+    }else lamp=`<div class="lamp ${r.dataBlocked?"red":"green"}">數據前提：${r.dataBlocked?"拿不到":"拿得到"}</div>`;
+    const extra=role==="org"&&r.lamp==="red"?"先讓要用的數據拿得到、關鍵指標統一算法；現在往上走，做出來的東西會接不起來。":role==="individual"&&r.dataBlocked?"這一項要公司解，不是你個人能解。":"";
+    $("result-content").innerHTML=`<div class="result"><h2>你${role==="org"?"們在":"在"} <strong>${stage}</strong></h2><p>${line}</p></div>${lamp}<div class="panel"><h2>下一步</h2><p>${extra||next}</p></div><div class="panel"><h2>四階路徑</h2>${r.reached===0?'<div class="step current">0. 尚未站上第 1 階　← 你在這裡</div>':""}${stages.map((s,i)=>`<div class="step ${i+1===r.reached?"current":""}">${i+1}. ${s}${i+1===r.reached?"　← 你在這裡":""}</div>`).join("")}</div><p class="muted" id="send-status">${ENDPOINT&&APPROVED_CONSENT_HTML?"正在送出要求；請截圖留存結果。":"預覽版：資料未送出，請截圖留存結果。"}</p>`;
+    show("result-screen");
+    if(ENDPOINT&&APPROVED_CONSENT_HTML){
+      const payload={ts:new Date().toISOString(),version:role,...a,stage,...r,consent:true,consentVersion:CONSENT_VERSION};
+      try{
+        await fetch(ENDPOINT,{method:"POST",mode:"no-cors",headers:{"Content-Type":"text/plain;charset=utf-8"},body:JSON.stringify(payload)});
+        $("send-status").textContent="送出要求已發出；請截圖留存結果，回收端仍需核對。";
+      }catch(err){
+        $("send-status").textContent="送出要求失敗；結果仍可截圖留存。";
+      }
+    }
+  });
+  $("again").addEventListener("click",()=>{$("survey-form").reset();$("agree").checked=false;document.querySelectorAll('input[name="role"]').forEach(x=>x.checked=false);show("start");});
+  // Exported only for local scoring checks; no production dependency.
+  window.__cxScore={scoreOrg,scoreIndividual};
+})();
+</script>
+</body>
+</html>

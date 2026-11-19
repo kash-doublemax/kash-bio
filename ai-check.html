@@ -2,183 +2,288 @@
 <html lang="zh-Hant">
 <head>
 <meta charset="utf-8">
-<meta name="viewport" content="width=device-width, initial-scale=1">
-<meta name="robots" content="noindex">
-<title>AI 人才成熟度檢測｜Kash</title>
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>AI 人才成熟度診斷</title>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Noto+Sans+TC:wght@400;500;700&display=swap">
 <style>
-  :root{--navy:#040e4b;--blue:#0328d1;--gold:#d4a015;--red:#dd3038;--bg:#eef0fc;--line:#cdd3eb;--muted:#555f7d}
-  *{box-sizing:border-box}html{font-family:"Noto Sans TC","Microsoft JhengHei",sans-serif;color:var(--navy);background:var(--bg)}
-  body{margin:0}header{background:var(--navy);color:#fff;padding:24px 16px}header>div,main{max-width:680px;margin:auto}
-  h1{font-size:1.55rem;margin:.1em 0 .3em}h2{font-size:1.25rem;margin:0 0 12px}p{line-height:1.6}
-  main{padding:18px 14px 48px}.panel,.question{background:#fff;border:1px solid var(--line);border-radius:14px;padding:18px;margin:0 0 14px}
-  .question h3{font-size:1rem;line-height:1.55;margin:0 0 12px}.question small{display:block;color:var(--muted);margin:-4px 0 12px}
-  label.choice{display:flex;gap:10px;align-items:center;padding:13px;border:1px solid var(--line);border-radius:10px;margin:8px 0;min-height:50px;cursor:pointer}
-  label.choice:has(input:checked){background:#e8edff;border-color:var(--blue);font-weight:700}input[type=radio],input[type=checkbox]{accent-color:var(--blue);width:20px;height:20px;flex:0 0 20px}
-  input[type=text],input[type=email]{width:100%;font:inherit;font-size:16px;padding:12px;border:1px solid var(--line);border-radius:10px}
-  input:focus-visible,button:focus-visible{outline:3px solid var(--gold);outline-offset:2px}
-  .choices.two{display:grid;grid-template-columns:1fr 1fr;gap:8px}.choices.two label{margin:0}
-  button{width:100%;min-height:52px;border:0;border-radius:11px;background:var(--blue);color:#fff;font-size:1rem;font-weight:700;font-family:inherit;cursor:pointer;padding:12px 18px}
-  button.secondary{background:#fff;color:var(--blue);border:2px solid var(--blue)}.notice{background:#fff5da;border-left:4px solid var(--gold);padding:14px 16px;border-radius:4px;margin:12px 0}
-  .error{color:#a00020;font-weight:700}.invalid{border-color:var(--red);box-shadow:0 0 0 2px #dd303833}.muted{color:var(--muted)}
-  .tag{display:inline-block;background:var(--navy);color:#fff;font-size:.8rem;border-radius:20px;padding:3px 12px;margin:8px 0}
-  .result{background:var(--navy);color:#fff;border-radius:14px;padding:22px;margin-bottom:16px}.result strong{color:#f6c44b}
-  .step{padding:13px;border:1px solid var(--line);background:#fff;border-radius:10px;margin:7px 0}.step.current{border:2px solid var(--gold)}
-  .lamp{font-weight:700;padding:13px;border-radius:10px;color:#fff}.lamp.red{background:#bc2433}.lamp.yellow{background:#a56b00}.lamp.green{background:#187849}
-  [hidden]{display:none!important}@media(max-width:470px){.choices.two{grid-template-columns:1fr}header{padding:20px 16px}main{padding:14px 12px 40px}}
+:root{--navy:#14285F;--red:#E4002B;--card:#D9DDE5;--muted:#5B6475;--bg:#F7F8FA;--mid:#B8C2D9;--line:#DDE1E8}
+*{box-sizing:border-box}
+body{margin:0;background:var(--bg);color:var(--navy);font-family:'Noto Sans TC',system-ui,sans-serif;line-height:1.6;-webkit-text-size-adjust:100%}
+.wrap{max-width:720px;margin:0 auto;padding:20px 18px 64px}
+header{border-bottom:3px solid var(--navy);padding-bottom:14px;margin-bottom:22px}
+header .kicker{font-size:13px;color:var(--red);font-weight:700;letter-spacing:.04em}
+header h1{margin:4px 0 6px;font-size:26px;line-height:1.3}
+header p{margin:0;color:var(--muted);font-size:14px}
+h2{font-size:19px;margin:28px 0 10px}
+h3{font-size:15px;font-weight:500;margin:0 0 10px;line-height:1.6}
+.panel{background:#fff;border:1px solid var(--line);border-radius:10px;padding:16px 16px;margin:14px 0}
+.muted{color:var(--muted);font-size:13px}
+table.ref{width:100%;border-collapse:collapse;font-size:13px;margin-top:8px}
+table.ref th,table.ref td{border:1px solid var(--line);padding:7px 9px;text-align:left}
+table.ref th{background:var(--card);font-weight:700}
+.choice{display:flex;gap:10px;align-items:flex-start;background:#fff;border:1px solid var(--line);border-radius:8px;padding:12px 13px;margin:7px 0;cursor:pointer;font-size:15px}
+.choice:hover{border-color:var(--mid)}
+.choice input{margin-top:4px;flex:0 0 auto;width:18px;height:18px;accent-color:var(--navy)}
+.q{background:#fff;border:1px solid var(--line);border-left:4px solid var(--mid);border-radius:8px;padding:14px;margin:12px 0}
+.q.invalid{border-color:var(--red);border-left-color:var(--red)}
+.q .tag{display:inline-block;background:var(--card);color:var(--navy);font-size:11px;font-weight:700;padding:2px 8px;border-radius:10px;margin-bottom:8px}
+.scale{display:grid;grid-template-columns:1fr 1fr;gap:7px}
+.scale label{font-size:14px;padding:10px;margin:0}
+input[type=text],input[type=email]{width:100%;padding:11px;border:1px solid var(--mid);border-radius:8px;font-size:16px;font-family:inherit;background:#fff;color:var(--navy)}
+button{width:100%;padding:15px;border:0;border-radius:8px;background:var(--navy);color:#fff;font-size:17px;font-weight:700;font-family:inherit;cursor:pointer;margin-top:18px}
+button.sec{background:#fff;color:var(--navy);border:2px solid var(--navy);font-size:15px;padding:12px}
+.err{color:var(--red);font-weight:700;font-size:14px;margin:10px 0 0}
+.notice{background:var(--card);border-radius:8px;padding:12px 13px;font-size:13px;margin:12px 0}
+.draft{color:var(--red);font-weight:700}
+.dimhead{margin:26px 0 4px;padding:9px 13px;background:var(--navy);color:#fff;border-radius:8px;font-weight:700;font-size:16px}
+.ladder{margin:10px 0 18px}
+.ladder .row{display:flex;align-items:center;gap:10px;margin:9px 0}
+.ladder .nm{flex:0 0 46px;font-weight:700;font-size:14px}
+.ladder .bar{flex:1;display:flex;gap:4px}
+.ladder .seg{flex:1;height:26px;border-radius:4px;background:var(--line);position:relative}
+.ladder .seg.on{background:var(--navy)}
+.ladder .seg.half{background:linear-gradient(90deg,var(--mid) 50%,var(--line) 50%)}
+.ladder .seg span{position:absolute;inset:0;display:flex;align-items:center;justify-content:center;font-size:11px;color:var(--muted)}
+.ladder .seg.on span{color:#fff}
+.ladder .seg.half span{color:var(--navy)}
+.ladder .row.low .nm{color:var(--red)}
+.big{background:var(--navy);color:#fff;border-radius:10px;padding:20px;margin:16px 0}
+.big .lv{font-size:30px;font-weight:700;margin:4px 0 8px}
+.big p{margin:0;font-size:15px;opacity:.95}
+ul.todo{margin:8px 0 0;padding-left:20px}
+ul.todo li{margin:7px 0;font-size:14px}
+@media(max-width:420px){.scale{grid-template-columns:1fr}header h1{font-size:22px}}
 </style>
 </head>
 <body>
-<header><div><div style="font-size:.8rem;color:#f6c44b">從 POC 到實戰</div><h1>AI 人才成熟度檢測</h1><div>三分鐘，量出四階位置與數據前提。</div></div></header>
-<main>
-  <section id="start" class="panel">
-    <h2>先選你的回答視角</h2>
-    <label class="choice"><input type="radio" name="role" value="org">主管／決策者：代表公司回答</label>
-    <label class="choice"><input type="radio" name="role" value="individual">同仁／執行者：回答自己的狀況</label>
-    <div class="notice" id="preview-note">目前為預覽版：資料只在此裝置計分，不會送出。</div>
-    <div id="consent-copy" class="notice">正式收件尚未啟用。目前只供檢查題目與計分，不收集作答。</div>
-    <label class="choice"><input type="checkbox" id="agree"><span id="agree-label">我已閱讀上方說明，了解目前為本機預覽</span></label>
-    <p id="start-error" class="error" hidden>請選擇角色並勾選上方說明。</p>
-    <button type="button" id="begin">開始作答</button>
-  </section>
-  <section id="form-screen" hidden>
-    <div class="panel"><span class="tag" id="form-tag"></span><h2 id="form-heading"></h2><p class="muted">每題選一項；「不確定」依本次檢測規則計為未通過。</p></div>
-    <form id="survey-form" novalidate><div id="questions"></div><p id="form-error" class="error" hidden>請補齊標示的必答項目。</p><button type="submit">看檢測結果</button></form>
-  </section>
-  <section id="result-screen" hidden><div id="result-content"></div><button type="button" id="again" class="secondary">重新作答</button></section>
-</main>
+<div class="wrap">
+<header>
+  <div class="kicker">從 POC 到實戰</div>
+  <h1>AI 人才成熟度診斷</h1>
+  <p>四個面向，四個階段。產出的是一張剖面圖，不是一個分數。</p>
+</header>
+
+<section id="s0">
+  <div class="panel">
+    <p style="margin:0 0 10px">這份診斷把企業導入 AI 的成熟度拆成<b>四個面向</b>，每個面向各有<b>四個階段</b>。</p>
+    <p style="margin:0 0 10px">和單一分數不同，它產出的是一張<b>剖面圖</b>——因為多數企業不是整體落後，而是某一個面向拖住其他三個。</p>
+    <p class="muted" style="margin:0">主管版 16 題，約 8 分鐘，建議由熟悉公司整體狀況的人填寫。同仁版 5 題，約 2 分鐘。</p>
+    <table class="ref">
+      <tr><th>面向</th><th>測什麼</th></tr>
+      <tr><td>人</td><td>會用的人、能建的人、帶人的人</td></tr>
+      <tr><td>流程</td><td>AI 有沒有真的進到工作流</td></tr>
+      <tr><td>數據</td><td>底座撐不撐得住</td></tr>
+      <tr><td>治理</td><td>規範、邊界、權限、保護</td></tr>
+    </table>
+  </div>
+  <h2>先選你的回答視角</h2>
+  <label class="choice"><input type="radio" name="role" value="org"><span><b>主管／決策者</b><br><span class="muted">代表公司回答，16 題</span></span></label>
+  <label class="choice"><input type="radio" name="role" value="ind"><span><b>同仁／執行者</b><br><span class="muted">回答自己的狀況，5 題</span></span></label>
+  <div class="notice" id="consent"><span class="draft">※ 資料蒐集說明為草稿，上線前須與主辦單位對齊。</span> 目前為本機預覽，作答只在此裝置計分，不會送出。</div>
+  <label class="choice"><input type="checkbox" id="agree"><span id="agreelab">我已閱讀上方說明，了解目前為本機預覽</span></label>
+  <p class="err" id="e0" hidden>請選擇角色並勾選上方說明。</p>
+  <button id="go">開始作答</button>
+</section>
+
+<section id="s1" hidden>
+  <div id="qs"></div>
+  <p class="err" id="e1" hidden>請補齊標示的必答項目。</p>
+  <button id="submit">看診斷結果</button>
+</section>
+
+<section id="s2" hidden>
+  <div id="res"></div>
+  <p class="muted" id="sendst"></p>
+  <button class="sec" id="again">重新作答</button>
+</section>
+</div>
+
 <script>
-(() => {
-  "use strict";
-  const CONSENT_VERSION = "2026-11-19-v1";
-  const APPROVED_CONSENT_HTML = `<strong>資料蒐集與使用說明</strong><br>
-    蒐集者：美庫爾數據與本活動主辦單位。目的：計算及呈現 AI 人才成熟度檢測結果、分析整體培訓需求；只有你勾選後續需求並留下 Email 時，才用於寄送解讀或聯繫。<br>
-    資料類別：公司名稱或邀請碼、產業、公司規模或職能、作答內容、檢測結果，以及自願提供的 Email 和後續需求。系統另記錄作答與收件時間，不主動蒐集姓名。<br>
-    使用期間：收件後一年；屆期刪除。使用地區與方式：以 Google 試算表保存，供美庫爾數據及活動主辦單位授權人員在活動與後續服務所需範圍內查閱；Google 雲端服務可能在境外處理資料。彙整分析僅以去識別方式呈現。<br>
-    你可以要求查詢、閱覽、複製、更正、停止蒐集／使用或刪除資料，請寄信至 <a href="mailto:kash.doublemax@gmail.com">kash.doublemax@gmail.com</a>。不提供資料仍可不參加檢測；不提供 Email 則無法寄送解讀或安排聯繫。按下開始作答並勾選同意後，提交結果時才會送至上述試算表。`;
-  const ENDPOINT = "https://script.google.com/macros/s/AKfycbwfjRZutXEg_WJBQ_qlPC6JaSrtknleq_NXSM-bhFszGvv7AYXHinwvmArRbQW59bTwUA/exec";
-  const $ = id => document.getElementById(id);
-  const stages = ["認知","上手","建構","引領"];
-  const defs = {
-    org: [
-      {id:"company",text:"Q1 公司名稱",type:"text",required:true},
-      {id:"industry",text:"Q2 產業",type:"text"},
-      {id:"size",text:"Q2 員工人數",options:["100 人以下","100–500","500–2000","2000 人以上"],required:true},
-      {id:"q3",text:"Q3 公司有一份大家都看得到的 AI 使用規範，說清楚哪些資料不能放進 AI。",options:["有","沒有","不確定"],required:true},
-      {id:"q4",text:"Q4 公司裡多數同仁都實際用過 AI 工具，不只是少數幾個人。",options:["是","不是","不確定"],required:true},
-      {id:"q5",text:"Q5 至少有一個工作流程，每天或每週固定有一步交給 AI 產出結果。",options:["有","沒有","不確定"],required:true},
-      {id:"q6",text:"Q6 這個流程省下的時間，或增加的產出，算得出數字。",options:["算得出來","算不出來","不確定"],required:true},
-      {id:"q7",text:"Q7 公司內部自己建過 agent、知識庫或自動化工具，而且目前還在運作。",options:["有","沒有","不確定"],required:true},
-      {id:"q8",text:"Q8 這些自己建的工具，有指定的維運負責人。",options:["有","沒有","不確定"],required:true},
-      {id:"q9",text:"Q9 AI 有組織層級的年度計畫，而且有獨立預算。",options:["有","沒有","不確定"],required:true},
-      {id:"q10",text:"Q10 公司會定期檢視 AI 帶來的業務成效，不只是看使用率。",options:["會","不會","不確定"],required:true},
-      {id:"q11",text:"Q11 工作上要用的數據，需要時拿得到、接得上，不用靠特定某個人。",options:["是","不是","不確定"],required:true},
-      {id:"q12",text:"Q12 關鍵指標全公司只有一種算法。",options:["是","不是","不確定"],required:true},
-      {id:"q13",text:"Q13 AI 產出有固定存放位置，而且有人負責維運。",options:["是","不是","不確定"],required:true},
-      {id:"follow",text:"Q14 想要哪些後續？",options:["寄一份完整的結果解讀給我","30 分鐘一對一，把結果走一遍（不收費，也不是提案）","想了解團隊版","暫時不需要"],multiple:true},
-      {id:"email",text:"Email（如希望收到結果或安排交流，請填寫）",type:"email"}
-    ],
-    individual: [
-      {id:"company",text:"Q1 公司名稱或邀請碼",type:"text",required:true},
-      {id:"func",text:"Q2 你的職能",options:["IT／數據","業務／行銷","營運／生產","管理幕僚","其他"],required:true},
-      {id:"q3",text:"Q3 我知道公司對 AI 使用的規範與邊界。",options:["知道","不知道"],required:true},
-      {id:"q4",text:"Q4 AI 已經放進我自己的固定工作，每天或每週都會用到。",options:["是","不是"],required:true},
-      {id:"q5",text:"Q5 我自己建過 agent、知識庫或自動化工具，而且還在用。",options:["有","沒有"],required:true},
-      {id:"q6",text:"Q6 我有帶同事一起用 AI，或在內部分享過做法。",options:["有","沒有"],required:true},
-      {id:"q7",text:"Q7 我工作上要用的數據，自己拿得到。",options:["拿得到","拿不到"],required:true},
-      {id:"follow",text:"Q8 想要哪些後續？",options:["寄一份完整的結果解讀給我","想知道我下一步該補什麼能力","暫時不需要"],multiple:true},
-      {id:"email",text:"Email（如希望收到結果，請填寫）",type:"email"}
-    ]
-  };
-  const copy = {
-    org:[
-      ["AI 還停在少數人手上。","先訂一份使用規範，讓多數人實際用過一次。"],
-      ["大家會用了，但還沒進到任何一個流程。","挑一個每天都在做的流程，固定讓 AI 做其中一步。"],
-      ["有流程在跑，但都是用現成工具。","開始自己建，並指定維運負責人。"],
-      ["建得起來，但還沒有組織層級的計畫。","把 AI 寫進年度計畫與預算，定期檢視業務成效。"],
-      ["四階都站上了。","讓第二、第三個部門走一樣的路。"]
-    ],
-    individual:[
-      ["你還沒開始。","先搞清楚公司的規範，挑一件每天做的事試試看。"],
-      ["你知道怎麼用，但還沒變成習慣。","挑一件每天做的事，固定讓 AI 做其中一步。"],
-      ["AI 已經在你的流程裡。","下一步是自己建一個，不要只用現成的。"],
-      ["你會建，而且還在用。","把做法分享出去，帶同事一起用。"],
-      ["你已經在帶別人了。","你是公司裡的種子，可以往情境設計走。"]
-    ]
-  };
-  let role = "";
-  const escape = s => String(s).replace(/[&<>"']/g,c=>({"&":"&amp;","<":"&lt;",">":"&gt;","\"":"&quot;","'":"&#39;"}[c]));
-  const value = a => a instanceof RadioNodeList ? a.value : a;
-  function scoreOrg(a){
-    const f1=a.q3==="有"&&a.q4==="是";
-    const f2=f1&&a.q5==="有"&&a.q6==="算得出來";
-    const f3=f2&&a.q7==="有"&&a.q8==="有";
-    const f4=f3&&a.q9==="有"&&a.q10==="會";
-    const reached=[f1,f2,f3,f4].filter(Boolean).length;
-    const pass=[a.q11,a.q12,a.q13].filter(x=>x==="是").length;
-    return {reached,pass,lamp:pass===3?"green":pass===2?"yellow":"red"};
+var APPROVED_CONSENT_HTML = "<b>關於這份診斷</b><br> 本診斷由美庫爾數據與主辦單位共同蒐集，用途為：① 寄送您的診斷結果與解讀；② 經您同意後安排後續交流。<br> <b>蒐集項目：</b>公司名稱、產業與員工規模、您的角色與職能、各題作答內容、Email，以及您的裝置與瀏覽器資訊（僅用於排除填答異常）。<br> <b>保存期限：</b>一年。期間內您可隨時來信要求刪除。<br> 您的個別作答不會對外公開；彙總後的統計數據可能用於產業基準報告，報告中不會出現可識別的公司名稱。";
+var ENDPOINT = "https://script.google.com/macros/s/AKfycbwfjRZutXEg_WJBQ_qlPC6JaSrtknleq_NXSM-bhFszGvv7AYXHinwvmArRbQW59bTwUA/exec";
+var CONSENT_VERSION = "2026-11-20";
+var D = {"dims": [{"key": "people", "name": "人", "items": ["多數同仁知道公司允許使用哪些 AI 工具，也知道哪些資料不能放進去", "有一群人把 AI 用在自己每天的工作上，不是偶爾試用", "公司裡有人能自己建 agent、知識庫或自動化流程，不必外包", "有主管層級的人負責 AI 人才培育，而且編了預算"]}, {"key": "flow", "name": "流程", "items": ["盤點過哪些流程可能用 AI，而且排出了優先順序", "至少一個流程，每天或每週固定有一步由 AI 產出結果", "AI 已嵌入正式系統或工作流，不是靠人手動複製貼上", "有驗收與營運機制，流程負責人定期檢視成效並調整"]}, {"key": "data", "name": "數據", "items": ["知道要用的資料在哪些系統、由誰維護", "要用的資料取得不必依賴特定某個人", "關鍵指標（如活躍客戶、營收、產能）全公司只有一種算法，而且有人負責維護定義", "數據當資產管理：有編號、盤點、生命週期；AI 產出也有固定存放與維運"]}, {"key": "gov", "name": "治理", "items": ["有一份公開的 AI 使用規範，說明哪些資料不能放進 AI", "有申請與核准機制，是例外開放，不是全面禁止或全面放行", "AI 工具收斂在可管理的平台，看得到使用行為與資料流向", "定期檢視風險與合規，並隨法規和業務變化更新規範"]}], "stages": ["認知", "上手", "建構", "引領"], "dimCopy": {"people": ["還沒有人知道規則", "知道規則，但沒人固定在用", "有人在用，但沒人建得出來", "建得出來，但沒人負責養人", "人才梯隊成形，可以複製到其他部門"], "flow": ["還沒盤點過流程", "盤點過了，但沒有一個流程真的在跑", "有流程在跑，但還是靠人手動接", "已嵌入系統，但沒有驗收與營運機制", "流程會自己被檢視和調整"], "data": ["不知道資料在哪", "知道在哪，但要靠特定的人才拿得到", "拿得到了，但同一個指標各部門算法不同", "指標統一了，但資料還沒當資產管", "數據底座撐得住，可以接更多 AI"], "gov": ["還沒有規範", "有規範，但沒有申請與核准機制", "有機制，但工具散在各處看不到流向", "看得到流向，但規範沒有定期更新", "治理會隨業務和法規一起長"]}, "ind": [{"id": "q3", "text": "Q3　我知道公司對 AI 使用的規範與邊界。", "options": ["知道", "不知道"]}, {"id": "q4", "text": "Q4　AI 已經放進我自己的固定工作，每天或每週都會用到。", "options": ["是", "不是"]}, {"id": "q5", "text": "Q5　我自己建過 agent、知識庫或自動化工具，而且還在用。", "options": ["有", "沒有"]}, {"id": "q6", "text": "Q6　我有帶同事一起用 AI，或在內部分享過做法。", "options": ["有", "沒有"]}, {"id": "q7", "text": "Q7　我工作上要用的數據，自己拿得到。", "options": ["拿得到", "拿不到"]}], "indCopy": [["你還沒開始。", "先搞清楚公司的規範，挑一件每天做的事試試看。"], ["你知道怎麼用，但還沒變成習慣。", "挑一件每天做的事，固定讓 AI 做其中一步。"], ["AI 已經在你的流程裡。", "下一步是自己建一個，不要只用現成的。"], ["你會建，而且還在用。", "把做法分享出去，帶同事一起用。"], ["你已經在帶別人了。", "你是公司裡的種子，可以往情境設計走。"]]};
+var role="", A={};
+function $(i){return document.getElementById(i)}
+function esc(s){return String(s).replace(/[&<>"]/g,function(c){return {'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c]})}
+function show(id){["s0","s1","s2"].forEach(function(x){$(x).hidden=(x!==id)});window.scrollTo(0,0)}
+
+if(APPROVED_CONSENT_HTML && ENDPOINT){
+  $("consent").innerHTML=APPROVED_CONSENT_HTML;
+  $("agreelab").textContent="我已閱讀並同意上述資料蒐集說明";
+}
+
+function scaleQ(id,tag,text){
+  var o=["已做到","部分做到","尚未","不確定"];
+  var h='<div class="q" id="f-'+id+'"><span class="tag">'+esc(tag)+'</span><h3>'+esc(text)+'</h3><div class="scale">';
+  o.forEach(function(v){h+='<label class="choice"><input type="radio" name="'+id+'" value="'+esc(v)+'"><span>'+esc(v)+'</span></label>'});
+  return h+'</div></div>';
+}
+function pickQ(id,text,opts){
+  var h='<div class="q" id="f-'+id+'"><h3>'+esc(text)+'</h3><div class="scale'+(opts.length>2?'':'')+'">';
+  opts.forEach(function(v){h+='<label class="choice"><input type="radio" name="'+id+'" value="'+esc(v)+'"><span>'+esc(v)+'</span></label>'});
+  return h+'</div></div>';
+}
+function textQ(id,text,type){
+  return '<div class="q" id="f-'+id+'"><h3>'+esc(text)+'</h3><input type="'+(type||"text")+'" name="'+id+'"></div>';
+}
+function multiQ(id,text,opts){
+  var h='<div class="q" id="f-'+id+'"><h3>'+esc(text)+'</h3>';
+  opts.forEach(function(v){h+='<label class="choice"><input type="checkbox" name="'+id+'" value="'+esc(v)+'"><span>'+esc(v)+'</span></label>'});
+  return h+'</div>';
+}
+
+function build(){
+  var h="";
+  h+='<div class="panel"><b>'+(role==="org"?"主管版｜16 題":"同仁版｜5 題")+'</b><p class="muted" style="margin:6px 0 0">每題選一項。「不確定」依本次診斷規則計為「尚未」——看不到的等於沒有。</p></div>';
+  h+=textQ("company","公司名稱"+(role==="org"?"":"或邀請碼")+"（必填，僅用於寄送結果，不對外公開）");
+  if(role==="org"){
+    h+=textQ("industry","產業");
+    h+=pickQ("size","員工人數",["100 人以下","100–500","500–2000","2000 人以上"]);
+    h+=pickQ("who","你的角色",["經營層／資訊主管","部門主管","執行者","外部顧問"]);
+    D.dims.forEach(function(d){
+      h+='<div class="dimhead">面向：'+esc(d.name)+'</div>';
+      d.items.forEach(function(t,i){ h+=scaleQ(d.key+(i+1), D.stages[i], t); });
+    });
+    h+=multiQ("follow","想要哪些後續？（可複選）",["寄一份完整的診斷報告給我（含四面向剖面圖與逐項建議）","30 分鐘一對一，把我們的結果走一遍（不收費，也不是提案）","想了解團隊版：讓同仁也填，比對經營層自評與第一線實況的落差","想收到明年的同業基準報告","暫時不需要"]);
+  }else{
+    h+=pickQ("func","你的職能",["IT／數據","業務／行銷","營運／生產","管理幕僚","其他"]);
+    D.ind.forEach(function(q){ h+=pickQ(q.id,q.text,q.options); });
+    h+=multiQ("follow","想要哪些後續？（可複選）",["寄一份完整的結果解讀給我","想知道我下一步該補什麼能力","暫時不需要"]);
   }
-  function scoreIndividual(a){
-    const f1=a.q3==="知道",f2=f1&&a.q4==="是",f3=f2&&a.q5==="有",f4=f3&&a.q6==="有";
-    return {reached:[f1,f2,f3,f4].filter(Boolean).length,dataBlocked:a.q7==="拿不到"};
+  h+=textQ("email","Email（勾選任一後續時必填）","email");
+  $("qs").innerHTML=h;
+}
+
+function required(){
+  if(role==="org"){
+    var r=["company","size","who"];
+    D.dims.forEach(function(d){for(var i=1;i<=4;i++)r.push(d.key+i)});
+    return r;
   }
-  function renderQuestion(d){
-    const field=d.options ? `<div class="choices ${d.options.length===2?"two":""}">${d.options.map((o,i)=>`<label class="choice"><input type="${d.multiple?"checkbox":"radio"}" name="${d.id}" value="${escape(o)}"><span>${escape(o)}</span></label>`).join("")}</div>` : `<input type="${d.type}" name="${d.id}" autocomplete="${d.id==="email"?"email":"off"}">`;
-    return `<div class="question" id="field-${d.id}"><h3>${escape(d.text)}</h3>${field}</div>`;
-  }
-  function show(id){for(const el of [$("start"),$("form-screen"),$("result-screen")])el.hidden=el.id!==id;scrollTo(0,0);}
-  if(APPROVED_CONSENT_HTML&&ENDPOINT){
-    $("consent-copy").innerHTML=APPROVED_CONSENT_HTML;
-    $("preview-note").hidden=true;
-    $("agree-label").textContent="我已閱讀並同意上述資料蒐集說明";
-  }
-  $("begin").addEventListener("click",()=>{
-    role=document.querySelector('input[name="role"]:checked')?.value||"";
-    if(!role||!$("agree").checked){$("start-error").hidden=false;return;}
-    $("start-error").hidden=true;
-    $("form-tag").textContent=role==="org"?"組織版｜14 題":"個人版｜8 題";
-    $("form-heading").textContent=role==="org"?"代表公司回答":"回答自己的狀況";
-    $("questions").innerHTML=defs[role].map(renderQuestion).join("");
-    show("form-screen");
+  var r=["company","func"]; D.ind.forEach(function(q){r.push(q.id)}); return r;
+}
+function collect(){
+  var o={};   // 不可用 new FormData(div)：FormData 只接受 <form>，會拋 TypeError 讓整個送出失效
+  document.querySelectorAll('#qs input').forEach(function(el){
+    if(el.type==="checkbox"){ if(el.checked){o[el.name]=(o[el.name]||[]).concat(el.value)} else {o[el.name]=o[el.name]||[]} }
+    else if(el.type==="radio"){ if(el.checked)o[el.name]=el.value }
+    else { o[el.name]=el.value.trim() }
   });
-  $("survey-form").addEventListener("submit",async e=>{
-    e.preventDefault();
-    const fd=new FormData(e.currentTarget),a={};
-    for(const d of defs[role])a[d.id]=d.multiple?fd.getAll(d.id):String(fd.get(d.id)||"").trim();
-    let bad=[];
-    for(const d of defs[role]){
-      const el=$("field-"+d.id);el.classList.remove("invalid");
-      if(d.required&&!a[d.id]){bad.push(el);el.classList.add("invalid");}
-    }
-    const wantsFollow=a.follow.some(x=>x!=="暫時不需要");
-    const emailOk=!a.email||/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(a.email);
-    if((wantsFollow&&!a.email)||!emailOk){const el=$("field-email");bad.push(el);el.classList.add("invalid");}
-    $("form-error").hidden=bad.length===0;
-    if(bad.length){bad[0].scrollIntoView({behavior:"smooth",block:"center"});return;}
-    const r=role==="org"?scoreOrg(a):scoreIndividual(a);
-    const stage=r.reached?stages[r.reached-1]+"階":"尚未站上第 1 階";
-    const [line,next]=copy[role][r.reached];
-    let lamp="";
-    if(role==="org"){
-      const label={green:"綠燈",yellow:"黃燈",red:"紅燈"}[r.lamp];
-      lamp=`<div class="lamp ${r.lamp}">數據前提：${label}（${r.pass}／3）</div>`;
-    }else lamp=`<div class="lamp ${r.dataBlocked?"red":"green"}">數據前提：${r.dataBlocked?"拿不到":"拿得到"}</div>`;
-    const extra=role==="org"&&r.lamp==="red"?"先讓要用的數據拿得到、關鍵指標統一算法；現在往上走，做出來的東西會接不起來。":role==="individual"&&r.dataBlocked?"這一項要公司解，不是你個人能解。":"";
-    $("result-content").innerHTML=`<div class="result"><h2>你${role==="org"?"們在":"在"} <strong>${stage}</strong></h2><p>${line}</p></div>${lamp}<div class="panel"><h2>下一步</h2><p>${extra||next}</p></div><div class="panel"><h2>四階路徑</h2>${r.reached===0?'<div class="step current">0. 尚未站上第 1 階　← 你在這裡</div>':""}${stages.map((s,i)=>`<div class="step ${i+1===r.reached?"current":""}">${i+1}. ${s}${i+1===r.reached?"　← 你在這裡":""}</div>`).join("")}</div><p class="muted" id="send-status">${ENDPOINT&&APPROVED_CONSENT_HTML?"正在送出要求；請截圖留存結果。":"預覽版：資料未送出，請截圖留存結果。"}</p>`;
-    show("result-screen");
-    if(ENDPOINT&&APPROVED_CONSENT_HTML){
-      const payload={ts:new Date().toISOString(),version:role,...a,stage,...r,consent:true,consentVersion:CONSENT_VERSION};
-      try{
-        await fetch(ENDPOINT,{method:"POST",mode:"no-cors",headers:{"Content-Type":"text/plain;charset=utf-8"},body:JSON.stringify(payload)});
-        $("send-status").textContent="送出要求已發出；請截圖留存結果，回收端仍需核對。";
-      }catch(err){
-        $("send-status").textContent="送出要求失敗；結果仍可截圖留存。";
-      }
-    }
+  return o;
+}
+
+function scoreDim(a,key){
+  var lv=[],partial=[];
+  for(var i=1;i<=4;i++){
+    var v=a[key+i];
+    lv.push(v==="已做到"?2:(v==="部分做到"?1:0));
+  }
+  var reached=0;
+  for(var i=0;i<4;i++){ if(lv[i]===2) reached=i+1; else break; }
+  // 半階：下一階為「部分做到」
+  var half = (reached<4 && lv[reached]===1);
+  for(var i=0;i<4;i++){ if(lv[i]===1) partial.push({key:key,idx:i}); }
+  return {reached:reached,half:half,partial:partial,lv:lv};
+}
+
+function render(a){
+  if(role==="ind"){
+    var f1=a.q3==="知道",f2=f1&&a.q4==="是",f3=f2&&a.q5==="有",f4=f3&&a.q6==="有";
+    var n=[f1,f2,f3,f4].filter(Boolean).length;
+    var c=D.indCopy[n], stage=n?D.stages[n-1]+"階":"尚未站上第 1 階";
+    var blocked=a.q7==="拿不到";
+    var h='<div class="big"><div class="muted" style="color:#B8C2D9">你的位置</div><div class="lv">'+esc(stage)+'</div><p>'+esc(c[0])+'</p></div>';
+    h+='<div class="panel"><h2 style="margin-top:0">下一步</h2><p style="margin:0">'+esc(c[1])+'</p></div>';
+    if(blocked) h+='<div class="panel" style="border-left:4px solid var(--red)"><b>你的卡點是數據拿不到。</b><br><span class="muted">這一項要公司解，不是你個人能解。</span></div>';
+    return {html:h,stage:stage,partials:[],dataBlocked:blocked};
+  }
+  var res={}, lowest=99, lowKey="", partials=[];
+  D.dims.forEach(function(d){
+    var s=scoreDim(a,d.key); res[d.key]=s;
+    partials=partials.concat(s.partial.map(function(p){return {dim:d.name,stage:D.stages[p.idx],text:d.items[p.idx]}}));
+    if(s.reached<lowest){lowest=s.reached;lowKey=d.key}
   });
-  $("again").addEventListener("click",()=>{$("survey-form").reset();$("agree").checked=false;document.querySelectorAll('input[name="role"]').forEach(x=>x.checked=false);show("start");});
-  // Exported only for local scoring checks; no production dependency.
-  window.__cxScore={scoreOrg,scoreIndividual};
-})();
+  var highest=0; D.dims.forEach(function(d){if(res[d.key].reached>highest)highest=res[d.key].reached});
+  var overall = lowest?D.stages[lowest-1]+"階":"尚未站上第 1 階";
+  var lowName=""; D.dims.forEach(function(d){if(d.key===lowKey)lowName=d.name});
+
+  // 四面向打平時不能說「先補某一面向」：挑出來的那一個只是順序第一，不是真的最弱
+  var tied = (highest===lowest), why;
+  if(tied && lowest===4) why='四個面向都走到引領階。<br>下一題是複製：讓第二、第三個部門走一樣的路。';
+  else if(tied) why='四個面向都停在同一階，沒有特別弱的一塊。<br>四個都要往上，先挑業務上最痛的那一個開始。';
+  else why='因為<b>'+esc(lowName)+'</b>停在這裡，而其他面向已經走到'+esc(D.stages[highest-1])+'階。<br>先補'+esc(lowName)+'，其他面向才有辦法再往上。';
+  var h='<div class="big"><div style="color:#B8C2D9;font-size:13px">整體成熟度</div><div class="lv">'+esc(overall)+'</div>'
+    +'<p>'+why+'</p></div>';
+  h+='<div class="panel"><p class="muted" style="margin:0">整體階段取四個面向中<b>最低</b>的那一個（木桶原理）。三根柱子缺一根，上面四階都會往下掉。</p></div>';
+
+  h+='<h2>四面向剖面</h2><div class="ladder">';
+  D.dims.forEach(function(d){
+    var s=res[d.key];
+    h+='<div class="row'+((!tied&&d.key===lowKey)?' low':'')+'"><div class="nm">'+esc(d.name)+'</div><div class="bar">';
+    for(var i=0;i<4;i++){
+      var cls = (i<s.reached)?"seg on":((i===s.reached&&s.half)?"seg half":"seg");
+      h+='<div class="'+cls+'"><span>'+esc(D.stages[i])+'</span></div>';
+    }
+    h+='</div></div>';
+  });
+  h+='</div><p class="muted">實心＝已站上；半格＝該階有項目「部分做到」，還沒完成。</p>';
+
+  h+='<h2>各面向現況</h2>';
+  D.dims.forEach(function(d){
+    h+='<div class="panel"><b>'+esc(d.name)+'：'+(res[d.key].reached?esc(D.stages[res[d.key].reached-1])+'階':'尚未站上第 1 階')+'</b>'
+     +'<p class="muted" style="margin:6px 0 0">'+esc(D.dimCopy[d.key][res[d.key].reached])+'</p></div>';
+  });
+
+  if(partials.length){
+    h+='<h2>離下一階最近的幾件事</h2><div class="panel"><p class="muted" style="margin:0 0 6px">這些你答「部分做到」。做完它們，對應面向就會晉階。</p><ul class="todo">';
+    partials.forEach(function(p){ h+='<li><b>'+esc(p.dim)+'・'+esc(p.stage)+'</b>　'+esc(p.text)+'</li>' });
+    h+='</ul></div>';
+  }
+  h+='<div class="panel" style="border-left:4px solid var(--red)"><b>想把這張剖面圖走一遍？</b><br><span class="muted">勾選「30 分鐘一對一」，我會跟你約時間。不收費，也不是提案。</span></div>';
+  return {html:h,stage:overall,profile:res,partials:partials,dataBlocked:false};
+}
+
+$("go").addEventListener("click",function(){
+  var r=document.querySelector('input[name=role]:checked');
+  role=r?r.value:"";
+  if(!role||!$("agree").checked){$("e0").hidden=false;return}
+  $("e0").hidden=true; build(); show("s1");
+});
+
+$("submit").addEventListener("click",function(){
+  var a=collect(), bad=[];
+  required().forEach(function(k){
+    var el=$("f-"+k); if(!el)return; el.classList.remove("invalid");
+    if(!a[k]||!a[k].length){bad.push(el);el.classList.add("invalid")}
+  });
+  var fl=a.follow||[], wants=fl.some(function(x){return x!=="暫時不需要"});
+  var em=a.email||"", emOk=!em||/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(em);
+  var ef=$("f-email"); ef.classList.remove("invalid");
+  if((wants&&!em)||!emOk){bad.push(ef);ef.classList.add("invalid")}
+  $("e1").hidden=bad.length===0;
+  if(bad.length){bad[0].scrollIntoView({behavior:"smooth",block:"center"});return}
+  var out=render(a);
+  $("res").innerHTML=out.html; show("s2"); A=a;
+  if(ENDPOINT&&APPROVED_CONSENT_HTML){
+    var payload={
+      ts:new Date().toISOString(),
+      version:role,
+      answers:a,
+      stage:out.stage,
+      profile:out.profile||null,                      // 四面向各自階段（Apps Script 讀 .reached）
+      partialCount:(out.partials||[]).length,          // 答「部分做到」的題數
+      dataBlocked:out.dataBlocked||false,              // 同仁版：數據拿不到
+      consentVersion:CONSENT_VERSION,
+      ua:navigator.userAgent
+    };
+    fetch(ENDPOINT,{method:"POST",mode:"no-cors",headers:{"Content-Type":"text/plain;charset=utf-8"},body:JSON.stringify(payload)})
+      .then(function(){$("sendst").textContent="送出要求已發出；請截圖留存結果，回收端仍需核對。"})
+      .catch(function(){$("sendst").textContent="送出要求失敗；結果仍可截圖留存。"});
+  }
+});
+
+$("again").addEventListener("click",function(){location.reload()});
 </script>
 </body>
 </html>
