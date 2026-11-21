@@ -16,6 +16,7 @@
 
 ## 部落格文章
 
+- [新人接不住的，不是你的步驟，是你的判斷](https://www.imkash.cc/blog/2026/11/handover-steps-not-judgment/)
 - [100 個 AI 代理查完一家上市公司的帳，正式意見仍用人工那份](https://www.imkash.cc/blog/2026/11/run-ai-alongside-humans-first/)
 - [等級能一夜砍半，升等就沒人想爬了](https://www.imkash.cc/blog/2026/11/loyalty-tier-perks-cut-overnight/)
 - [在 C-level 面前，專業知識是門票，不是籌碼](https://www.imkash.cc/blog/2026/11/switch-hats-consultant-coach-trainer/)
