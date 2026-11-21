@@ -16,7 +16,6 @@
 
 ## 部落格文章
 
-- [電通有機營收衰退 3.7% 的訊號：做得越快，收得越少](https://www.imkash.cc/blog/2026/11/when-hours-get-cheap-sell-outcomes/)
 - [寫不出整段文字的提案，就是還沒想清楚](https://www.imkash.cc/blog/2026/11/six-page-memo-over-slides/)
 - [新人接不住的，不是你的步驟，是你的判斷](https://www.imkash.cc/blog/2026/11/handover-steps-not-judgment/)
 - [100 個 AI 代理查完一家上市公司的帳，正式意見仍用人工那份](https://www.imkash.cc/blog/2026/11/run-ai-alongside-humans-first/)
