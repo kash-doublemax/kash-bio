@@ -16,6 +16,7 @@
 
 ## 部落格文章
 
+- [AI 代理要組團隊，還是排一條線：先看這件工作每週重不重複](https://www.imkash.cc/blog/2026/11/agent-team-or-factory/)
 - [結案那天把帳號關掉，不等於撤銷](https://www.imkash.cc/blog/2026/11/agent-offboarding-three-revocations/)
 - [平台上的粉絲數，從來不是你的名單](https://www.imkash.cc/blog/2026/11/platform-followers-are-not-your-list/)
 - [被挑刺的時候，要處理的是那件事，不是那句話](https://www.imkash.cc/blog/2026/11/boss-nitpicking-stop-feeding-emotion/)
