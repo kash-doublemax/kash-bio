@@ -16,6 +16,7 @@
 
 ## 部落格文章
 
+- [被挑刺的時候，要處理的是那件事，不是那句話](https://www.imkash.cc/blog/2026/11/boss-nitpicking-stop-feeding-emotion/)
 - [寫不出整段文字的提案，就是還沒想清楚](https://www.imkash.cc/blog/2026/11/six-page-memo-over-slides/)
 - [新人接不住的，不是你的步驟，是你的判斷](https://www.imkash.cc/blog/2026/11/handover-steps-not-judgment/)
 - [100 個 AI 代理查完一家上市公司的帳，正式意見仍用人工那份](https://www.imkash.cc/blog/2026/11/run-ai-alongside-humans-first/)
