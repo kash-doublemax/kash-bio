@@ -16,6 +16,7 @@
 
 ## 部落格文章
 
+- [不是會開太多，是桌上沒有能拍板的人](https://www.imkash.cc/blog/2026/11/stalled-meetings-ask-who-decides/)
 - [客人說「報表很亂」，別急著翻成「資料治理」](https://www.imkash.cc/blog/2026/11/mirror-client-words-not-jargon/)
 - [AI 會建議，和 AI 會動手，是兩種權限](https://www.imkash.cc/blog/2026/11/ai-suggests-human-decides-first/)
 - [拿掉產品經理一個月，他們又把人放回來了](https://www.imkash.cc/blog/2026/11/ai-execution-who-sets-direction/)
