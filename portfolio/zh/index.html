@@ -1,0 +1,339 @@
+<!doctype html>
+<html lang="zh-Hant">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="robots" content="noindex,nofollow,noarchive">
+<title>陳誼峰 Kash Chen｜產品作品集</title>
+<meta name="description" content="陳誼峰 Kash Chen 的產品策略、市場推廣與產品開發代表案例。">
+<link rel="alternate" hreflang="en" href="../">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Noto+Sans+TC:wght@400;500;700&family=Noto+Serif+TC:wght@600;700&family=Source+Serif+4:opsz,wght@8..60,600&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --ink:#102640; --ink-2:#1a3652; --paper:#f7f4ee; --card:#ffffff;
+    --accent:#c95f32; --muted:#5d6b78; --line:rgba(16,38,64,.14); --soft:#eef1f4;
+  }
+  *{box-sizing:border-box}
+  html{scroll-behavior:smooth}
+  body{margin:0;background:var(--paper);color:var(--ink);font-family:"Noto Sans TC",Inter,"Microsoft JhengHei",sans-serif;font-size:16.5px;line-height:1.6;-webkit-font-smoothing:antialiased}
+  a{color:var(--accent);text-underline-offset:3px}
+  .wrap{max-width:1040px;margin:0 auto;padding:0 24px}
+  h1,h2,h3{font-family:"Noto Serif TC","Source Serif 4",serif;font-weight:600;letter-spacing:-.01em;line-height:1.2;margin:0}
+  .eyebrow{font-size:12px;font-weight:600;letter-spacing:.16em;text-transform:uppercase;color:var(--accent);margin:0 0 12px}
+
+  /* hero */
+  header.hero{background:var(--ink);color:#fff;padding:72px 0 64px}
+  header.hero h1{font-size:clamp(34px,5vw,54px);max-width:15em}
+  header.hero .lead{font-size:clamp(17px,2vw,20px);color:rgba(255,255,255,.82);max-width:40em;margin:22px 0 0}
+  .meta{margin-top:30px;font-size:14px;color:rgba(255,255,255,.65)}
+  .meta a{color:#fff}
+  .jump{display:flex;flex-wrap:wrap;gap:10px;margin-top:34px}
+  .jump a{color:#fff;text-decoration:none;border:1px solid rgba(255,255,255,.3);padding:8px 14px;border-radius:999px;font-size:14px}
+  .jump a:hover{border-color:#fff}
+
+  /* thread */
+  section{padding:64px 0;border-bottom:1px solid var(--line)}
+  .thread h2{font-size:clamp(26px,3.2vw,34px);max-width:22em}
+  .thread p.intro{color:var(--muted);max-width:44em;margin:14px 0 0}
+  .timeline{list-style:none;padding:0;margin:36px 0 0;display:grid;grid-template-columns:repeat(5,1fr);gap:0}
+  .timeline li{border-top:3px solid var(--ink);padding:16px 14px 0 0;position:relative}
+  .timeline li::before{content:"";position:absolute;top:-8px;left:0;width:13px;height:13px;border-radius:50%;background:var(--accent)}
+  .timeline .yr{font-weight:700;font-size:14px;color:var(--accent)}
+  .timeline strong{display:block;margin:4px 0;font-size:15.5px}
+  .timeline span{font-size:14px;color:var(--muted);display:block;line-height:1.45}
+
+  /* cases */
+  .case-head{display:flex;flex-wrap:wrap;align-items:baseline;gap:6px 16px}
+  .case-head .tag{font-size:12px;font-weight:700;letter-spacing:.14em;text-transform:uppercase;background:var(--ink);color:#fff;padding:4px 10px;border-radius:4px}
+  .case h2{font-size:clamp(26px,3.2vw,36px);margin-top:14px}
+  .case .sub{color:var(--muted);margin:10px 0 0;max-width:46em}
+  .kpis{display:grid;grid-template-columns:repeat(3,1fr);gap:16px;margin:30px 0}
+  .kpi{background:var(--card);border:1px solid var(--line);border-top:3px solid var(--accent);padding:18px 18px 16px;border-radius:6px}
+  .kpi b{display:block;font-family:"Noto Serif TC","Source Serif 4",serif;font-size:28px;line-height:1.1}
+  .kpi span{font-size:14px;color:var(--muted);display:block;margin-top:6px;line-height:1.45}
+  .grid2{display:grid;grid-template-columns:1fr 1fr;gap:28px}
+  .block h3{font-family:"Noto Sans TC",Inter,sans-serif;font-size:13px;font-weight:700;letter-spacing:.08em;text-transform:uppercase;color:var(--ink-2);margin:0 0 8px}
+  .block p{margin:0}
+  .block ul{margin:0;padding-left:1.1em}
+  .block li{margin-bottom:6px}
+  .sub-case{margin-top:44px;padding-top:36px;border-top:1px dashed var(--line)}
+  .sub-case h3.title{font-family:"Noto Serif TC","Source Serif 4",serif;font-size:24px;margin:8px 0 6px}
+  .figure{margin:30px 0 30px}
+  .figure img{width:100%;height:auto;display:block;border-radius:6px}
+  .figure figcaption{font-size:13.5px;color:var(--muted);margin-top:8px}
+  .evidence{margin-top:26px;background:var(--soft);border-radius:6px;padding:16px 18px;font-size:14.5px}
+  .evidence strong{display:block;font-size:12px;letter-spacing:.12em;text-transform:uppercase;margin-bottom:6px}
+  .evidence ul{margin:0;padding-left:1.1em}
+  .note{font-size:13px;color:var(--muted);margin-top:10px}
+
+  /* press */
+  .press-list{list-style:none;padding:0;margin:8px 0 0}
+  .press-list li{display:grid;grid-template-columns:64px 1fr;gap:14px;padding:16px 0;border-top:1px solid var(--line)}
+  .press-list .yr{font-weight:700;color:var(--accent);font-size:14px;padding-top:2px}
+  .press-list a{color:var(--ink);font-weight:600;text-decoration:none}
+  .press-list a:hover{text-decoration:underline}
+  .press-list p{margin:4px 0 0;color:var(--muted);font-size:14.5px}
+
+  /* how */
+  .how-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:22px;margin-top:30px}
+  .how{border-top:2px solid var(--ink);padding-top:16px}
+  .how b{display:block;font-size:17px;margin-bottom:6px}
+  .how p{margin:0;color:var(--muted);font-size:15px}
+  footer{padding:48px 0 64px;color:var(--muted);font-size:14.5px}
+  footer a{color:var(--ink)}
+
+  @media (max-width:820px){
+    .timeline{grid-template-columns:1fr;gap:18px}
+    .timeline li{border-top:0;border-left:3px solid var(--ink);padding:0 0 0 18px}
+    .timeline li::before{top:2px;left:-8px}
+    .kpis,.grid2,.how-grid{grid-template-columns:1fr}
+    header.hero{padding:52px 0 46px}
+    section{padding:48px 0}
+  }
+  @media print{header.hero{background:none;color:var(--ink)}header.hero .lead,.meta{color:var(--ink)}.jump{display:none}section{break-inside:avoid}}
+</style>
+
+</head>
+<body>
+
+<header class="hero">
+  <div class="wrap">
+    <p class="eyebrow" style="color:#f0a37f">產品作品集 · 陳誼峰 Kash Chen</p>
+    <h1>把數據與平台，做成客戶願意付費的產品。</h1>
+    <p class="lead">這裡整理我在產品工作三個環節的代表案例：訂產品策略、推向市場、帶工程團隊把產品做出來。每個案例都寫明我的角色、做法、結果，以及可以查證的出處。</p>
+    <div class="jump">
+      <a href="#strategy">01 產品策略</a>
+      <a href="#gtm">02 市場推廣</a>
+      <a href="#build">03 產品開發</a>
+      <a href="#press">媒體報導</a>
+    </div>
+    <p class="meta">台北 · <a href="mailto:kash.doublemax@gmail.com">kash.doublemax@gmail.com</a> · <a href="https://www.imkash.cc">imkash.cc</a> · <a href="../" lang="en">English</a></p>
+  </div>
+</header>
+
+<section class="thread">
+  <div class="wrap">
+    <p class="eyebrow">一條主線</p>
+    <h2>十四年來，我一直在解同一個問題：讓數據和廣告平台真的能賺錢。</h2>
+    <p class="intro">我在 cacaFly 集團內接連建立三個新事業：喆立科技（DoubleMax）、群洋數位（ADnalyst）、經緯廣告科技（adHub）。技術從廣告聯播網、程序化購買，走到顧客數據平台與數據無塵室；產品問題始終一樣：誰付錢、買什麼、怎麼在規則內重複交付。</p>
+    <ol class="timeline">
+      <li><div class="yr">2012–13</div><strong>建置</strong><span>在 DoubleMax 定義規格並建置網站與行動社群廣告聯播平台。</span></li>
+      <li><div class="yr">2014–15</div><strong>上市</strong><span>把國際 DSP 引進台灣市場，並設計媒體數據變現模式。</span></li>
+      <li><div class="yr">2016–22</div><strong>放大</strong><span>adHub 從內部構想做到三年內年營收超過新台幣 2 億，並推出自有廣告科技工具。</span></li>
+      <li><div class="yr">2024</div><strong>金融</strong><span>為安達人壽設計 CDP 與預測模型路線圖。</span></li>
+      <li><div class="yr">2025–27</div><strong>變現</strong><span>帶領 H2U 健康數據產品，從需求一路做到 2027–28 董事會路線圖。</span></li>
+    </ol>
+  </div>
+</section>
+
+<section class="case" id="strategy">
+  <div class="wrap">
+    <div class="case-head"><span class="tag">01 · 產品策略</span><span class="note" style="margin:0">美庫爾 Merkle Taiwan（電通集團）· 解決方案總顧問</span></div>
+    <h2>H2U 健康媒體網：從廣告版位，走到健康數據產品</h2>
+    <p class="sub">H2U 永悅健康是台灣上市公司，隸屬全球最大電子代工集團鴻海集團。旗下品牌涵蓋健康內容、跑步、登山、電商與健檢。</p>
+
+    <div class="kpis">
+      <div class="kpi"><b>1 億</b><span>2027 年廣告營收目標（新台幣），2027 為商轉第一年</span></div>
+      <div class="kpi"><b>6 項產品</b><span>從自有版位、標準受眾包，到數據無塵室比對與數據授權</span></div>
+      <div class="kpi"><b>3 道關卡</b><span>資料授權、受控交付、標準封裝；每過一關解鎖一類客戶</span></div>
+    </div>
+
+    <div class="grid2">
+      <div class="block">
+        <h3>現況</h3>
+        <p>H2U 在多個網站累積了會員、內容與行為數據，但營收仍來自賣橫幅版位。業務、行銷與數據團隊對數據的定義不一致，也還沒有把數據單獨拿出來賣的路徑。</p>
+      </div>
+      <div class="block">
+        <h3>我的角色</h3>
+        <p>解決方案總顧問。整合客戶的整體需求、規劃系統解決方案，並統籌技術與產品團隊，把產品建置出來、推向市場商轉。</p>
+      </div>
+      <div class="block">
+        <h3>我做了什麼</h3>
+        <ul>
+          <li>把平台設計成三層：身分識別與數據治理、受眾建模、投放與成效回寫。</li>
+          <li>撰寫分階段、設關卡的 MVP 計畫，明確劃分客戶與廠商的責任。</li>
+          <li>撰寫給董事會的 2027–2028 產品路線圖：市場規模、六個產品層級、階段關卡、五項董事會追蹤指標與 90 天行動計畫。</li>
+          <li>把合規做進產品：去識別化、授權紀錄跟著資料走、對應台灣個資法與保險法規的關卡。</li>
+        </ul>
+      </div>
+      <div class="block">
+        <h3>結果</h3>
+        <ul>
+          <li>數據中台管道、受眾平台與廣告系統已上線；25 組標準受眾包已定義完成。</li>
+          <li>路線圖已提交董事會，作為 2027 年策略會議的依據。</li>
+          <li>2027 年為商轉第一年，廣告營收目標約新台幣 1 億元。</li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="sub-case">
+      <div class="case-head"><span class="tag" style="background:var(--ink-2)">01b · 產品策略</span><span class="note" style="margin:0">美庫爾 Merkle Taiwan · 2024</span></div>
+      <h3 class="title">安達人壽：顧客數據平台（CDP）與預測模型</h3>
+      <div class="kpis" style="grid-template-columns:1fr 1fr">
+        <div class="kpi"><b>50%+</b><span>名單命中率較原本的作法提升</span></div>
+        <div class="kpi"><b>50%+</b><span>EDM 點擊率較原本的作法提升</span></div>
+      </div>
+      <div class="grid2">
+        <div class="block">
+          <h3>現況</h3>
+          <p>資料串接仰賴多支各自獨立的 SAS ETL 程式。顧客、交易與互動資料沒有整合，行銷名單靠人工撈取。</p>
+        </div>
+        <div class="block">
+          <h3>我做了什麼</h3>
+          <ul>
+            <li>設計分階段路線圖：數據整合與品質驗證、會員價值分群、AI 預測與推薦模型、可解釋 AI。</li>
+            <li>主導平台選型：為兩家 CDP 廠商評分，並試算三年總持有成本。</li>
+            <li>加入資料治理工作線，以及未來數據合作用的數據無塵室框架。</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+
+    <div class="evidence">
+      <strong>可於面談時說明的文件</strong>
+      <ul>
+        <li>H2U 解決方案提案（2025 年 6 月）與 HMN 產品路線圖 2027–2028（2026 年 11 月），兩份皆為機密文件。</li>
+        <li>安達人壽顧客數據整合中台專案設計規劃提案（2024 年 3 月）。</li>
+      </ul>
+    </div>
+  </div>
+</section>
+
+<section class="case" id="gtm">
+  <div class="wrap">
+    <div class="case-head"><span class="tag">02 · 市場推廣</span><span class="note" style="margin:0">群洋數位 ADnalyst（funP／cacaFly 集團）· 產品總監 · 2014–2016</span></div>
+    <h2>把國際 DSP 平台 Sociomantic 引進台灣</h2>
+    <p class="sub">Sociomantic（後併入 dunnhumby）2009 年創立於柏林，是全球最早投入即時競價（RTB）的需求方平台之一。群洋數位於 2015 年 3 月取得其台灣獨家代理。</p>
+
+    <figure class="figure">
+      <img src="../assets/sociomantic-launch-2015.jpg" alt="2015 年程序化購買行銷高峰會現場，背板有 cacaFly、Sociomantic 與 ADnalyst 標誌" width="1024" height="683" loading="lazy">
+      <figcaption>2015 年程序化購買大趨勢行銷高峰會，由 cacaFly、Sociomantic 與群洋數位共同舉辦。</figcaption>
+    </figure>
+
+    <div class="grid2">
+      <div class="block">
+        <h3>現況</h3>
+        <p>程序化購買在台灣還很新。廣告主和代理商多半不清楚 DSP 是什麼，本地可選的平台流量規模也有限。</p>
+      </div>
+      <div class="block">
+        <h3>我的角色</h3>
+        <p>產品總監，負責整體市場推廣策略：市場教育、代理商通路、產品包裝與商務合作設計。</p>
+      </div>
+      <div class="block">
+        <h3>我做了什麼</h3>
+        <ul>
+          <li>籌辦對外發表會，並與廣告代理商進行路演。</li>
+          <li>把技術包裝成客戶買得懂的方案，例如給零售電商的再行銷方案：每日約 4 億次曝光、覆蓋台灣 95% 以上網路使用者，搭配六步驟導入流程。</li>
+          <li>設計商務合作模式，由 cacaFly 業務團隊協同銷售。</li>
+          <li>2014 年為精品雜誌媒體設計數據變現模式：媒體埋追蹤碼，受眾數據包裝後賣給 DSP 買方，雙方分潤。</li>
+        </ul>
+      </div>
+      <div class="block">
+        <h3>結果</h3>
+        <ul>
+          <li>2015 年 3 月宣布取得 Sociomantic 台灣獨家代理。</li>
+          <li>在此之前，已從美國、中國、英國、德國引進 RTB 產品並在台上市。</li>
+          <li>這套媒體數據變現模式，十年後在 H2U 以更大規模再做一次。</li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="evidence">
+      <strong>查證</strong>
+      <ul>
+        <li><a href="https://technews.tw/2015/03/09/cacafly-funp-dsp-sociomantic/" target="_blank" rel="noopener">科技新報，2015 年 3 月 9 日：群洋數位獨家代理 DSP 平台 Sociomantic</a></li>
+        <li>客戶提案：健康美妝零售商再行銷方案（2014）、雜誌媒體 DMP 合作提案（2014），可於面談時提供。</li>
+      </ul>
+    </div>
+  </div>
+</section>
+
+<section class="case" id="build">
+  <div class="wrap">
+    <div class="case-head"><span class="tag">03 · 產品開發</span><span class="note" style="margin:0">喆立科技 DoubleMax · 產品經理（2012）→ 產品開發總監（2013）</span></div>
+    <h2>建置 ClickForce 與 MobiForce 廣告聯播平台</h2>
+    <p class="sub">喆立科技於 2012 年由 cacaFly 與台灣主要廣告聯播網域動行銷（ClickForce）合資成立，負責建置並營運自動化廣告投遞平台。公司一開始只有共用辦公室裡的兩張桌子。我負責產品從規格到上線，並與客戶合作推廣。</p>
+
+    <div class="kpis">
+      <div class="kpi"><b>500+</b><span>平台上的獨立網站主</span></div>
+      <div class="kpi"><b>近千萬</b><span>年淨利（新台幣），約兩年內達成</span></div>
+      <div class="kpi"><b>3 人</b><span>我帶領的工程團隊，負責網站與行動社群兩個平台</span></div>
+    </div>
+
+    <div class="grid2">
+      <div class="block">
+        <h3>我做了什麼</h3>
+        <ul>
+          <li>撰寫兩個平台的產品規格書與操作手冊。</li>
+          <li>廣告主與網站主自助後台：活動、版位、報表、請款與對帳。</li>
+          <li>CPM／CPC 計價，並以 eCPM 投遞邏輯兼顧廣告成效與網站主收益。</li>
+          <li>「作業範圍＋功能群組」權限模型，讓同一個人可擔任多種角色，不必切換多組帳號。</li>
+          <li>Facebook 粉絲團貼文廣告（含團主審核流程）與行動登陸頁。</li>
+          <li>再行銷與興趣定向廣告產品。</li>
+        </ul>
+      </div>
+      <div class="block">
+        <h3>結果</h3>
+        <ul>
+          <li>2014 年 ClickForce 合作網站約 900 個（涵蓋率 88%），MobiForce 合作行動媒體約 450 家。</li>
+          <li>2014 年 10 月，中華電信百分之百持股的子公司宣布入股域動行銷。</li>
+        </ul>
+        <h3 style="margin-top:22px">學到的事</h3>
+        <p>平台同時服務好幾種客戶。廣告主、代理商、網站主、媒體代理各自需要自己的畫面、權限與金流；每一種角色都運作順暢，產品才算成立。</p>
+      </div>
+    </div>
+
+    <div class="evidence">
+      <strong>查證</strong>
+      <ul>
+        <li><a href="https://www.bnext.com.tw/article/34155/BN-ARTICLE-34155" target="_blank" rel="noopener">數位時代，2014 年 10 月 23 日：中華電信子公司入股域動行銷</a></li>
+        <li><a href="https://vocus.cc/article/60ef9ad9fd897800011c135e" target="_blank" rel="noopener">LeadAgileX 專訪，2021 年 7 月：喆立科技合資、500+ 網站主與年淨利近千萬</a></li>
+        <li>DoubleMax 網站與行動社群廣告平台系統規格與操作手冊（2012 年 4–5 月），可於面談時提供。</li>
+      </ul>
+    </div>
+  </div>
+</section>
+
+<section class="press" id="press">
+  <div class="wrap">
+    <p class="eyebrow">媒體報導</p>
+    <h2 style="font-size:clamp(26px,3.2vw,34px)">與上述工作相關的報導</h2>
+
+    <figure class="figure">
+      <img src="../assets/adhub-launch-2018.jpg" alt="adHub 2018 年產品發表會座談，螢幕上有 ACHO for LINE、ANN 與 adHub Trader Dashboard" width="640" height="406" loading="lazy" style="max-width:640px">
+      <figcaption>adHub 2018 年產品發表會：ACHO for LINE、ANN 全媒體解決方案與 adHub Trader Dashboard。</figcaption>
+    </figure>
+
+    <ul class="press-list">
+      <li><span class="yr">2021</span><div><a href="https://adm.com.tw/article/661faac4fd89780001c22086" target="_blank" rel="noopener">廣告雜誌：貝立德邀請陳誼峰任副總經理兼營運轉型長</a><p>2021 年 8 月 9 日生效，帶領營業本部並推動公司營運轉型。</p></div></li>
+      <li><span class="yr">2021</span><div><a href="https://vocus.cc/article/60ef9ad9fd897800011c135e" target="_blank" rel="noopener">LeadAgileX 專訪：數位策略顧問如何煉成？</a><p>在 cacaFly 集團內建立三個新事業：喆立科技、群洋數位、經緯廣告科技。經緯服務超過 2,000 家客戶、廣告投遞逾新台幣 30 億元。</p></div></li>
+      <li><span class="yr">2018</span><div><a href="https://adm.com.tw/article/661fb3dcfd89780001c28276" target="_blank" rel="noopener">廣告雜誌：攜手微軟、活用 LINE 平台，adHub 經緯廣告科技打造行銷新利器</a><p>adHub Trader Dashboard 以 Microsoft Power BI 建置；ACHO 媒合 LINE 帳號的線上線下顧客資料。報導中職稱為事業發展總監，同年升任副總經理。</p></div></li>
+      <li><span class="yr">2015</span><div><a href="https://technews.tw/2015/03/09/cacafly-funp-dsp-sociomantic/" target="_blank" rel="noopener">科技新報：群洋數位獨家代理 DSP 平台 Sociomantic</a><p>即上方市場推廣案例。</p></div></li>
+      <li><span class="yr">2014</span><div><a href="https://www.bnext.com.tw/article/34155/BN-ARTICLE-34155" target="_blank" rel="noopener">數位時代：中華電信子公司入股域動行銷</a><p>喆立科技為其建置平台的廣告聯播網。</p></div></li>
+    </ul>
+  </div>
+</section>
+
+<section class="how-sec">
+  <div class="wrap">
+    <p class="eyebrow">工作方式</p>
+    <h2 style="font-size:clamp(26px,3.2vw,34px)">從這些案例累積的三個習慣</h2>
+    <div class="how-grid">
+      <div class="how"><b>先問誰付錢</b><p>每份路線圖都從買方、產品內容與定價邏輯開始，再回推平台要怎麼做。</p></div>
+      <div class="how"><b>用證據過關</b><p>每個階段都有過關條件，例如第一個付費客戶或可重複販售的產品包，達成後才投入下一階段。</p></div>
+      <div class="how"><b>把合規做進產品</b><p>同意、授權與資料規則都是產品功能，在健康、保險與金融產業尤其如此。</p></div>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <div class="wrap">
+    <p>完整履歷與機密文件可於面談時提供。<a href="mailto:kash.doublemax@gmail.com">kash.doublemax@gmail.com</a></p>
+    <p class="note">數字取自客戶文件與上方引用的公開報導。H2U 營收數字為 2027 年目標，並非已簽訂營收。</p>
+  </div>
+</footer>
+
+</body>
+</html>

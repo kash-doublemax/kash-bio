@@ -1,0 +1,341 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="robots" content="noindex,nofollow,noarchive">
+<title>Kash Chen — Product Portfolio</title>
+<meta name="description" content="Selected product, go-to-market and product-development work by Yi-Fung (Kash) Chen.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Source+Serif+4:opsz,wght@8..60,500;8..60,600&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --ink:#102640; --ink-2:#1a3652; --paper:#f7f4ee; --card:#ffffff;
+    --accent:#c95f32; --muted:#5d6b78; --line:rgba(16,38,64,.14); --soft:#eef1f4;
+  }
+  *{box-sizing:border-box}
+  html{scroll-behavior:smooth}
+  body{margin:0;background:var(--paper);color:var(--ink);font-family:Inter,"Segoe UI",Arial,sans-serif;font-size:16.5px;line-height:1.6;-webkit-font-smoothing:antialiased}
+  a{color:var(--accent);text-underline-offset:3px}
+  .wrap{max-width:1040px;margin:0 auto;padding:0 24px}
+  h1,h2,h3{font-family:"Source Serif 4",Georgia,serif;font-weight:600;letter-spacing:-.01em;line-height:1.2;margin:0}
+  .eyebrow{font-size:12px;font-weight:600;letter-spacing:.16em;text-transform:uppercase;color:var(--accent);margin:0 0 12px}
+
+  /* hero */
+  header.hero{background:var(--ink);color:#fff;padding:72px 0 64px}
+  header.hero h1{font-size:clamp(34px,5vw,54px);max-width:15em}
+  header.hero .lead{font-size:clamp(17px,2vw,20px);color:rgba(255,255,255,.82);max-width:40em;margin:22px 0 0}
+  .meta{margin-top:30px;font-size:14px;color:rgba(255,255,255,.65)}
+  .meta a{color:#fff}
+  .jump{display:flex;flex-wrap:wrap;gap:10px;margin-top:34px}
+  .jump a{color:#fff;text-decoration:none;border:1px solid rgba(255,255,255,.3);padding:8px 14px;border-radius:999px;font-size:14px}
+  .jump a:hover{border-color:#fff}
+
+  /* thread */
+  section{padding:64px 0;border-bottom:1px solid var(--line)}
+  .thread h2{font-size:clamp(26px,3.2vw,34px);max-width:22em}
+  .thread p.intro{color:var(--muted);max-width:44em;margin:14px 0 0}
+  .timeline{list-style:none;padding:0;margin:36px 0 0;display:grid;grid-template-columns:repeat(5,1fr);gap:0}
+  .timeline li{border-top:3px solid var(--ink);padding:16px 14px 0 0;position:relative}
+  .timeline li::before{content:"";position:absolute;top:-8px;left:0;width:13px;height:13px;border-radius:50%;background:var(--accent)}
+  .timeline .yr{font-weight:700;font-size:14px;color:var(--accent)}
+  .timeline strong{display:block;margin:4px 0;font-size:15.5px}
+  .timeline span{font-size:14px;color:var(--muted);display:block;line-height:1.45}
+
+  /* cases */
+  .case-head{display:flex;flex-wrap:wrap;align-items:baseline;gap:6px 16px}
+  .case-head .tag{font-size:12px;font-weight:700;letter-spacing:.14em;text-transform:uppercase;background:var(--ink);color:#fff;padding:4px 10px;border-radius:4px}
+  .case h2{font-size:clamp(26px,3.2vw,36px);margin-top:14px}
+  .case .sub{color:var(--muted);margin:10px 0 0;max-width:46em}
+  .kpis{display:grid;grid-template-columns:repeat(3,1fr);gap:16px;margin:30px 0}
+  .kpi{background:var(--card);border:1px solid var(--line);border-top:3px solid var(--accent);padding:18px 18px 16px;border-radius:6px}
+  .kpi b{display:block;font-family:"Source Serif 4",Georgia,serif;font-size:28px;line-height:1.1}
+  .kpi span{font-size:14px;color:var(--muted);display:block;margin-top:6px;line-height:1.45}
+  .grid2{display:grid;grid-template-columns:1fr 1fr;gap:28px}
+  .block h3{font-family:Inter,sans-serif;font-size:13px;font-weight:700;letter-spacing:.12em;text-transform:uppercase;color:var(--ink-2);margin:0 0 8px}
+  .block p{margin:0}
+  .block ul{margin:0;padding-left:1.1em}
+  .block li{margin-bottom:6px}
+  .sub-case{margin-top:44px;padding-top:36px;border-top:1px dashed var(--line)}
+  .sub-case h3.title{font-family:"Source Serif 4",Georgia,serif;font-size:24px;margin:8px 0 6px}
+  .figure{margin:30px 0 30px}
+  .figure img{width:100%;height:auto;display:block;border-radius:6px}
+  .figure figcaption{font-size:13.5px;color:var(--muted);margin-top:8px}
+  .evidence{margin-top:26px;background:var(--soft);border-radius:6px;padding:16px 18px;font-size:14.5px}
+  .evidence strong{display:block;font-size:12px;letter-spacing:.12em;text-transform:uppercase;margin-bottom:6px}
+  .evidence ul{margin:0;padding-left:1.1em}
+  .note{font-size:13px;color:var(--muted);margin-top:10px}
+
+  /* press */
+  .press-list{list-style:none;padding:0;margin:8px 0 0}
+  .press-list li{display:grid;grid-template-columns:64px 1fr;gap:14px;padding:16px 0;border-top:1px solid var(--line)}
+  .press-list .yr{font-weight:700;color:var(--accent);font-size:14px;padding-top:2px}
+  .press-list a{color:var(--ink);font-weight:600;text-decoration:none}
+  .press-list a:hover{text-decoration:underline}
+  .press-list p{margin:4px 0 0;color:var(--muted);font-size:14.5px}
+
+  /* how */
+  .how-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:22px;margin-top:30px}
+  .how{border-top:2px solid var(--ink);padding-top:16px}
+  .how b{display:block;font-size:17px;margin-bottom:6px}
+  .how p{margin:0;color:var(--muted);font-size:15px}
+  footer{padding:48px 0 64px;color:var(--muted);font-size:14.5px}
+  footer a{color:var(--ink)}
+
+  @media (max-width:820px){
+    .timeline{grid-template-columns:1fr;gap:18px}
+    .timeline li{border-top:0;border-left:3px solid var(--ink);padding:0 0 0 18px}
+    .timeline li::before{top:2px;left:-8px}
+    .kpis,.grid2,.how-grid{grid-template-columns:1fr}
+    header.hero{padding:52px 0 46px}
+    section{padding:48px 0}
+  }
+  @media print{header.hero{background:none;color:var(--ink)}header.hero .lead,.meta{color:var(--ink)}.jump{display:none}section{break-inside:avoid}}
+</style>
+</head>
+<body>
+
+<header class="hero">
+  <div class="wrap">
+    <p class="eyebrow" style="color:#f0a37f">Product Portfolio · Yi-Fung (Kash) Chen</p>
+    <h1>Turning data and platforms into products people pay for.</h1>
+    <p class="lead">Selected work across three parts of the product job: setting product strategy, taking products to market, and building them with engineering teams. Each case lists my role, what I did, the result, and where to verify it.</p>
+    <div class="jump">
+      <a href="#strategy">01 Product strategy</a>
+      <a href="#gtm">02 Go-to-market</a>
+      <a href="#build">03 Product development</a>
+      <a href="#press">In the press</a>
+    </div>
+    <p class="meta">Taipei, Taiwan · <a href="mailto:kash.doublemax@gmail.com">kash.doublemax@gmail.com</a> · <a href="https://www.imkash.cc">imkash.cc</a> · <a href="zh/" lang="zh-Hant">中文版</a></p>
+  </div>
+</header>
+
+<section class="thread">
+  <div class="wrap">
+    <p class="eyebrow">The common thread</p>
+    <h2>For fourteen years I have worked on one problem: making data and ad platforms commercially useful.</h2>
+    <p class="intro">Inside the cacaFly group I started three new businesses in a row: DoubleMax, ADnalyst and adHub. The technology changed from ad networks to programmatic buying to customer data platforms and clean rooms. The product question stayed the same: who pays, for what, and how do we deliver it repeatably and within the rules.</p>
+    <ol class="timeline">
+      <li><div class="yr">2012–13</div><strong>Build</strong><span>Specified and built ad-network platforms (web and mobile-social) at DoubleMax.</span></li>
+      <li><div class="yr">2014–15</div><strong>Launch</strong><span>Took a global DSP to the Taiwan market; designed a publisher data-monetization model.</span></li>
+      <li><div class="yr">2016–22</div><strong>Scale</strong><span>Grew adHub from an internal concept to over NTD 200M annual revenue in three years; launched its ad-tech tools.</span></li>
+      <li><div class="yr">2024</div><strong>Insure</strong><span>Designed a CDP and prediction-model roadmap for Chubb Life Taiwan.</span></li>
+      <li><div class="yr">2025–27</div><strong>Monetize</strong><span>Led H2U's health-data product from requirements to a 2027–28 board roadmap.</span></li>
+    </ol>
+  </div>
+</section>
+
+<!-- ============ 01 PRODUCT STRATEGY ============ -->
+<section class="case" id="strategy">
+  <div class="wrap">
+    <div class="case-head"><span class="tag">01 · Product strategy</span><span class="note" style="margin:0">Merkle Taiwan (dentsu Group) · Lead solution consultant</span></div>
+    <h2>H2U Health Media Network: from ad inventory to a health-data product</h2>
+    <p class="sub">H2U is a Taiwan-listed health media and membership company within Hon Hai (Foxconn) Group, the world's largest electronics manufacturer. Its brands cover health content, running, hiking, e-commerce and health checks.</p>
+
+    <div class="kpis">
+      <div class="kpi"><b>NTD 100M</b><span>Advertising revenue target for 2027, the first commercial year</span></div>
+      <div class="kpi"><b>6 products</b><span>From managed media to audience packages, clean-room matching and data licensing</span></div>
+      <div class="kpi"><b>3 gates</b><span>Licensing, controlled delivery, standard packaging; each unlocks a new customer type</span></div>
+    </div>
+
+    <div class="grid2">
+      <div class="block">
+        <h3>Situation</h3>
+        <p>H2U had members, content and behavior data across several sites, but revenue still came from selling banner space. Data definitions differed across business, marketing and data teams, and there was no path to sell data on its own.</p>
+      </div>
+      <div class="block">
+        <h3>My role</h3>
+        <p>Lead solution consultant. I consolidated the client's requirements, planned the system solution, and coordinated the technology and product teams that built the product and took it to market.</p>
+      </div>
+      <div class="block">
+        <h3>What I did</h3>
+        <ul>
+          <li>Designed the platform in three layers: identity and data governance, audience modeling, and activation with ad-performance feedback.</li>
+          <li>Wrote a stage-gated MVP plan with clear client and vendor responsibilities.</li>
+          <li>Authored the 2027–2028 product roadmap for the client's board: market sizing, six product tiers, phase gates, a five-metric board scorecard and a 90-day plan.</li>
+          <li>Built compliance into the product: de-identification, consent and licensing records that travel with the data, and gates mapped to Taiwan's personal-data and insurance rules.</li>
+        </ul>
+      </div>
+      <div class="block">
+        <h3>Result</h3>
+        <ul>
+          <li>Data pipeline, audience platform and ad system are live; 25 standard audience packages are defined.</li>
+          <li>Roadmap presented to the board for the 2027 strategy cycle.</li>
+          <li>2027 is the first commercial year, with an advertising revenue target of about NTD 100 million.</li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="sub-case">
+      <div class="case-head"><span class="tag" style="background:var(--ink-2)">01b · Product strategy</span><span class="note" style="margin:0">Merkle Taiwan · 2024</span></div>
+      <h3 class="title">Chubb Life Taiwan: customer data platform and prediction models</h3>
+      <div class="kpis" style="grid-template-columns:1fr 1fr">
+        <div class="kpi"><b>50%+</b><span>Higher list hit rate than the previous targeting approach</span></div>
+        <div class="kpi"><b>50%+</b><span>Higher email click-through rate than the previous approach</span></div>
+      </div>
+      <div class="grid2">
+        <div class="block">
+          <h3>Situation</h3>
+          <p>The insurer's data flows ran on many separate SAS ETL jobs. Customer, transaction and engagement data were not unified, and campaign lists were built by hand.</p>
+        </div>
+        <div class="block">
+          <h3>What I did</h3>
+          <ul>
+            <li>Designed a phased roadmap: data integration and quality, member value segmentation, AI prediction and recommendation models, then explainable AI.</li>
+            <li>Ran the platform selection: scored two CDP vendors and modeled three-year total cost of ownership.</li>
+            <li>Added a data-governance track and a clean-room framework for future data partnerships.</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+
+    <div class="evidence">
+      <strong>Evidence available on request</strong>
+      <ul>
+        <li>H2U solution proposal (June 2025) and HMN Product Roadmap 2027–2028 (Nov 2026). Both confidential; I can walk through them in an interview.</li>
+        <li>Chubb Life CDP project design proposal (March 2024).</li>
+      </ul>
+    </div>
+  </div>
+</section>
+
+<!-- ============ 02 GO-TO-MARKET ============ -->
+<section class="case" id="gtm">
+  <div class="wrap">
+    <div class="case-head"><span class="tag">02 · Go-to-market</span><span class="note" style="margin:0">ADnalyst (funP / cacaFly group) · Product Director · 2014–2016</span></div>
+    <h2>Launching Sociomantic, a global DSP, in Taiwan</h2>
+    <p class="sub">Sociomantic (later part of dunnhumby) was one of the earliest real-time-bidding demand-side platforms, founded in Berlin in 2009. ADnalyst became its exclusive partner in Taiwan in March 2015.</p>
+
+    <figure class="figure">
+      <img src="assets/sociomantic-launch-2015.jpg" alt="Stage at the 2015 programmatic marketing summit in Taipei, with cacaFly, Sociomantic and ADnalyst logos on the backdrop" width="1024" height="683" loading="lazy">
+      <figcaption>Taiwan launch summit for programmatic buying, co-hosted by cacaFly, Sociomantic and ADnalyst, 2015.</figcaption>
+    </figure>
+
+    <div class="grid2">
+      <div class="block">
+        <h3>Situation</h3>
+        <p>Programmatic buying was new in Taiwan. Advertisers and agencies did not yet know what a DSP was, and most local options were limited in reach.</p>
+      </div>
+      <div class="block">
+        <h3>My role</h3>
+        <p>Product Director, responsible for the go-to-market strategy: market education, agency channel, packaging and commercial partnership design.</p>
+      </div>
+      <div class="block">
+        <h3>What I did</h3>
+        <ul>
+          <li>Organized the public launch summit and ran roadshows with advertising agencies.</li>
+          <li>Packaged the technology into offers clients could buy, such as a retargeting solution for retail e-commerce: about 400 million daily impressions and over 95% reach of Taiwan's internet users, with a six-step onboarding process.</li>
+          <li>Designed the commercial partnership model with cacaFly's sales team as the co-selling channel.</li>
+          <li>Designed a publisher data-monetization model (2014) for premium magazine titles: publishers add a tracking tag, audience data is packaged for DSP buyers, and revenue is shared.</li>
+        </ul>
+      </div>
+      <div class="block">
+        <h3>Result</h3>
+        <ul>
+          <li>Exclusive Taiwan distribution of Sociomantic announced in March 2015.</li>
+          <li>Earlier, sourced RTB products from the US, China, the UK and Germany and launched them in Taiwan.</li>
+          <li>The publisher data-monetization model is the same logic I applied at scale for H2U ten years later.</li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="evidence">
+      <strong>Verify</strong>
+      <ul>
+        <li><a href="https://technews.tw/2015/03/09/cacafly-funp-dsp-sociomantic/" target="_blank" rel="noopener">TechNews, 9 March 2015: ADnalyst named exclusive Taiwan distributor of Sociomantic</a> (Chinese)</li>
+        <li>Client proposals: retargeting solution for a health-and-beauty retailer (2014); DMP partnership proposal for a magazine publisher (2014). Available on request.</li>
+      </ul>
+    </div>
+  </div>
+</section>
+
+<!-- ============ 03 PRODUCT DEVELOPMENT ============ -->
+<section class="case" id="build">
+  <div class="wrap">
+    <div class="case-head"><span class="tag">03 · Product development</span><span class="note" style="margin:0">DoubleMax · Product Manager (2012) → Product Development Director (2013)</span></div>
+    <h2>Building the ClickForce and MobiForce ad networks</h2>
+    <p class="sub">DoubleMax was set up in 2012 as a joint venture between cacaFly and ClickForce, one of Taiwan's largest ad networks, to build and run an automated ad-delivery platform. It started as two desks in a shared office. I owned the product from specification to launch and worked with clients to roll it out.</p>
+
+    <div class="kpis">
+      <div class="kpi"><b>500+</b><span>Independent publisher sites on the platform</span></div>
+      <div class="kpi"><b>~NTD 10M</b><span>Annual net profit, reached within about two years</span></div>
+      <div class="kpi"><b>3 engineers</b><span>The team I led to build and run two platforms: web, and mobile plus Facebook social</span></div>
+    </div>
+
+    <div class="grid2">
+      <div class="block">
+        <h3>What I built</h3>
+        <ul>
+          <li>Wrote the product specifications and user manuals for both platforms.</li>
+          <li>Self-service back office for advertisers and publishers: campaigns, placements, reporting, billing and reconciliation.</li>
+          <li>CPM and CPC pricing, with an eCPM-based delivery logic that balanced advertiser performance and publisher revenue.</li>
+          <li>A permission model built on "operating scope plus function groups", so one person could act in several roles without multiple accounts.</li>
+          <li>Facebook fan-page post ads with a page-owner approval workflow, and mobile landing pages.</li>
+          <li>Retargeting and interest-based targeting products.</li>
+        </ul>
+      </div>
+      <div class="block">
+        <h3>Result</h3>
+        <ul>
+          <li>By 2014 ClickForce reached about 900 partner sites (88% coverage) and MobiForce about 450 mobile media partners.</li>
+          <li>In October 2014 a wholly owned subsidiary of Chunghwa Telecom, Taiwan's largest telecom operator, announced an equity investment in ClickForce.</li>
+        </ul>
+        <h3 style="margin-top:22px">What it taught me</h3>
+        <p>A platform serves several customers at once. Each role (advertiser, agency, publisher, publisher rep) needs its own view, permissions and money flow, and the product only works when all of them do.</p>
+      </div>
+    </div>
+
+    <div class="evidence">
+      <strong>Verify</strong>
+      <ul>
+        <li><a href="https://www.bnext.com.tw/article/34155/BN-ARTICLE-34155" target="_blank" rel="noopener">Business Next, 23 October 2014: Chunghwa Telecom subsidiary invests in ClickForce</a> (Chinese)</li>
+        <li><a href="https://vocus.cc/article/60ef9ad9fd897800011c135e" target="_blank" rel="noopener">LeadAgileX profile, July 2021: the DoubleMax joint venture, 500+ publishers and near NTD 10M annual net profit</a> (Chinese)</li>
+        <li>DoubleMax system specifications and user manuals for the web and mobile-social ad platforms (April–May 2012). Available on request.</li>
+      </ul>
+    </div>
+  </div>
+</section>
+
+<section class="press" id="press">
+  <div class="wrap">
+    <p class="eyebrow">In the press</p>
+    <h2 style="font-size:clamp(26px,3.2vw,34px)">Coverage of the work above</h2>
+
+    <figure class="figure">
+      <img src="assets/adhub-launch-2018.jpg" alt="Panel on stage at the adHub 2018 product launch, with ACHO for LINE, ANN and adHub Trader Dashboard on the screen" width="640" height="406" loading="lazy" style="max-width:640px">
+      <figcaption>adHub 2018 product launch: ACHO for LINE, the ANN cross-media solution and adHub Trader Dashboard.</figcaption>
+    </figure>
+
+    <ul class="press-list">
+      <li><span class="yr">2021</span><div><a href="https://adm.com.tw/article/661faac4fd89780001c22086" target="_blank" rel="noopener">Adm Magazine: appointed Vice President and Chief Transformation Officer at dentsuX Taiwan (貝立德)</a><p>Effective 9 August 2021, leading a business unit and the company's operating-model transformation.</p></div></li>
+      <li><span class="yr">2021</span><div><a href="https://vocus.cc/article/60ef9ad9fd897800011c135e" target="_blank" rel="noopener">LeadAgileX profile: how a digital strategy consultant is made</a><p>Three new businesses built inside the cacaFly group: DoubleMax, ADnalyst and adHub. adHub had served over 2,000 clients and delivered more than NTD 3 billion in ad spend.</p></div></li>
+      <li><span class="yr">2018</span><div><a href="https://adm.com.tw/article/661fb3dcfd89780001c28276" target="_blank" rel="noopener">Adm Magazine: adHub launches Trader Dashboard with Microsoft and a LINE customer-data tool</a><p>adHub Trader Dashboard was built on Microsoft Power BI; ACHO matched online and offline customer profiles for LINE accounts. Pictured as Business Development Director; promoted to Vice President later in 2018.</p></div></li>
+      <li><span class="yr">2015</span><div><a href="https://technews.tw/2015/03/09/cacafly-funp-dsp-sociomantic/" target="_blank" rel="noopener">TechNews: ADnalyst named exclusive Taiwan distributor of Sociomantic</a><p>The go-to-market case above.</p></div></li>
+      <li><span class="yr">2014</span><div><a href="https://www.bnext.com.tw/article/34155/BN-ARTICLE-34155" target="_blank" rel="noopener">Business Next: Chunghwa Telecom subsidiary invests in ClickForce</a><p>The ad network whose platform DoubleMax built.</p></div></li>
+    </ul>
+    <p class="note">All articles are in Chinese.</p>
+  </div>
+</section>
+
+<section class="how-sec">
+  <div class="wrap">
+    <p class="eyebrow">How I work</p>
+    <h2 style="font-size:clamp(26px,3.2vw,34px)">Three habits from these cases</h2>
+    <div class="how-grid">
+      <div class="how"><b>Start from who pays</b><p>Every roadmap begins with the buyer, the offer and the price logic, then works back to the platform.</p></div>
+      <div class="how"><b>Gate by evidence</b><p>Each phase has a pass condition, such as a first paying client or a repeatable package, before the next one is funded.</p></div>
+      <div class="how"><b>Design compliance in</b><p>Consent, licensing and data rules are product features, especially in health, insurance and finance.</p></div>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <div class="wrap">
+    <p>Full CV and confidential materials are available on request. <a href="mailto:kash.doublemax@gmail.com">kash.doublemax@gmail.com</a></p>
+    <p class="note">Figures are taken from client documents and public press reports as cited. The H2U revenue figure is a 2027 target, not booked revenue.</p>
+  </div>
+</footer>
+
+</body>
+</html>
