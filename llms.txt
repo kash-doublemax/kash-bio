@@ -16,6 +16,7 @@
 
 ## 部落格文章
 
+- [上完一堂好課最大的風險，是以為自己已經會了](https://www.imkash.cc/blog/2026/11/skill-is-habit-not-understanding/)
 - [你撐不下去，不是抗壓性差，是看不到撐完會得到什麼](https://www.imkash.cc/blog/2026/11/endurance-needs-visible-payoff/)
 - [你想離開的，多半不是這一行，是這個位置](https://www.imkash.cc/blog/2026/11/direction-or-speed-problem/)
 - [桌上堆滿要返工的 AI 半成品：退回重做，還是先定義什麼叫能交件？](https://www.imkash.cc/blog/2026/11/ai-half-done-work-define-done/)
