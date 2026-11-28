@@ -16,6 +16,7 @@
 
 ## 部落格文章
 
+- [「我講話比較直」不是直，是你挑過對象](https://www.imkash.cc/blog/2026/11/blunt-or-picking-targets/)
 - [平台管得到代理怎麼進門，管不到它出錯之後](https://www.imkash.cc/blog/2026/11/agent-rules-before-platform-rules/)
 - [十年資歷，可能只是同一年重複十次](https://www.imkash.cc/blog/2026/11/ten-years-or-one-year-repeated/)
 - [最難的活都派給你，回報卻跟大家一樣](https://www.imkash.cc/blog/2026/11/heavy-work-same-reward/)
