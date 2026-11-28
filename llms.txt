@@ -16,6 +16,7 @@
 
 ## 部落格文章
 
+- [把會議時間記進行事曆，不等於你接下了這件事](https://www.imkash.cc/blog/2026/11/ask-what-the-meeting-is-for/)
 - [「我只要結果」不是效率，是把判斷的成本轉手給對方](https://www.imkash.cc/blog/2026/11/results-without-process/)
 - [團隊說 AI 讓產出變多了，我會先問哪個判斷變準了](https://www.imkash.cc/blog/2026/11/more-output-not-better-judgment/)
 - [三分鐘熱度不是你不夠自律，是你把目標訂成了一小時](https://www.imkash.cc/blog/2026/11/count-sessions-not-hours/)
