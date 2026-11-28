@@ -1,0 +1,331 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="robots" content="noindex,nofollow,noarchive">
+<title>Kash Chen — Operating Portfolio</title>
+<meta name="description" content="Operating, organization-building and transformation experience of Yi-Fung (Kash) Chen.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Source+Serif+4:opsz,wght@8..60,500;8..60,600&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --ink:#102640; --ink-2:#1a3652; --paper:#f7f4ee; --card:#ffffff;
+    --accent:#c95f32; --muted:#5d6b78; --line:rgba(16,38,64,.14); --soft:#eef1f4;
+  }
+  *{box-sizing:border-box}
+  html{scroll-behavior:smooth}
+  body{margin:0;background:var(--paper);color:var(--ink);font-family:Inter,"Segoe UI",Arial,sans-serif;font-size:16.5px;line-height:1.6;-webkit-font-smoothing:antialiased}
+  a{color:var(--accent);text-underline-offset:3px}
+  .wrap{max-width:1040px;margin:0 auto;padding:0 24px}
+  h1,h2,h3{font-family:"Source Serif 4",Georgia,serif;font-weight:600;letter-spacing:-.01em;line-height:1.2;margin:0}
+  .eyebrow{font-size:12px;font-weight:600;letter-spacing:.16em;text-transform:uppercase;color:var(--accent);margin:0 0 12px}
+
+  /* hero */
+  header.hero{background:var(--ink);color:#fff;padding:72px 0 64px}
+  header.hero h1{font-size:clamp(34px,5vw,54px);max-width:15em}
+  header.hero .lead{font-size:clamp(17px,2vw,20px);color:rgba(255,255,255,.82);max-width:40em;margin:22px 0 0}
+  .meta{margin-top:30px;font-size:14px;color:rgba(255,255,255,.65)}
+  .meta a{color:#fff}
+  .jump{display:flex;flex-wrap:wrap;gap:10px;margin-top:34px}
+  .jump a{color:#fff;text-decoration:none;border:1px solid rgba(255,255,255,.3);padding:8px 14px;border-radius:999px;font-size:14px}
+  .jump a:hover{border-color:#fff}
+
+  /* thread */
+  section{padding:64px 0;border-bottom:1px solid var(--line)}
+  .thread h2{font-size:clamp(26px,3.2vw,34px);max-width:22em}
+  .thread p.intro{color:var(--muted);max-width:44em;margin:14px 0 0}
+  .timeline{list-style:none;padding:0;margin:36px 0 0;display:grid;grid-template-columns:repeat(5,1fr);gap:0}
+  .timeline li{border-top:3px solid var(--ink);padding:16px 14px 0 0;position:relative}
+  .timeline li::before{content:"";position:absolute;top:-8px;left:0;width:13px;height:13px;border-radius:50%;background:var(--accent)}
+  .timeline .yr{font-weight:700;font-size:14px;color:var(--accent)}
+  .timeline strong{display:block;margin:4px 0;font-size:15.5px}
+  .timeline span{font-size:14px;color:var(--muted);display:block;line-height:1.45}
+
+  /* cases */
+  .case-head{display:flex;flex-wrap:wrap;align-items:baseline;gap:6px 16px}
+  .case-head .tag{font-size:12px;font-weight:700;letter-spacing:.14em;text-transform:uppercase;background:var(--ink);color:#fff;padding:4px 10px;border-radius:4px}
+  .case h2{font-size:clamp(26px,3.2vw,36px);margin-top:14px}
+  .case .sub{color:var(--muted);margin:10px 0 0;max-width:46em}
+  .kpis{display:grid;grid-template-columns:repeat(3,1fr);gap:16px;margin:30px 0}
+  .kpi{background:var(--card);border:1px solid var(--line);border-top:3px solid var(--accent);padding:18px 18px 16px;border-radius:6px}
+  .kpi b{display:block;font-family:"Source Serif 4",Georgia,serif;font-size:28px;line-height:1.1}
+  .kpi span{font-size:14px;color:var(--muted);display:block;margin-top:6px;line-height:1.45}
+  .grid2{display:grid;grid-template-columns:1fr 1fr;gap:28px}
+  .block h3{font-family:Inter,sans-serif;font-size:13px;font-weight:700;letter-spacing:.12em;text-transform:uppercase;color:var(--ink-2);margin:0 0 8px}
+  .block p{margin:0}
+  .block ul{margin:0;padding-left:1.1em}
+  .block li{margin-bottom:6px}
+  .sub-case{margin-top:44px;padding-top:36px;border-top:1px dashed var(--line)}
+  .sub-case h3.title{font-family:"Source Serif 4",Georgia,serif;font-size:24px;margin:8px 0 6px}
+  .figure{margin:30px 0 30px}
+  .figure img{width:100%;height:auto;display:block;border-radius:6px}
+  .figure figcaption{font-size:13.5px;color:var(--muted);margin-top:8px}
+  .evidence{margin-top:26px;background:var(--soft);border-radius:6px;padding:16px 18px;font-size:14.5px}
+  .evidence strong{display:block;font-size:12px;letter-spacing:.12em;text-transform:uppercase;margin-bottom:6px}
+  .evidence ul{margin:0;padding-left:1.1em}
+  .note{font-size:13px;color:var(--muted);margin-top:10px}
+
+  /* press */
+  .press-list{list-style:none;padding:0;margin:8px 0 0}
+  .press-list li{display:grid;grid-template-columns:64px 1fr;gap:14px;padding:16px 0;border-top:1px solid var(--line)}
+  .press-list .yr{font-weight:700;color:var(--accent);font-size:14px;padding-top:2px}
+  .press-list a{color:var(--ink);font-weight:600;text-decoration:none}
+  .press-list a:hover{text-decoration:underline}
+  .press-list p{margin:4px 0 0;color:var(--muted);font-size:14.5px}
+
+  /* how */
+  .how-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:22px;margin-top:30px}
+  .how{border-top:2px solid var(--ink);padding-top:16px}
+  .how b{display:block;font-size:17px;margin-bottom:6px}
+  .how p{margin:0;color:var(--muted);font-size:15px}
+  footer{padding:48px 0 64px;color:var(--muted);font-size:14.5px}
+  footer a{color:var(--ink)}
+
+  @media (max-width:820px){
+    .timeline{grid-template-columns:1fr;gap:18px}
+    .timeline li{border-top:0;border-left:3px solid var(--ink);padding:0 0 0 18px}
+    .timeline li::before{top:2px;left:-8px}
+    .kpis,.grid2,.how-grid{grid-template-columns:1fr}
+    header.hero{padding:52px 0 46px}
+    section{padding:48px 0}
+  }
+  @media print{header.hero{background:none;color:var(--ink)}header.hero .lead,.meta{color:var(--ink)}.jump{display:none}section{break-inside:avoid}}
+</style>
+<link rel="alternate" hreflang="zh-Hant" href="../">
+<style>
+  .how-grid.four{grid-template-columns:repeat(4,1fr)}
+  .press-list li strong{color:var(--ink)}
+  @media (max-width:820px){.how-grid.four{grid-template-columns:1fr}}
+</style>
+</head>
+<body>
+
+<header class="hero">
+  <div class="wrap">
+    <p class="eyebrow" style="color:#f0a37f">Operating Portfolio · Yi-Fung (Kash) Chen</p>
+    <h1>Building a business through its growth stage, then making it run without depending on one person.</h1>
+    <p class="lead">Selected experience in running a business, building organizations and leading transformation: owning a full P&amp;L, building teams and management systems from zero, and changing the operating model of an established company. Each case lists my role, what I did, the result and the source.</p>
+    <div class="jump">
+      <a href="#pnl">01 P&amp;L</a>
+      <a href="#ventures">02 New ventures</a>
+      <a href="#transform">03 Transformation</a>
+      <a href="#governance">04 Decision rights</a>
+      <a href="#first100">First 100 days</a>
+    </div>
+    <p class="meta">Taipei, Taiwan · <a href="mailto:kash.doublemax@gmail.com">kash.doublemax@gmail.com</a> · <a href="https://www.imkash.cc">imkash.cc</a> · <a href="../" lang="zh-Hant">中文版</a></p>
+  </div>
+</header>
+
+<section class="thread">
+  <div class="wrap">
+    <p class="eyebrow">The common thread</p>
+    <h2>The owner stepped back and I ran the business. My job was to make it work without me.</h2>
+    <p class="intro">Inside the funP / cacaFly group I built and ran three new businesses in a row. At dentsu I then worked on the opposite problem as Chief Transformation Officer: changing how an established company operates. Together they cover what a founder transition needs most.</p>
+    <ol class="timeline">
+      <li><div class="yr">2012–13</div><strong>Start</strong><span>DoubleMax: from two desks to about USD 300K annual net profit in two years.</span></li>
+      <li><div class="yr">2014–16</div><strong>Open</strong><span>ADnalyst: exclusive Taiwan distribution of a global DSP, taken to market.</span></li>
+      <li><div class="yr">2016–22</div><strong>Run</strong><span>adHub: full P&amp;L, over USD 6M annual revenue within three years.</span></li>
+      <li><div class="yr">2021–23</div><strong>Transform</strong><span>dentsuX: Vice President and Chief Transformation Officer.</span></li>
+      <li><div class="yr">2023–</div><strong>Govern</strong><span>Merkle: decision rights and stage gates for listed companies.</span></li>
+    </ol>
+  </div>
+</section>
+
+<section class="case" id="pnl">
+  <div class="wrap">
+    <div class="case-head"><span class="tag">01 · P&amp;L</span><span class="note" style="margin:0">adHub · Business Development Director → Vice President (2018) · 2016–2022</span></div>
+    <h2>adHub: from an internal concept to over USD 6M annual revenue</h2>
+    <p class="sub">adHub was a new business inside the cacaFly group that became an Official Facebook Ad Reseller. I was responsible for its revenue, cost and profit.</p>
+
+    <div class="kpis">
+      <div class="kpi"><b>USD 6M+</b><span>Annual revenue reached within three years (over NTD 200M)</span></div>
+      <div class="kpi"><b>Full P&amp;L</b><span>Revenue, cost and profit</span></div>
+      <div class="kpi"><b>13 people · 3 heads</b><span>Operations, sales and planning, each with its own manager</span></div>
+    </div>
+
+    <div class="grid2">
+      <div class="block">
+        <h3>Situation</h3>
+        <p>The group saw an opening in self-serve social advertising and needed someone who understood technology, sales and operations to turn the idea into a profitable stand-alone business.</p>
+      </div>
+      <div class="block">
+        <h3>My role</h3>
+        <p>Business owner: market entry, annual business planning, revenue forecasting, resource allocation and team building. Promoted to Vice President in 2018.</p>
+      </div>
+      <div class="block">
+        <h3>What I did</h3>
+        <ul>
+          <li>Split the team into operations, sales and planning, and developed a manager for each, so I could focus on direction, P&amp;L and key accounts.</li>
+          <li>Built one operating model from media planning and cross-channel operations to creative optimization and reporting, so service quality did not depend on individuals.</li>
+          <li>Ran regular revenue forecasts, account plans and performance reports as the basis for resource and commercial decisions.</li>
+          <li>Built in-house tools for efficiency and differentiation: adHub Trader Dashboard (on Microsoft Power BI) and ACHO, a LINE customer-data tool (2018).</li>
+        </ul>
+      </div>
+      <div class="block">
+        <h3>Result</h3>
+        <ul>
+          <li>Over NTD 200 million (about USD 6 million) annual revenue within three years.</li>
+          <li>Clients included Philips, Lenovo, Taobao, Tmall, EVA Air and 30+ apparel e-commerce brands.</li>
+          <li>2018 Digital Singularity Award, Programmatic Advertising (Lenovo team).</li>
+          <li>Per a 2021 profile, adHub had served over 2,000 clients and delivered about USD 100 million in ad spend.</li>
+        </ul>
+      </div>
+    </div>
+
+    <figure class="figure">
+      <img src="../assets/adhub-launch-2018.jpg" alt="Panel at the adHub 2018 product launch" width="640" height="406" loading="lazy" style="max-width:640px">
+      <figcaption>adHub 2018 product launch: ACHO for LINE, the ANN cross-media solution and adHub Trader Dashboard.</figcaption>
+    </figure>
+  </div>
+</section>
+
+<section class="case" id="ventures">
+  <div class="wrap">
+    <div class="case-head"><span class="tag">02 · New ventures</span><span class="note" style="margin:0">funP / cacaFly group · 2012–2016</span></div>
+    <h2>Three times handed a new business to build from zero</h2>
+    <p class="sub">Each time the group saw a new opportunity, it gave me a new business to build and run independently. adHub was the third; these were the first two.</p>
+
+    <div class="grid2">
+      <div class="block">
+        <h3>DoubleMax (2012–2013)</h3>
+        <ul>
+          <li>A cacaFly–ClickForce joint venture that started as two desks in a shared office.</li>
+          <li>Product Manager, promoted to Product Development Director in 2013; led a three-person engineering team to build web and mobile-social ad networks.</li>
+          <li>500+ publisher sites and <strong>about USD 300K annual net profit</strong> within about two years.</li>
+        </ul>
+      </div>
+      <div class="block">
+        <h3>ADnalyst (2014–2016)</h3>
+        <ul>
+          <li>Product Director, bringing real-time-bidding advertising to Taiwan.</li>
+          <li>Secured exclusive Taiwan distribution of Sociomantic in 2015; ran the launch summit and agency roadshows, and designed co-selling with the group's sales team.</li>
+          <li>Sourced products from the US, China, the UK and Germany and launched them in Taiwan.</li>
+        </ul>
+      </div>
+    </div>
+
+    <figure class="figure">
+      <img src="../assets/sociomantic-launch-2015.jpg" alt="2015 programmatic marketing summit in Taipei" width="1024" height="683" loading="lazy">
+      <figcaption>Taiwan launch summit for programmatic buying, co-hosted by cacaFly, Sociomantic and ADnalyst, 2015.</figcaption>
+    </figure>
+
+    <div class="block">
+      <h3>What these taught me</h3>
+      <p>A new business needs real authority and backing from the owner. In return, the operator's job is to build it to the point where systems and a team can carry it. That is how I see a founder transition: what is handed over is not a seat, but a mechanism that runs by itself.</p>
+    </div>
+  </div>
+</section>
+
+<section class="case" id="transform">
+  <div class="wrap">
+    <div class="case-head"><span class="tag">03 · Transformation</span><span class="note" style="margin:0">dentsuX Taiwan · Vice President &amp; Chief Transformation Officer · 2021–2023</span></div>
+    <h2>dentsuX: changing how an established agency operates</h2>
+    <p class="sub">Recruited by the managing director in August 2021, reporting to the COO, leading a business unit and the company's organizational transformation.</p>
+
+    <div class="grid2">
+      <div class="block">
+        <h3>Situation</h3>
+        <p>Insights, media, content, MarTech and e-commerce ran separately, while clients wanted integrated service and the market demanded faster response.</p>
+      </div>
+      <div class="block">
+        <h3>What I did</h3>
+        <ul>
+          <li>Integrated separate capabilities into one client-service model across the customer journey.</li>
+          <li>Introduced an Agile operating framework so planning, media, social and data science teams could re-prioritize quickly.</li>
+          <li>Modernized services and operations, moving cross-department work through influence rather than authority.</li>
+        </ul>
+      </div>
+      <div class="block">
+        <h3>Result</h3>
+        <ul>
+          <li>Associated with a projected 30%+ sales uplift in 2022 (projection).</li>
+          <li>Managed multinational clients including KFC, Warner Bros., Bausch + Lomb, Activision Blizzard and Coach.</li>
+        </ul>
+      </div>
+      <div class="block">
+        <h3>How I lead</h3>
+        <p>ICF Professional Certified Coach and Certified Scrum Master. I use coaching to build managers' judgment, and clear cadence and rules so teams can run on their own.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="case" id="governance">
+  <div class="wrap">
+    <div class="case-head"><span class="tag">04 · Decision rights</span><span class="note" style="margin:0">Merkle Taiwan · Principal Consultant / Vice President · 2023–</span></div>
+    <h2>Setting decision rights and stage gates for listed companies</h2>
+    <p class="sub">Consulting has let me work on the same management problem in many companies: departments that do not agree on definitions, ownership and priorities.</p>
+
+    <div class="grid2">
+      <div class="block">
+        <h3>H2U (Taiwan-listed, Hon Hai Group)</h3>
+        <ul>
+          <li>Lead solution consultant: consolidated requirements, planned the system and led technology and product teams to launch and commercialize the product.</li>
+          <li>Designed a RACI matrix and governance process covering leadership, IT, advertising, marketing and data teams.</li>
+          <li>Wrote the 2027–2028 board roadmap: phases with pass conditions and five metrics reviewed quarterly; 2027 revenue target about USD 3 million.</li>
+        </ul>
+      </div>
+      <div class="block">
+        <h3>Chubb Life and Nanshan Life</h3>
+        <ul>
+          <li>Chubb Life CDP and prediction models: list hit rate and email click-through up more than 50% over the previous approach.</li>
+          <li>Nanshan Life: third-party data evaluation framework with cross-role workflow, RACI and readiness checklist.</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="case" id="retail">
+  <div class="wrap">
+    <p class="eyebrow">Retail, beauty and brand experience</p>
+    <h2 style="font-size:clamp(24px,3vw,30px)">Brand and retail clients I have served</h2>
+    <ul class="press-list">
+      <li><span class="yr">Brands</span><div><strong>Coach, Bausch + Lomb, KFC, Warner Bros.</strong><p>Multinational clients at dentsuX; digital maturity roadmaps.</p></div></li>
+      <li><span class="yr">E-com</span><div><strong>30+ apparel e-commerce brands, Taobao, Tmall, Philips, Lenovo</strong><p>At adHub, from strategy and execution to performance review and account growth.</p></div></li>
+      <li><span class="yr">Retail</span><div><strong>A health-and-beauty retail chain</strong><p>2014 retargeting program for its e-commerce site: moving marketplace shoppers and re-engaging customers.</p></div></li>
+      <li><span class="yr">Retail</span><div><strong>Apparel merchandise allocation</strong><p>2026 plan for AI-assisted allocation and replenishment at an apparel retailer (proposal stage).</p></div></li>
+      <li><span class="yr">Global</span><div><strong>Mio global websites and CRM</strong><p>At MiTAC, multi-country sites and member data across Taiwan, China, the US, Australia and Eastern Europe.</p></div></li>
+    </ul>
+    <p class="note">I have not run supply chain or channel inventory inside a brand; there I would rely on the existing team and manage through operating metrics.</p>
+  </div>
+</section>
+
+<section class="how-sec" id="first100">
+  <div class="wrap">
+    <p class="eyebrow">If I took the COO role</p>
+    <h2 style="font-size:clamp(26px,3.2vw,34px)">How I would approach the first 100 days</h2>
+    <div class="how-grid four">
+      <div class="how"><b>Days 1–30 · Listen</b><p>One-to-ones with the founder and every manager; understand the P&amp;L, the key metrics and where decisions are actually made.</p></div>
+      <div class="how"><b>Days 31–60 · Decision rights</b><p>Map the organization and decision rights; set a weekly, monthly and quarterly operating cadence so decisions have a fixed place to happen.</p></div>
+      <div class="how"><b>Days 61–90 · Team</b><p>Agree annual targets and budgets with managers, identify successors for key roles and start coaching the management team.</p></div>
+      <div class="how"><b>After 90 days · Hand-over</b><p>Agree with the founder which decisions move to the management team and which stay at the strategy level, reviewed each quarter.</p></div>
+    </div>
+    <p class="note">This is my working framework; the actual steps would follow what I learn about the company.</p>
+  </div>
+</section>
+
+<section class="press" id="press">
+  <div class="wrap">
+    <p class="eyebrow">In the press (Chinese)</p>
+    <ul class="press-list">
+      <li><span class="yr">2021</span><div><a href="https://adm.com.tw/article/661faac4fd89780001c22086" target="_blank" rel="noopener">Adm Magazine: appointed Vice President and Chief Transformation Officer at dentsuX Taiwan</a><p>Effective 9 August 2021, leading a business unit and the company's transformation.</p></div></li>
+      <li><span class="yr">2021</span><div><a href="https://vocus.cc/article/60ef9ad9fd897800011c135e" target="_blank" rel="noopener">LeadAgileX profile: running three new businesses inside the cacaFly group</a><p>How the ventures were set up and run.</p></div></li>
+      <li><span class="yr">2018</span><div><a href="https://adm.com.tw/article/661fb3dcfd89780001c28276" target="_blank" rel="noopener">Adm Magazine: adHub launches Trader Dashboard with Microsoft and a LINE customer-data tool</a><p>adHub's 2018 product launch.</p></div></li>
+      <li><span class="yr">2015</span><div><a href="https://technews.tw/2015/03/09/cacafly-funp-dsp-sociomantic/" target="_blank" rel="noopener">TechNews: ADnalyst named exclusive Taiwan distributor of Sociomantic</a><p>ADnalyst's market entry.</p></div></li>
+      <li><span class="yr">2014</span><div><a href="https://www.bnext.com.tw/article/34155/BN-ARTICLE-34155" target="_blank" rel="noopener">Business Next: Chunghwa Telecom subsidiary invests in ClickForce</a><p>The ad network whose platform DoubleMax built.</p></div></li>
+    </ul>
+  </div>
+</section>
+
+<footer>
+  <div class="wrap">
+    <p>Full CV available on request. Client documents stay confidential; I am happy to discuss the approach behind each case. <a href="mailto:kash.doublemax@gmail.com">kash.doublemax@gmail.com</a></p>
+    <p class="note">Figures come from client documents and the public reports cited. USD amounts are approximate, converted at about NTD 31 per USD. The dentsuX 30% is a projection; the H2U figure is a 2027 target.</p>
+  </div>
+</footer>
+
+</body>
+</html>

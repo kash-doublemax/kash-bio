@@ -1,0 +1,331 @@
+<!doctype html>
+<html lang="zh-Hant">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="robots" content="noindex,nofollow,noarchive">
+<title>陳誼峰 Kash Chen｜經營作品集</title>
+<meta name="description" content="陳誼峰 Kash Chen 的經營、組織建構與轉型代表經驗。">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Noto+Sans+TC:wght@400;500;700&family=Noto+Serif+TC:wght@600;700&family=Source+Serif+4:opsz,wght@8..60,600&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --ink:#102640; --ink-2:#1a3652; --paper:#f7f4ee; --card:#ffffff;
+    --accent:#c95f32; --muted:#5d6b78; --line:rgba(16,38,64,.14); --soft:#eef1f4;
+  }
+  *{box-sizing:border-box}
+  html{scroll-behavior:smooth}
+  body{margin:0;background:var(--paper);color:var(--ink);font-family:"Noto Sans TC",Inter,"Microsoft JhengHei",sans-serif;font-size:16.5px;line-height:1.6;-webkit-font-smoothing:antialiased}
+  a{color:var(--accent);text-underline-offset:3px}
+  .wrap{max-width:1040px;margin:0 auto;padding:0 24px}
+  h1,h2,h3{font-family:"Noto Serif TC","Source Serif 4",serif;font-weight:600;letter-spacing:-.01em;line-height:1.2;margin:0}
+  .eyebrow{font-size:12px;font-weight:600;letter-spacing:.16em;text-transform:uppercase;color:var(--accent);margin:0 0 12px}
+
+  /* hero */
+  header.hero{background:var(--ink);color:#fff;padding:72px 0 64px}
+  header.hero h1{font-size:clamp(34px,5vw,54px);max-width:15em}
+  header.hero .lead{font-size:clamp(17px,2vw,20px);color:rgba(255,255,255,.82);max-width:40em;margin:22px 0 0}
+  .meta{margin-top:30px;font-size:14px;color:rgba(255,255,255,.65)}
+  .meta a{color:#fff}
+  .jump{display:flex;flex-wrap:wrap;gap:10px;margin-top:34px}
+  .jump a{color:#fff;text-decoration:none;border:1px solid rgba(255,255,255,.3);padding:8px 14px;border-radius:999px;font-size:14px}
+  .jump a:hover{border-color:#fff}
+
+  /* thread */
+  section{padding:64px 0;border-bottom:1px solid var(--line)}
+  .thread h2{font-size:clamp(26px,3.2vw,34px);max-width:22em}
+  .thread p.intro{color:var(--muted);max-width:44em;margin:14px 0 0}
+  .timeline{list-style:none;padding:0;margin:36px 0 0;display:grid;grid-template-columns:repeat(5,1fr);gap:0}
+  .timeline li{border-top:3px solid var(--ink);padding:16px 14px 0 0;position:relative}
+  .timeline li::before{content:"";position:absolute;top:-8px;left:0;width:13px;height:13px;border-radius:50%;background:var(--accent)}
+  .timeline .yr{font-weight:700;font-size:14px;color:var(--accent)}
+  .timeline strong{display:block;margin:4px 0;font-size:15.5px}
+  .timeline span{font-size:14px;color:var(--muted);display:block;line-height:1.45}
+
+  /* cases */
+  .case-head{display:flex;flex-wrap:wrap;align-items:baseline;gap:6px 16px}
+  .case-head .tag{font-size:12px;font-weight:700;letter-spacing:.14em;text-transform:uppercase;background:var(--ink);color:#fff;padding:4px 10px;border-radius:4px}
+  .case h2{font-size:clamp(26px,3.2vw,36px);margin-top:14px}
+  .case .sub{color:var(--muted);margin:10px 0 0;max-width:46em}
+  .kpis{display:grid;grid-template-columns:repeat(3,1fr);gap:16px;margin:30px 0}
+  .kpi{background:var(--card);border:1px solid var(--line);border-top:3px solid var(--accent);padding:18px 18px 16px;border-radius:6px}
+  .kpi b{display:block;font-family:"Noto Serif TC","Source Serif 4",serif;font-size:28px;line-height:1.1}
+  .kpi span{font-size:14px;color:var(--muted);display:block;margin-top:6px;line-height:1.45}
+  .grid2{display:grid;grid-template-columns:1fr 1fr;gap:28px}
+  .block h3{font-family:"Noto Sans TC",Inter,sans-serif;font-size:13px;font-weight:700;letter-spacing:.08em;text-transform:uppercase;color:var(--ink-2);margin:0 0 8px}
+  .block p{margin:0}
+  .block ul{margin:0;padding-left:1.1em}
+  .block li{margin-bottom:6px}
+  .sub-case{margin-top:44px;padding-top:36px;border-top:1px dashed var(--line)}
+  .sub-case h3.title{font-family:"Noto Serif TC","Source Serif 4",serif;font-size:24px;margin:8px 0 6px}
+  .figure{margin:30px 0 30px}
+  .figure img{width:100%;height:auto;display:block;border-radius:6px}
+  .figure figcaption{font-size:13.5px;color:var(--muted);margin-top:8px}
+  .evidence{margin-top:26px;background:var(--soft);border-radius:6px;padding:16px 18px;font-size:14.5px}
+  .evidence strong{display:block;font-size:12px;letter-spacing:.12em;text-transform:uppercase;margin-bottom:6px}
+  .evidence ul{margin:0;padding-left:1.1em}
+  .note{font-size:13px;color:var(--muted);margin-top:10px}
+
+  /* press */
+  .press-list{list-style:none;padding:0;margin:8px 0 0}
+  .press-list li{display:grid;grid-template-columns:64px 1fr;gap:14px;padding:16px 0;border-top:1px solid var(--line)}
+  .press-list .yr{font-weight:700;color:var(--accent);font-size:14px;padding-top:2px}
+  .press-list a{color:var(--ink);font-weight:600;text-decoration:none}
+  .press-list a:hover{text-decoration:underline}
+  .press-list p{margin:4px 0 0;color:var(--muted);font-size:14.5px}
+
+  /* how */
+  .how-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:22px;margin-top:30px}
+  .how{border-top:2px solid var(--ink);padding-top:16px}
+  .how b{display:block;font-size:17px;margin-bottom:6px}
+  .how p{margin:0;color:var(--muted);font-size:15px}
+  footer{padding:48px 0 64px;color:var(--muted);font-size:14.5px}
+  footer a{color:var(--ink)}
+
+  @media (max-width:820px){
+    .timeline{grid-template-columns:1fr;gap:18px}
+    .timeline li{border-top:0;border-left:3px solid var(--ink);padding:0 0 0 18px}
+    .timeline li::before{top:2px;left:-8px}
+    .kpis,.grid2,.how-grid{grid-template-columns:1fr}
+    header.hero{padding:52px 0 46px}
+    section{padding:48px 0}
+  }
+  @media print{header.hero{background:none;color:var(--ink)}header.hero .lead,.meta{color:var(--ink)}.jump{display:none}section{break-inside:avoid}}
+</style>
+<link rel="alternate" hreflang="en" href="en/">
+<style>
+  .how-grid.four{grid-template-columns:repeat(4,1fr)}
+  .press-list li strong{color:var(--ink)}
+  @media (max-width:820px){.how-grid.four{grid-template-columns:1fr}}
+</style>
+</head>
+<body>
+
+<header class="hero">
+  <div class="wrap">
+    <p class="eyebrow" style="color:#f0a37f">經營作品集 · 陳誼峰 Kash Chen</p>
+    <h1>在成長期把事業建起來，再把它變成不依賴單一個人的組織。</h1>
+    <p class="lead">這裡整理我在經營、組織建構與轉型上的代表經驗：對完整損益負責、從零建立團隊與制度、在大型集團內推動營運模式轉型。每個案例都寫明我的角色、做法、結果與出處。</p>
+    <div class="jump">
+      <a href="#pnl">01 經營與損益</a>
+      <a href="#ventures">02 從零建事業</a>
+      <a href="#transform">03 組織轉型</a>
+      <a href="#governance">04 權責與治理</a>
+      <a href="#first100">前 100 天做法</a>
+    </div>
+    <p class="meta">台北 · <a href="mailto:kash.doublemax@gmail.com">kash.doublemax@gmail.com</a> · <a href="https://www.imkash.cc">imkash.cc</a> · <a href="en/" lang="en">English</a></p>
+  </div>
+</header>
+
+<section class="thread">
+  <div class="wrap">
+    <p class="eyebrow">一條主線</p>
+    <h2>老闆放手，由我接手經營；我的工作是讓事業在我之外也能運轉。</h2>
+    <p class="intro">在 funP／cacaFly 雲沛集團，我接連三次從零建立新事業並獨立經營。之後在電通集團擔任營運轉型長，處理的是相反的題目：讓一家已有規模的公司改變運作方式。兩種經驗加起來，正是「創辦人交棒、公司制度化」最需要的能力。</p>
+    <ol class="timeline">
+      <li><div class="yr">2012–13</div><strong>創立</strong><span>DoubleMax：兩張桌子起步，兩年內年淨利近千萬。</span></li>
+      <li><div class="yr">2014–16</div><strong>開拓</strong><span>ADnalyst：取得國際 DSP 台灣獨家代理並推向市場。</span></li>
+      <li><div class="yr">2016–22</div><strong>經營</strong><span>adHub：完整 P&amp;L，三年內年營收超過新台幣 2 億。</span></li>
+      <li><div class="yr">2021–23</div><strong>轉型</strong><span>dentsuX：副總經理兼營運轉型長，推動組織轉型。</span></li>
+      <li><div class="yr">2023–</div><strong>治理</strong><span>Merkle：為上市公司設計權責分工與分階段推進。</span></li>
+    </ol>
+  </div>
+</section>
+
+<section class="case" id="pnl">
+  <div class="wrap">
+    <div class="case-head"><span class="tag">01 · 經營與損益</span><span class="note" style="margin:0">adHub 經緯廣告科技 · 事業發展總監 → 副總經理（2018）· 2016–2022</span></div>
+    <h2>adHub：從內部構想到年營收超過新台幣 2 億</h2>
+    <p class="sub">adHub 是 cacaFly 集團內的新事業，從零發展為 Facebook 官方廣告代理商。我對整個事業的營收、成本與利潤負責。</p>
+
+    <div class="kpis">
+      <div class="kpi"><b>2 億+</b><span>三年內達到的年營收（新台幣）</span></div>
+      <div class="kpi"><b>完整 P&amp;L</b><span>營收、成本、利潤全由我負責</span></div>
+      <div class="kpi"><b>13 人・3 主管</b><span>操作、業務、PM 企劃三個部門各有主管</span></div>
+    </div>
+
+    <div class="grid2">
+      <div class="block">
+        <h3>現況</h3>
+        <p>集團看到社群廣告自助投放的市場機會，需要一個能同時懂技術、業務與營運的人，把構想變成能獨立賺錢的事業。</p>
+      </div>
+      <div class="block">
+        <h3>我的角色</h3>
+        <p>事業負責人。負責市場進入、年度經營規劃、營收預測、資源配置與團隊建立，2018 年升任副總經理。</p>
+      </div>
+      <div class="block">
+        <h3>我做了什麼</h3>
+        <ul>
+          <li>把團隊分成操作、業務、PM 企劃三個功能，培養三位主管各自負責，自己專注在方向、損益與關鍵客戶。</li>
+          <li>建立從媒體企劃、跨渠道操作、素材優化到報表分析的整合營運模式，讓服務品質不依賴個別人員。</li>
+          <li>定期營收預測、客戶規劃與成效報告，作為資源配置與商業決策的依據。</li>
+          <li>開發自有工具提高營運效率與服務差異：adHub Trader Dashboard（以 Microsoft Power BI 建置）與 LINE 顧客資料工具 ACHO（2018）。</li>
+        </ul>
+      </div>
+      <div class="block">
+        <h3>結果</h3>
+        <ul>
+          <li>三年內年營收超過新台幣 2 億。</li>
+          <li>服務飛利浦、聯想、淘寶、天貓、長榮航空及 30 家以上服飾電商。</li>
+          <li>帶領聯想團隊獲 2018 數位奇點獎程序化廣告金獎。</li>
+          <li>依 2021 年專訪，經緯累計服務超過 2,000 家客戶、廣告投遞逾新台幣 30 億元。</li>
+        </ul>
+      </div>
+    </div>
+
+    <figure class="figure">
+      <img src="assets/adhub-launch-2018.jpg" alt="adHub 2018 年產品發表會座談" width="640" height="406" loading="lazy" style="max-width:640px">
+      <figcaption>adHub 2018 年產品發表會：ACHO for LINE、ANN 全媒體解決方案與 adHub Trader Dashboard。</figcaption>
+    </figure>
+  </div>
+</section>
+
+<section class="case" id="ventures">
+  <div class="wrap">
+    <div class="case-head"><span class="tag">02 · 從零建事業</span><span class="note" style="margin:0">funP／cacaFly 雲沛集團 · 2012–2016</span></div>
+    <h2>三次被授權從零開始：老闆放手，由我經營</h2>
+    <p class="sub">集團每次看到新機會，就把一個新事業交給我從零建立、獨立經營。adHub 是第三個，前兩個如下。</p>
+
+    <div class="grid2">
+      <div class="block">
+        <h3>喆立科技 DoubleMax（2012–2013）</h3>
+        <ul>
+          <li>cacaFly 與域動行銷（ClickForce）合資的新公司，一開始只有共用辦公室裡的兩張桌子。</li>
+          <li>產品經理起步，2013 年升任產品開發總監；帶 3 人工程團隊建置網站與行動社群廣告聯播平台。</li>
+          <li>約兩年內累積 500 個以上網站主，<strong>年淨利近新台幣 1,000 萬</strong>。</li>
+        </ul>
+      </div>
+      <div class="block">
+        <h3>群洋數位 ADnalyst（2014–2016）</h3>
+        <ul>
+          <li>產品總監，負責把國際 RTB 廣告技術帶進台灣。</li>
+          <li>2015 年取得德國 Sociomantic 台灣獨家代理；籌辦發表會、與代理商路演，設計與集團業務團隊的協同銷售模式。</li>
+          <li>從美國、中國、英國、德國引進產品並在台上市。</li>
+        </ul>
+      </div>
+    </div>
+
+    <figure class="figure">
+      <img src="assets/sociomantic-launch-2015.jpg" alt="2015 年程序化購買行銷高峰會現場" width="1024" height="683" loading="lazy">
+      <figcaption>2015 年程序化購買大趨勢行銷高峰會，由 cacaFly、Sociomantic 與群洋數位共同舉辦。</figcaption>
+    </figure>
+
+    <div class="block">
+      <h3>從這三次學到的事</h3>
+      <p>新事業成功的前提，是老闆給予真正的授權與支持；而經營者的責任，是在授權下把事業做到可以交給制度和團隊。這也是我理解「創辦人交棒」的方式：交出去的不是位子，是一套能自己運轉的機制。</p>
+    </div>
+  </div>
+</section>
+
+<section class="case" id="transform">
+  <div class="wrap">
+    <div class="case-head"><span class="tag">03 · 組織轉型</span><span class="note" style="margin:0">電通集團 dentsuX 台灣（貝立德）· 副總經理兼營運轉型長 · 2021–2023</span></div>
+    <h2>dentsuX：讓一家有規模的代理商改變運作方式</h2>
+    <p class="sub">2021 年 8 月由總經理延攬，向營運長匯報，帶領營業本部並推動公司組織轉型。</p>
+
+    <div class="grid2">
+      <div class="block">
+        <h3>現況</h3>
+        <p>洞察、媒體、內容、MarTech、電商各自分開運作，客戶需要的是整合服務，市場變化也要求更快的反應速度。</p>
+      </div>
+      <div class="block">
+        <h3>我做了什麼</h3>
+        <ul>
+          <li>把分散的能力整合成單一客戶服務模式，涵蓋整個消費者旅程。</li>
+          <li>導入敏捷行銷運作框架，讓企劃、媒體、社群與數據科學團隊能快速調整優先順序。</li>
+          <li>推動服務與營運現代化，並以影響力而非職權推動跨部門合作。</li>
+        </ul>
+      </div>
+      <div class="block">
+        <h3>結果</h3>
+        <ul>
+          <li>預估帶動 2022 年營收成長 30% 以上（預估值）。</li>
+          <li>管理 KFC、華納兄弟、博士倫、動視暴雪、Coach 等跨國客戶。</li>
+        </ul>
+      </div>
+      <div class="block">
+        <h3>領導方式</h3>
+        <p>ICF 專業認證教練（PCC）與 Scrum Master。我用教練式對話培養主管的判斷力，用明確的節奏與規則讓團隊自己運轉。</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="case" id="governance">
+  <div class="wrap">
+    <div class="case-head"><span class="tag">04 · 權責與治理</span><span class="note" style="margin:0">電通集團 Merkle Taiwan · 首席顧問／副總經理 · 2023–</span></div>
+    <h2>為上市公司建立跨部門的權責分工與推進機制</h2>
+    <p class="sub">顧問工作讓我在多家企業內，反覆處理同一個經營問題：部門之間對定義、責任與優先順序沒有共識。</p>
+
+    <div class="grid2">
+      <div class="block">
+        <h3>H2U 永悅健康（上市公司，鴻海集團）</h3>
+        <ul>
+          <li>解決方案總顧問：整合需求、規劃系統方案、統籌技術與產品團隊，把產品建置上線並推向商轉。</li>
+          <li>設計 RACI 權責矩陣與治理流程，釐清高層、IT、廣告、行銷、數據中心各自負責什麼。</li>
+          <li>撰寫董事會 2027–2028 路線圖：分階段、每階段有過關條件，並以五項指標每季追蹤；2027 年廣告營收目標約新台幣 1 億。</li>
+        </ul>
+      </div>
+      <div class="block">
+        <h3>安達人壽、南山人壽</h3>
+        <ul>
+          <li>安達人壽 CDP 與預測模型：名單命中率與 EDM 點擊率較原作法提升 50% 以上。</li>
+          <li>南山人壽：第三方資料評估框架，含跨角色工作流程、權責表與就緒檢查清單。</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="case" id="retail">
+  <div class="wrap">
+    <p class="eyebrow">與零售、美妝、品牌相關的經驗</p>
+    <h2 style="font-size:clamp(24px,3vw,30px)">我服務過的品牌與零售客戶</h2>
+    <ul class="press-list">
+      <li><span class="yr">品牌</span><div><strong>Coach、博士倫、KFC、華納兄弟</strong><p>dentsuX 時期管理的跨國客戶，負責數位成熟度路線圖。</p></div></li>
+      <li><span class="yr">電商</span><div><strong>30 家以上服飾電商、淘寶、天貓、飛利浦、聯想</strong><p>adHub 時期，從策略、執行到成效檢討與客戶經營。</p></div></li>
+      <li><span class="yr">零售</span><div><strong>健康美妝連鎖零售商</strong><p>2014 年為其電商設計再行銷方案，轉移商城客源並經營既有顧客。</p></div></li>
+      <li><span class="yr">零售</span><div><strong>服飾零售商品配置</strong><p>2026 年為服飾零售商規劃 AI 輔助的商品配置與補貨流程（提案階段）。</p></div></li>
+      <li><span class="yr">海外</span><div><strong>Mio 全球網站與 CRM</strong><p>神達時期負責台、中、美、澳、東歐等多國網站與會員資料整合。</p></div></li>
+    </ul>
+    <p class="note">我沒有在品牌方內部經營供應鏈與通路庫存的經驗；這部分會倚重既有團隊，並以經營指標管理。</p>
+  </div>
+</section>
+
+<section class="how-sec" id="first100">
+  <div class="wrap">
+    <p class="eyebrow">如果由我擔任營運長</p>
+    <h2 style="font-size:clamp(26px,3.2vw,34px)">前 100 天，我會這樣做</h2>
+    <div class="how-grid four">
+      <div class="how"><b>1–30 天｜聽與看</b><p>和創辦人、每位主管一對一；看清楚損益結構、主要指標與決策實際上在誰手上。</p></div>
+      <div class="how"><b>31–60 天｜定權責</b><p>畫出組織與權責表，定下每週、每月、每季的經營會議節奏與指標，先讓決策有固定的地方發生。</p></div>
+      <div class="how"><b>61–90 天｜建團隊</b><p>和主管訂年度目標與預算，找出關鍵職位的接班人選，開始以教練方式培養主管。</p></div>
+      <div class="how"><b>90 天後｜交棒</b><p>和創辦人約定哪些決策逐步交給經營團隊，哪些保留在策略層，按季檢視。</p></div>
+    </div>
+    <p class="note">以上是我的做法框架，實際步驟會在了解公司現況後調整。</p>
+  </div>
+</section>
+
+<section class="press" id="press">
+  <div class="wrap">
+    <p class="eyebrow">媒體報導</p>
+    <ul class="press-list">
+      <li><span class="yr">2021</span><div><a href="https://adm.com.tw/article/661faac4fd89780001c22086" target="_blank" rel="noopener">廣告雜誌：貝立德邀請陳誼峰任副總經理兼營運轉型長，深化組織轉型</a><p>2021 年 8 月 9 日生效，帶領營業本部並協助公司轉型。</p></div></li>
+      <li><span class="yr">2021</span><div><a href="https://vocus.cc/article/60ef9ad9fd897800011c135e" target="_blank" rel="noopener">LeadAgileX 專訪：陳誼峰操盤數位創新，拓藍海年淨利千萬</a><p>在雲沛集團內操盤三個新事業的經過。</p></div></li>
+      <li><span class="yr">2018</span><div><a href="https://adm.com.tw/article/661fb3dcfd89780001c28276" target="_blank" rel="noopener">廣告雜誌：攜手微軟、活用 LINE 平台，adHub 經緯廣告科技打造行銷新利器</a><p>adHub 2018 年產品發表。</p></div></li>
+      <li><span class="yr">2015</span><div><a href="https://technews.tw/2015/03/09/cacafly-funp-dsp-sociomantic/" target="_blank" rel="noopener">科技新報：群洋數位獨家代理 DSP 平台 Sociomantic</a><p>ADnalyst 的市場開拓。</p></div></li>
+      <li><span class="yr">2014</span><div><a href="https://www.bnext.com.tw/article/34155/BN-ARTICLE-34155" target="_blank" rel="noopener">數位時代：中華電信子公司入股域動行銷</a><p>DoubleMax 為其建置平台的廣告聯播網。</p></div></li>
+    </ul>
+  </div>
+</section>
+
+<footer>
+  <div class="wrap">
+    <p>完整履歷可另行提供。客戶文件維持機密，歡迎就各案例的做法進一步交流。<a href="mailto:kash.doublemax@gmail.com">kash.doublemax@gmail.com</a></p>
+    <p class="note">數字取自客戶文件與上方引用的公開報導。dentsuX 的 30% 為預估值；H2U 營收數字為 2027 年目標。</p>
+  </div>
+</footer>
+
+</body>
+</html>
