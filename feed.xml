@@ -5,7 +5,14 @@
     <link>https://www.imkash.cc/blog.html</link>
     <description>陳誼峰 Kash 的部落格。AI、問題定義、客戶權限與顧問判斷。</description>
     <language>zh-Hant</language>
-    <lastBuildDate>Thu, 26 Nov 2026 06:36:03 +0800</lastBuildDate>
+    <lastBuildDate>Sat, 28 Nov 2026 11:09:44 +0800</lastBuildDate>
+    <item>
+      <title>平台管得到代理怎麼進門，管不到它出錯之後</title>
+      <link>https://www.imkash.cc/blog/2026/11/agent-rules-before-platform-rules/</link>
+      <guid isPermaLink="true">https://www.imkash.cc/blog/2026/11/agent-rules-before-platform-rules/</guid>
+      <pubDate>Fri, 27 Nov 2026 06:00:00 +0800</pubDate>
+      <description>Google 從 2027 年 2 月 1 日起要求 AI 代理改走 Workspace MCP 伺服器或 CLI。平台管得到代理怎麼進門，但碰什麼資料、錯了怎麼還原、誰第一個知道，要公司自己寫成一頁代理守則。</description>
+    </item>
     <item>
       <title>十年資歷，可能只是同一年重複十次</title>
       <link>https://www.imkash.cc/blog/2026/11/ten-years-or-one-year-repeated/</link>
